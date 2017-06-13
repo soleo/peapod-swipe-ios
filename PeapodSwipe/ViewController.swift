@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     var cards = [ImageCard]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpUI()
-        // Do any additional setup after loading the view, typically from a nib.
+
         for _ in 1...30 {
             let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
             cards.append(card)
@@ -29,11 +31,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override var prefersStatusBarHidden: Bool {
-        get {
-            return true
-        }
-    }
+//    override var prefersStatusBarHidden: Bool {
+//        get {
+//            return true
+//        }
+//    }
     
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
@@ -201,7 +203,6 @@ class ViewController: UIViewController {
             
             dynamicAnimator.removeAllBehaviors()
         
-                
             if !(cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) || cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter)) {
                 // snap to center
                 let snapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
