@@ -8,7 +8,7 @@
 
 import XCTest
 
-class peapod_swipeUITests: XCTestCase {
+class PeapodSwipeUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

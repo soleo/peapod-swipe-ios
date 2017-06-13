@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import peapod_swipe
+@testable import PeapodSwipe
 
 class peapod_swipeTests: XCTestCase {
     

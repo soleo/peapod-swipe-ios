@@ -12,8 +12,8 @@
 		A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB961EEF5D770044D45B /* Main.storyboard */; };
 		A9ADFB9A1EEF5D770044D45B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB991EEF5D770044D45B /* Assets.xcassets */; };
 		A9ADFB9D1EEF5D770044D45B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */; };
-		A9ADFBA81EEF5D780044D45B /* peapod_swipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBA71EEF5D780044D45B /* peapod_swipeTests.swift */; };
-		A9ADFBB31EEF5D780044D45B /* peapod_swipeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBB21EEF5D780044D45B /* peapod_swipeUITests.swift */; };
+		A9ADFBA81EEF5D780044D45B /* PeapodSwipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBA71EEF5D780044D45B /* PeapodSwipeTests.swift */; };
+		A9ADFBB31EEF5D780044D45B /* PeapodSwipeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBB21EEF5D780044D45B /* PeapodSwipeUITests.swift */; };
 		A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC01EEF69B20044D45B /* CardView.swift */; };
 		A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */; };
 /* End PBXBuildFile section */
@@ -44,10 +44,10 @@
 		A9ADFB9C1EEF5D770044D45B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9ADFB9E1EEF5D770044D45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9ADFBA31EEF5D780044D45B /* PeapodSwipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeapodSwipeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9ADFBA71EEF5D780044D45B /* peapod_swipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peapod_swipeTests.swift; sourceTree = "<group>"; };
+		A9ADFBA71EEF5D780044D45B /* PeapodSwipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodSwipeTests.swift; sourceTree = "<group>"; };
 		A9ADFBA91EEF5D780044D45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9ADFBAE1EEF5D780044D45B /* PeapodSwipeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeapodSwipeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9ADFBB21EEF5D780044D45B /* peapod_swipeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peapod_swipeUITests.swift; sourceTree = "<group>"; };
+		A9ADFBB21EEF5D780044D45B /* PeapodSwipeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodSwipeUITests.swift; sourceTree = "<group>"; };
 		A9ADFBB41EEF5D780044D45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9ADFBC01EEF69B20044D45B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
@@ -110,28 +110,25 @@
 				A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */,
 				A9ADFB9E1EEF5D770044D45B /* Info.plist */,
 			);
-			name = PeapodSwipe;
-			path = "PeapodSwipe";
+			path = PeapodSwipe;
 			sourceTree = "<group>";
 		};
 		A9ADFBA61EEF5D780044D45B /* PeapodSwipeTests */ = {
 			isa = PBXGroup;
 			children = (
-				A9ADFBA71EEF5D780044D45B /* peapod_swipeTests.swift */,
+				A9ADFBA71EEF5D780044D45B /* PeapodSwipeTests.swift */,
 				A9ADFBA91EEF5D780044D45B /* Info.plist */,
 			);
-			name = PeapodSwipeTests;
-			path = "PeapodSwipeTests";
+			path = PeapodSwipeTests;
 			sourceTree = "<group>";
 		};
 		A9ADFBB11EEF5D780044D45B /* PeapodSwipeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				A9ADFBB21EEF5D780044D45B /* peapod_swipeUITests.swift */,
+				A9ADFBB21EEF5D780044D45B /* PeapodSwipeUITests.swift */,
 				A9ADFBB41EEF5D780044D45B /* Info.plist */,
 			);
-			name = PeapodSwipeUITests;
-			path = "PeapodSwipeUITests";
+			path = PeapodSwipeUITests;
 			sourceTree = "<group>";
 		};
 		A9ADFBC41EEF6ACF0044D45B /* Cards */ = {
@@ -184,7 +181,7 @@
 				A9ADFBA51EEF5D780044D45B /* PBXTargetDependency */,
 			);
 			name = PeapodSwipeTests;
-			productName = "pPeapodSwipeTests";
+			productName = pPeapodSwipeTests;
 			productReference = A9ADFBA31EEF5D780044D45B /* PeapodSwipeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -202,7 +199,7 @@
 				A9ADFBB01EEF5D780044D45B /* PBXTargetDependency */,
 			);
 			name = PeapodSwipeUITests;
-			productName = "PeapodSwipeUITests";
+			productName = PeapodSwipeUITests;
 			productReference = A9ADFBAE1EEF5D780044D45B /* PeapodSwipeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -298,7 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9ADFBA81EEF5D780044D45B /* peapod_swipeTests.swift in Sources */,
+				A9ADFBA81EEF5D780044D45B /* PeapodSwipeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9ADFBB31EEF5D780044D45B /* peapod_swipeUITests.swift in Sources */,
+				A9ADFBB31EEF5D780044D45B /* PeapodSwipeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q7YZ6U36NH;
-				INFOPLIST_FILE = "PeapodSwipe/Info.plist";
+				INFOPLIST_FILE = PeapodSwipe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinjiangshao.peapodswipe;
@@ -459,7 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Q7YZ6U36NH;
-				INFOPLIST_FILE = "PeapodSwipe/Info.plist";
+				INFOPLIST_FILE = PeapodSwipe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xinjiangshao.peapodswipe;
@@ -474,7 +471,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = Q7YZ6U36NH;
-				INFOPLIST_FILE = "PeapodSwipeTests/Info.plist";
+				INFOPLIST_FILE = PeapodSwipeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -489,7 +486,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = Q7YZ6U36NH;
-				INFOPLIST_FILE = "PeapodSwipeTests/Info.plist";
+				INFOPLIST_FILE = PeapodSwipeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -503,7 +500,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = Q7YZ6U36NH;
-				INFOPLIST_FILE = "PeapodSwipeUITests/Info.plist";
+				INFOPLIST_FILE = PeapodSwipeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -517,7 +514,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = Q7YZ6U36NH;
-				INFOPLIST_FILE = "PeapodSwipeUITests/Info.plist";
+				INFOPLIST_FILE = PeapodSwipeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,6 +542,7 @@
 				A9ADFBB91EEF5D780044D45B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9ADFBBA1EEF5D780044D45B /* Build configuration list for PBXNativeTarget "PeapodSwipeTests" */ = {
 			isa = XCConfigurationList;
@@ -553,6 +551,7 @@
 				A9ADFBBC1EEF5D780044D45B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A9ADFBBD1EEF5D780044D45B /* Build configuration list for PBXNativeTarget "PeapodSwipeUITests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +560,7 @@
 				A9ADFBBF1EEF5D780044D45B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
