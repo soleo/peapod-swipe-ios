@@ -14,7 +14,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
+        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpUI()
 
         for _ in 1...30 {
@@ -30,12 +31,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    override var prefersStatusBarHidden: Bool {
-//        get {
-//            return true
-//        }
-//    }
     
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15

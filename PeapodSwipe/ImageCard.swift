@@ -46,5 +46,6 @@ class ImageCard: CardView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
 }
 
