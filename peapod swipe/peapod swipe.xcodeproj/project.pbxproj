@@ -1,0 +1,568 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB921EEF5D770044D45B /* AppDelegate.swift */; };
+		A9ADFB951EEF5D770044D45B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB941EEF5D770044D45B /* ViewController.swift */; };
+		A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB961EEF5D770044D45B /* Main.storyboard */; };
+		A9ADFB9A1EEF5D770044D45B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB991EEF5D770044D45B /* Assets.xcassets */; };
+		A9ADFB9D1EEF5D770044D45B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */; };
+		A9ADFBA81EEF5D780044D45B /* peapod_swipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBA71EEF5D780044D45B /* peapod_swipeTests.swift */; };
+		A9ADFBB31EEF5D780044D45B /* peapod_swipeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBB21EEF5D780044D45B /* peapod_swipeUITests.swift */; };
+		A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC01EEF69B20044D45B /* CardView.swift */; };
+		A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A9ADFBA41EEF5D780044D45B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9ADFB871EEF5D770044D45B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9ADFB8E1EEF5D770044D45B;
+			remoteInfo = "peapod swipe";
+		};
+		A9ADFBAF1EEF5D780044D45B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9ADFB871EEF5D770044D45B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9ADFB8E1EEF5D770044D45B;
+			remoteInfo = "peapod swipe";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A9ADFB8F1EEF5D770044D45B /* peapod swipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "peapod swipe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A9ADFB941EEF5D770044D45B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A9ADFB971EEF5D770044D45B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A9ADFB991EEF5D770044D45B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A9ADFB9C1EEF5D770044D45B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A9ADFB9E1EEF5D770044D45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9ADFBA31EEF5D780044D45B /* peapod swipeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "peapod swipeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9ADFBA71EEF5D780044D45B /* peapod_swipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peapod_swipeTests.swift; sourceTree = "<group>"; };
+		A9ADFBA91EEF5D780044D45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9ADFBAE1EEF5D780044D45B /* peapod swipeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "peapod swipeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9ADFBB21EEF5D780044D45B /* peapod_swipeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peapod_swipeUITests.swift; sourceTree = "<group>"; };
+		A9ADFBB41EEF5D780044D45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9ADFBC01EEF69B20044D45B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9ADFB8C1EEF5D770044D45B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9ADFBA01EEF5D780044D45B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9ADFBAB1EEF5D780044D45B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A9ADFB861EEF5D770044D45B = {
+			isa = PBXGroup;
+			children = (
+				A9ADFB911EEF5D770044D45B /* PeapodSwipe */,
+				A9ADFBA61EEF5D780044D45B /* PeapodSwipeTests */,
+				A9ADFBB11EEF5D780044D45B /* PeapodSwipeUITests */,
+				A9ADFB901EEF5D770044D45B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A9ADFB901EEF5D770044D45B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A9ADFB8F1EEF5D770044D45B /* peapod swipe.app */,
+				A9ADFBA31EEF5D780044D45B /* peapod swipeTests.xctest */,
+				A9ADFBAE1EEF5D780044D45B /* peapod swipeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A9ADFB911EEF5D770044D45B /* PeapodSwipe */ = {
+			isa = PBXGroup;
+			children = (
+				A9ADFBC51EEF6ADE0044D45B /* Login */,
+				A9ADFBC41EEF6ACF0044D45B /* Cards */,
+				A9ADFB921EEF5D770044D45B /* AppDelegate.swift */,
+				A9ADFB941EEF5D770044D45B /* ViewController.swift */,
+				A9ADFB961EEF5D770044D45B /* Main.storyboard */,
+				A9ADFB991EEF5D770044D45B /* Assets.xcassets */,
+				A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */,
+				A9ADFB9E1EEF5D770044D45B /* Info.plist */,
+			);
+			name = PeapodSwipe;
+			path = "peapod swipe";
+			sourceTree = "<group>";
+		};
+		A9ADFBA61EEF5D780044D45B /* PeapodSwipeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A9ADFBA71EEF5D780044D45B /* peapod_swipeTests.swift */,
+				A9ADFBA91EEF5D780044D45B /* Info.plist */,
+			);
+			name = PeapodSwipeTests;
+			path = "peapod swipeTests";
+			sourceTree = "<group>";
+		};
+		A9ADFBB11EEF5D780044D45B /* PeapodSwipeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A9ADFBB21EEF5D780044D45B /* peapod_swipeUITests.swift */,
+				A9ADFBB41EEF5D780044D45B /* Info.plist */,
+			);
+			name = PeapodSwipeUITests;
+			path = "peapod swipeUITests";
+			sourceTree = "<group>";
+		};
+		A9ADFBC41EEF6ACF0044D45B /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */,
+				A9ADFBC01EEF69B20044D45B /* CardView.swift */,
+			);
+			name = Cards;
+			sourceTree = "<group>";
+		};
+		A9ADFBC51EEF6ADE0044D45B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9ADFB8E1EEF5D770044D45B /* peapod swipe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9ADFBB71EEF5D780044D45B /* Build configuration list for PBXNativeTarget "peapod swipe" */;
+			buildPhases = (
+				A9ADFB8B1EEF5D770044D45B /* Sources */,
+				A9ADFB8C1EEF5D770044D45B /* Frameworks */,
+				A9ADFB8D1EEF5D770044D45B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "peapod swipe";
+			productName = "peapod swipe";
+			productReference = A9ADFB8F1EEF5D770044D45B /* peapod swipe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A9ADFBA21EEF5D780044D45B /* peapod swipeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9ADFBBA1EEF5D780044D45B /* Build configuration list for PBXNativeTarget "peapod swipeTests" */;
+			buildPhases = (
+				A9ADFB9F1EEF5D780044D45B /* Sources */,
+				A9ADFBA01EEF5D780044D45B /* Frameworks */,
+				A9ADFBA11EEF5D780044D45B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9ADFBA51EEF5D780044D45B /* PBXTargetDependency */,
+			);
+			name = "peapod swipeTests";
+			productName = "peapod swipeTests";
+			productReference = A9ADFBA31EEF5D780044D45B /* peapod swipeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A9ADFBAD1EEF5D780044D45B /* peapod swipeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9ADFBBD1EEF5D780044D45B /* Build configuration list for PBXNativeTarget "peapod swipeUITests" */;
+			buildPhases = (
+				A9ADFBAA1EEF5D780044D45B /* Sources */,
+				A9ADFBAB1EEF5D780044D45B /* Frameworks */,
+				A9ADFBAC1EEF5D780044D45B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9ADFBB01EEF5D780044D45B /* PBXTargetDependency */,
+			);
+			name = "peapod swipeUITests";
+			productName = "peapod swipeUITests";
+			productReference = A9ADFBAE1EEF5D780044D45B /* peapod swipeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A9ADFB871EEF5D770044D45B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Xinjiang Shao";
+				TargetAttributes = {
+					A9ADFB8E1EEF5D770044D45B = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Q7YZ6U36NH;
+						ProvisioningStyle = Automatic;
+					};
+					A9ADFBA21EEF5D780044D45B = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Q7YZ6U36NH;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A9ADFB8E1EEF5D770044D45B;
+					};
+					A9ADFBAD1EEF5D780044D45B = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Q7YZ6U36NH;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A9ADFB8E1EEF5D770044D45B;
+					};
+				};
+			};
+			buildConfigurationList = A9ADFB8A1EEF5D770044D45B /* Build configuration list for PBXProject "peapod swipe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A9ADFB861EEF5D770044D45B;
+			productRefGroup = A9ADFB901EEF5D770044D45B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A9ADFB8E1EEF5D770044D45B /* peapod swipe */,
+				A9ADFBA21EEF5D780044D45B /* peapod swipeTests */,
+				A9ADFBAD1EEF5D780044D45B /* peapod swipeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9ADFB8D1EEF5D770044D45B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9ADFB9D1EEF5D770044D45B /* LaunchScreen.storyboard in Resources */,
+				A9ADFB9A1EEF5D770044D45B /* Assets.xcassets in Resources */,
+				A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9ADFBA11EEF5D780044D45B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9ADFBAC1EEF5D780044D45B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A9ADFB8B1EEF5D770044D45B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9ADFB951EEF5D770044D45B /* ViewController.swift in Sources */,
+				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
+				A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */,
+				A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9ADFB9F1EEF5D780044D45B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9ADFBA81EEF5D780044D45B /* peapod_swipeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A9ADFBAA1EEF5D780044D45B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9ADFBB31EEF5D780044D45B /* peapod_swipeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A9ADFBA51EEF5D780044D45B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9ADFB8E1EEF5D770044D45B /* peapod swipe */;
+			targetProxy = A9ADFBA41EEF5D780044D45B /* PBXContainerItemProxy */;
+		};
+		A9ADFBB01EEF5D780044D45B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9ADFB8E1EEF5D770044D45B /* peapod swipe */;
+			targetProxy = A9ADFBAF1EEF5D780044D45B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A9ADFB961EEF5D770044D45B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9ADFB971EEF5D770044D45B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9ADFB9C1EEF5D770044D45B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A9ADFBB51EEF5D780044D45B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9ADFBB61EEF5D780044D45B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9ADFBB81EEF5D780044D45B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Q7YZ6U36NH;
+				INFOPLIST_FILE = "peapod swipe/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xinjiangshao.peapodswipe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A9ADFBB91EEF5D780044D45B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Q7YZ6U36NH;
+				INFOPLIST_FILE = "peapod swipe/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.xinjiangshao.peapodswipe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A9ADFBBB1EEF5D780044D45B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Q7YZ6U36NH;
+				INFOPLIST_FILE = "peapod swipeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/peapod swipe.app/peapod swipe";
+			};
+			name = Debug;
+		};
+		A9ADFBBC1EEF5D780044D45B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Q7YZ6U36NH;
+				INFOPLIST_FILE = "peapod swipeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/peapod swipe.app/peapod swipe";
+			};
+			name = Release;
+		};
+		A9ADFBBE1EEF5D780044D45B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = Q7YZ6U36NH;
+				INFOPLIST_FILE = "peapod swipeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "peapod swipe";
+			};
+			name = Debug;
+		};
+		A9ADFBBF1EEF5D780044D45B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = Q7YZ6U36NH;
+				INFOPLIST_FILE = "peapod swipeUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xinjiangshao.peapod-swipeUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "peapod swipe";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A9ADFB8A1EEF5D770044D45B /* Build configuration list for PBXProject "peapod swipe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9ADFBB51EEF5D780044D45B /* Debug */,
+				A9ADFBB61EEF5D780044D45B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9ADFBB71EEF5D780044D45B /* Build configuration list for PBXNativeTarget "peapod swipe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9ADFBB81EEF5D780044D45B /* Debug */,
+				A9ADFBB91EEF5D780044D45B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A9ADFBBA1EEF5D780044D45B /* Build configuration list for PBXNativeTarget "peapod swipeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9ADFBBB1EEF5D780044D45B /* Debug */,
+				A9ADFBBC1EEF5D780044D45B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A9ADFBBD1EEF5D780044D45B /* Build configuration list for PBXNativeTarget "peapod swipeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9ADFBBE1EEF5D780044D45B /* Debug */,
+				A9ADFBBF1EEF5D780044D45B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A9ADFB871EEF5D770044D45B /* Project object */;
+}
