@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BBCCB1EF89B4D00ACBF7B /* Product.swift */; };
 		A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB921EEF5D770044D45B /* AppDelegate.swift */; };
 		A9ADFB951EEF5D770044D45B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB941EEF5D770044D45B /* ViewController.swift */; };
 		A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ADFB961EEF5D770044D45B /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A99BBCCB1EF89B4D00ACBF7B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A9ADFB8F1EEF5D770044D45B /* PeapodSwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeapodSwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9ADFB941EEF5D770044D45B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A99BBCCA1EF89AC000ACBF7B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A99BBCCB1EF89B4D00ACBF7B /* Product.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		A9ADFB861EEF5D770044D45B = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		A9ADFB911EEF5D770044D45B /* PeapodSwipe */ = {
 			isa = PBXGroup;
 			children = (
+				A99BBCCA1EF89AC000ACBF7B /* Model */,
 				A9ADFBC51EEF6ADE0044D45B /* Login */,
 				A9ADFBC41EEF6ACF0044D45B /* Cards */,
 				A9ADFB921EEF5D770044D45B /* AppDelegate.swift */,
@@ -216,17 +227,20 @@
 					A9ADFB8E1EEF5D770044D45B = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = Q7YZ6U36NH;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					A9ADFBA21EEF5D780044D45B = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = Q7YZ6U36NH;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = A9ADFB8E1EEF5D770044D45B;
 					};
 					A9ADFBAD1EEF5D780044D45B = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = Q7YZ6U36NH;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						TestTargetID = A9ADFB8E1EEF5D770044D45B;
 					};
@@ -286,6 +300,7 @@
 			files = (
 				A9ADFB951EEF5D770044D45B /* ViewController.swift in Sources */,
 				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
+				A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */,
 				A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */,
 				A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */,
 			);

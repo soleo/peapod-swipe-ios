@@ -48,7 +48,7 @@ class CardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func showOptionLabel(option: CardOption) {
+    func showOptionLabel(_ option: CardOption) {
         if option == .like1 || option == .like2 || option == .like3 {
             
             greenLabel.text = option.rawValue

@@ -1,0 +1,16 @@
+{
+  "name": "fake-swipe-server",
+  "version": "0.0.1",
+  "description": "A Fake JSON feed for Peapod Swipe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JSON",
+    "fake",
+    "ReST"
+  ],
+  "author": "Xinjiang Shao <shaoxinjiang@gmail.com>",
+  "license": "MIT"
+}

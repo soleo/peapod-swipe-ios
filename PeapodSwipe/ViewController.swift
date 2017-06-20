@@ -152,7 +152,7 @@ class ViewController: UIViewController {
     var cardAttachmentBehavior: UIAttachmentBehavior!
     
     /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
-    func handleCardPan(sender: UIPanGestureRecognizer) {
+    func handleCardPan(_ sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
         let optionLength: CGFloat = 60
         // distance user must pan right or left to trigger an option
@@ -171,27 +171,25 @@ class ViewController: UIViewController {
             cardAttachmentBehavior.anchorPoint = panLocationInView
             if cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) {
                 if cards[0].center.y < (self.view.center.y - optionLength) {
-                    cards[0].showOptionLabel(option: .like1)
+                    cards[0].showOptionLabel(.like1)
                 } else if cards[0].center.y > (self.view.center.y + optionLength) {
-                    cards[0].showOptionLabel(option: .like3)
+                    cards[0].showOptionLabel(.like3)
                 } else {
-                    cards[0].showOptionLabel(option: .like2)
+                    cards[0].showOptionLabel(.like2)
                 }
             } else if cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter) {
                 
                 if cards[0].center.y < (self.view.center.y - optionLength) {
-                    cards[0].showOptionLabel(option: .dislike1)
+                    cards[0].showOptionLabel(.dislike1)
                     
                 } else if cards[0].center.y > (self.view.center.y + optionLength) {
-                    cards[0].showOptionLabel(option: .dislike3)
+                    cards[0].showOptionLabel(.dislike3)
                     
                 } else {
-                    cards[0].showOptionLabel(option: .dislike2)
-                   
+                    cards[0].showOptionLabel(.dislike2)
                 }
             } else {
                 cards[0].hideOptionLabel()
-               
             }
             
         case .ended:
