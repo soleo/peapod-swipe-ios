@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpUI()
-
+        
+        
         for _ in 1...30 {
             let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
             cards.append(card)
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
     
     func setUpUI() {
         let reactLabel = UILabel()
-        reactLabel.text = "REACT"
+        reactLabel.text = "Add it?"
         reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
         reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
         reactLabel.textAlignment = .center
