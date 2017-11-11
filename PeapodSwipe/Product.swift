@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public struct Product: Decodable {
+public struct Product: Gloss.Decodable {
     
     public let id: String?
     public let name: String?

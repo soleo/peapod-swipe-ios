@@ -153,7 +153,7 @@ class ViewController: UIViewController {
     var cardAttachmentBehavior: UIAttachmentBehavior!
     
     /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
-    func handleCardPan(_ sender: UIPanGestureRecognizer) {
+    @objc func handleCardPan(_ sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
         let optionLength: CGFloat = 60
         // distance user must pan right or left to trigger an option

@@ -9,7 +9,7 @@
 import Foundation
 import Gloss
 
-public struct ProductImage: Decodable {
+public struct ProductImage: Gloss.Decodable {
     public let imageUrlSmall: String!
     public let imageUrlMedium: String!
     public let imageUrlLarge: String!
