@@ -28,18 +28,17 @@ class CardView: UIView {
         super.init(frame: frame)
         
         // card style
-        self.backgroundColor = UIColor(red: 79/255, green: 96/255, blue: 201/255, alpha: 1.0)
+        self.backgroundColor = .white
         self.layer.cornerRadius = 10
         
         // labels on top left and right
+        let padding: CGFloat = 30
         
-        let padding: CGFloat = 20
-        
-        greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: UIColor(red: 102/255, green: 209/255, blue: 158/255, alpha: 1.0))
+        greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: UIColor.Defaults.primaryColor)
         greenLabel.isHidden = true
         self.addSubview(greenLabel)
         
-        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: UIColor(red: 236/255, green: 137/255, blue: 134/255, alpha: 1.0))
+        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: UIColor.Defaults.secondaryColor)
         redLabel.isHidden = true
         self.addSubview(redLabel)
     }
@@ -74,7 +73,6 @@ class CardView: UIView {
         } else {
             
             redLabel.text = option.rawValue
-            
             
             // fade out greenLabel
             if !greenLabel.isHidden {
@@ -121,33 +119,6 @@ class CardView: UIView {
                 self.isHidingOptionLabel = false
             })
         }
-    }
-    
-}
-
-class CardViewLabel: UILabel {
-    fileprivate static let size = CGSize(width: 120, height: 36)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.textColor = .white
-        self.font = UIFont.boldSystemFont(ofSize: 18)
-        self.textAlignment = .center
-        
-        self.layer.cornerRadius = frame.height / 2
-        self.layer.masksToBounds = true
-        self.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
-    }
-    
-    convenience init(origin: CGPoint, color: UIColor) {
-        
-        self.init(frame: CGRect(x: origin.x, y: origin.y, width: CardViewLabel.size.width, height: CardViewLabel.size.height))
-        self.backgroundColor = color
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

@@ -7,17 +7,32 @@
 //
 
 import UIKit
+//import Firebase
 
 class ViewController: UIViewController {
     
     var cards = [ImageCard]()
-
+//var handle: AuthStateDidChangeListenerHandle?
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+//            // ...
+//        }
+//
+//    }
+//    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        Auth.auth().removeStateDidChangeListener(handle!)
+//    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
+        self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpUI()
-        
         
         for _ in 1...30 {
             let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
@@ -37,13 +52,11 @@ class ViewController: UIViewController {
     let cardInteritemSpacing: CGFloat = 15
     
     func setUpUI() {
-        let reactLabel = UILabel()
-        reactLabel.text = "Add it?"
-        reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
-        reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
-        reactLabel.textAlignment = .center
-        reactLabel.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
-        self.view.addSubview(reactLabel)
+        let menuButton = UIButton()
+        menuButton.setTitle("MENU", for: UIControlState.normal)
+        menuButton.setTitleColor(.white, for: UIControlState.normal)
+        menuButton.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
+        self.view.addSubview(menuButton)
     }
     
     func layoutCards() {

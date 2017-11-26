@@ -1,2 +1,4 @@
 github "Alamofire/Alamofire" ~> 4.4
 github "hkellaway/Gloss"
+github "SnapKit/SnapKit" ~> 4.0.0
+github "soheilbm/Firebase"

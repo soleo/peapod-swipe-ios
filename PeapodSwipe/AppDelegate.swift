@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // TODO: Need to be able to handle universal link from email or anywhere else
         
+        //FirebaseApp.configure()
+        
         let vc = ViewController()
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = vc
         window.makeKeyAndVisible()
         self.window = window
+        
+        //Auth.auth().signInAnonymously() { (user, error) in
+            
+        
+        //}
         
         return true
     }
