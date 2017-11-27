@@ -40,6 +40,4 @@ extension UIColor {
         static let primaryTextColor = Defaults.Grey80
     }
 
-    
-    
 }

@@ -25,10 +25,6 @@ class ImageCard: CardView {
         imageView.frame = CGRect(x: 12, y: 12, width: self.frame.width - 24, height: self.frame.height - 103)
         self.addSubview(imageView)
         
-//        let seperatorLine = UIView()
-//        seperatorLine.backgroundColor = UIColor.Defaults.backgroundColor
-//        self.addSubview(seperatorLine)
-        
         // product name text box
         let productName = UILabel()
         productName.textColor = UIColor.Defaults.primaryTextColor
@@ -38,11 +34,6 @@ class ImageCard: CardView {
         productName.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: self.frame.width, height: 24)
         self.addSubview(productName)
         
-//        seperatorLine.snp.makeConstraints { (make) in
-//            make.bottom.equalTo(imageView);
-//            make.width.equalTo(imageView.frame.width)
-//            make.height.equalTo(1)
-//        }
     }
     
     required init?(coder aDecoder: NSCoder) {

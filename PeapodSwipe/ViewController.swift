@@ -7,25 +7,26 @@
 //
 
 import UIKit
-//import Firebase
+import Firebase
 
-class ViewController: UIViewController {
+class CardViewController: UIViewController {
     
     var cards = [ImageCard]()
-//var handle: AuthStateDidChangeListenerHandle?
+    var handle: AuthStateDidChangeListenerHandle?
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-//            // ...
-//        }
-//
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        Auth.auth().removeStateDidChangeListener(handle!)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            // ...
+            
+        }
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Auth.auth().removeStateDidChangeListener(handle!)
+    }
     
     
     override func viewDidLoad() {
