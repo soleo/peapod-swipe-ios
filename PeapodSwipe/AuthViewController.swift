@@ -52,14 +52,13 @@ class AuthViewController: UIViewController {
 
 extension AuthViewController{
     @objc func SELsignInAnonymously() {
-        print("Tap Login")
+        
         return Auth.auth().signInAnonymously() { (user, error) in
             // ...
             // print(user)
+           Analytics.logEvent("sign_in", parameters: nil)
            let cardViewController = CardViewController()
            return self.present(cardViewController, animated: true, completion: nil)
-           
-            
         }
     }
 }

@@ -25,6 +25,8 @@
 		55A328371FCB4D61003A12B0 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328351FCB4D61003A12B0 /* FirebaseDatabase.framework */; };
 		55A328391FCB74A8003A12B0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55A328381FCB74A8003A12B0 /* Settings.bundle */; };
 		55A3283B1FCB84E7003A12B0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A3283A1FCB84E7003A12B0 /* MenuViewController.swift */; };
+		55B0F5E9204902CF00EB2594 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B0F5E7204902CF00EB2594 /* Alamofire.framework */; };
+		55B0F5EA204902CF00EB2594 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B0F5E8204902CF00EB2594 /* AlamofireImage.framework */; };
 		A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BBCCB1EF89B4D00ACBF7B /* Product.swift */; };
 		A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB921EEF5D770044D45B /* AppDelegate.swift */; };
 		A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB941EEF5D770044D45B /* CardViewController.swift */; };
@@ -35,7 +37,6 @@
 		A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC01EEF69B20044D45B /* CardView.swift */; };
 		A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */; };
 		A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B92CCE1F393A8D00274428 /* ProductImage.swift */; };
-		A9B92CD21F39419C00274428 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B92CD11F39419C00274428 /* Alamofire.framework */; };
 		A9B92CD41F39424200274428 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B92CD31F39424200274428 /* Gloss.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,8 @@
 		55A328351FCB4D61003A12B0 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = ThirdParty/Firebase/Database/FirebaseDatabase.framework; sourceTree = "<group>"; };
 		55A328381FCB74A8003A12B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		55A3283A1FCB84E7003A12B0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		55B0F5E7204902CF00EB2594 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		55B0F5E8204902CF00EB2594 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		A99BBCCB1EF89B4D00ACBF7B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A9ADFB8F1EEF5D770044D45B /* PeapodSwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeapodSwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +97,6 @@
 		A9ADFBC01EEF69B20044D45B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		A9B92CCE1F393A8D00274428 /* ProductImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
-		A9B92CD11F39419C00274428 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		A9B92CD31F39424200274428 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,15 +109,16 @@
 				552898FA1FCA291000A3195A /* SnapKit.framework in Frameworks */,
 				A9B92CD41F39424200274428 /* Gloss.framework in Frameworks */,
 				55A3282F1FCB4D46003A12B0 /* nanopb.framework in Frameworks */,
-				A9B92CD21F39419C00274428 /* Alamofire.framework in Frameworks */,
 				55A328331FCB4D53003A12B0 /* GTMSessionFetcher.framework in Frameworks */,
 				55A3282D1FCB4D46003A12B0 /* FirebaseInstanceID.framework in Frameworks */,
+				55B0F5EA204902CF00EB2594 /* AlamofireImage.framework in Frameworks */,
 				55A3282B1FCB4D46003A12B0 /* GoogleToolboxForMac.framework in Frameworks */,
 				55A328321FCB4D53003A12B0 /* FirebaseAuth.framework in Frameworks */,
 				55A3282C1FCB4D46003A12B0 /* FirebaseCore.framework in Frameworks */,
 				55A3282E1FCB4D46003A12B0 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				55A328291FCB4D46003A12B0 /* FirebaseNanoPB.framework in Frameworks */,
 				55A328361FCB4D61003A12B0 /* leveldb-library.framework in Frameworks */,
+				55B0F5E9204902CF00EB2594 /* Alamofire.framework in Frameworks */,
 				55A3282A1FCB4D46003A12B0 /* FirebaseAnalytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,7 +194,6 @@
 				552898FF1FCA3DB500A3195A /* UserTour */,
 				A9ADFBC41EEF6ACF0044D45B /* Cards */,
 				A9ADFB921EEF5D770044D45B /* AppDelegate.swift */,
-				A9ADFB941EEF5D770044D45B /* CardViewController.swift */,
 				A9ADFB961EEF5D770044D45B /* Main.storyboard */,
 				A9ADFB991EEF5D770044D45B /* Assets.xcassets */,
 				A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */,
@@ -229,6 +231,7 @@
 				A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */,
 				A9ADFBC01EEF69B20044D45B /* CardView.swift */,
 				552898F51FCA177200A3195A /* CardViewLabel.swift */,
+				A9ADFB941EEF5D770044D45B /* CardViewController.swift */,
 			);
 			name = Cards;
 			sourceTree = "<group>";
@@ -244,6 +247,8 @@
 		A9B92CD01F39419C00274428 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				55B0F5E7204902CF00EB2594 /* Alamofire.framework */,
+				55B0F5E8204902CF00EB2594 /* AlamofireImage.framework */,
 				55A328351FCB4D61003A12B0 /* FirebaseDatabase.framework */,
 				55A328341FCB4D61003A12B0 /* leveldb-library.framework */,
 				55A328301FCB4D53003A12B0 /* FirebaseAuth.framework */,
@@ -257,7 +262,6 @@
 				55A328281FCB4D46003A12B0 /* nanopb.framework */,
 				552898F91FCA291000A3195A /* SnapKit.framework */,
 				A9B92CD31F39424200274428 /* Gloss.framework */,
-				A9B92CD11F39419C00274428 /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

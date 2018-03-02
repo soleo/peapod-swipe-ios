@@ -8,21 +8,72 @@
 
 import UIKit
 import Firebase
+import Alamofire
 
 
 class CardViewController: UIViewController {
     
     var cards = [ImageCard]()
     var handle: AuthStateDidChangeListenerHandle?
+    var products = [Product]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // ...
-            
-        }
-
+        
+        Alamofire.request(
+            URL(string: "https://ec2-13-59-129-187.us-east-2.compute.amazonaws.com/v1/recommendation")!,
+            method: .get,
+            parameters: ["num": "30"]
+            )
+            .validate()
+            .responseJSON { response in
+                guard response.result.isSuccess else {
+                    print("Error while fetching remote rooms: \(response.result.error)")
+                    completion([Product]())
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any],
+                    let rows = value["rows"] as? [[String: Any]] else {
+                        print("Malformed data received from fetchAllRooms service")
+                        completion([Product]())
+                        return
+                }
+                
+                let jsonDecoder = JSONDecoder()
+                products = try jsonDecoder.decode([Product].self, from: rows)
+                
+            }
     }
+   
+//    func fetchProductRecommendations(completion: @escaping ([Product]?) -> Void) {
+//        Alamofire.request(
+//            URL(string: "https://ec2-13-59-129-187.us-east-2.compute.amazonaws.com/v1/recommendation")!,
+//            method: .get,
+//            parameters: ["num": "30"]
+//            )
+//            .validate()
+//            .responseJSON { response in
+//
+//                guard response.result.isSuccess else {
+//                    print("Error while fetching remote rooms: \(response.result.error)")
+//                    completion([Product]())
+//                    return
+//                }
+//
+//                guard let value = response.result.value as? [String: Any],
+//                    let rows = value["rows"] as? [[String: Any]] else {
+//                        print("Malformed data received from fetchAllRooms service")
+//                        completion([Product]())
+//                        return
+//                }
+//
+//                let jsonDecoder = JSONDecoder()
+//                let products = try jsonDecoder.decode([Product].self, from: rows)
+//
+//                completion(products)
+//        }
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -260,8 +311,11 @@ extension CardViewController {
                 
                 if currentAngle > 0 {
                     angular = angular * 1
+                    Analytics.logEvent("dislike_a_product", parameters: nil)
+                    
                 } else {
                     angular = angular * -1
+                    Analytics.logEvent("like_a_product", parameters: nil)
                 }
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
                 itemBehavior.friction = 0.2
@@ -278,6 +332,7 @@ extension CardViewController {
     }
     
     @objc func SELtoggleMenu() {
+        
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
         
         let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
@@ -300,7 +355,7 @@ extension CardViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        
+        Analytics.logEvent("log_out", parameters: nil)
         let authViewController = AuthViewController()
         return self.present(authViewController, animated: true, completion: nil)
         

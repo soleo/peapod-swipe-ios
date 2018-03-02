@@ -12,6 +12,7 @@ import SnapKit
 
 class ImageCard: CardView {
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -29,7 +30,7 @@ class ImageCard: CardView {
         let productName = UILabel()
         productName.textColor = UIColor.Defaults.primaryTextColor
         productName.text = "Apples"
-        productName.textAlignment = .center
+        productName.textAlignment = .left
         productName.layer.masksToBounds = true
         productName.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: self.frame.width, height: 24)
         self.addSubview(productName)

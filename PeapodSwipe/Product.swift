@@ -7,22 +7,18 @@
 //
 
 import Foundation
-import Gloss
 
-public struct Product: Gloss.Decodable {
+
+struct Product: Codable {
     
-    public let id: String?
-    public let name: String?
-    public let images: ProductImage?
-
-    public init?(json: JSON) {
-        
-        self.id = "productId" <~~ json
-        self.name = "name" <~~ json
-        self.images = "images" <~~ json
+    var id: Int
+    var name: String
+    var images: ProductImage
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "productId"
+        case name
+        case images
     }
-    
 }
-
-
 

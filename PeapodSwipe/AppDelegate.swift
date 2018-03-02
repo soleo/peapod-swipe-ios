@@ -15,21 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        // TODO: Need to be able to handle universal link from email or anywhere else
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {      
         FirebaseApp.configure()
         let window = UIWindow(frame: UIScreen.main.bounds)
         let vcToPresent: UIViewController!
         if Auth.auth().currentUser != nil {
             // User is signed in.
-            // ...
             let mainViewController = CardViewController()
             vcToPresent = mainViewController
         } else {
             // No user is signed in.
-            // ...
             let authViewController = AuthViewController()
             vcToPresent = authViewController
         }

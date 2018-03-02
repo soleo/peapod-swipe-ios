@@ -7,30 +7,18 @@
 //
 
 import Foundation
-import Gloss
 
-public struct ProductImage: Gloss.Decodable {
-    public let imageUrlSmall: String!
-    public let imageUrlMedium: String!
-    public let imageUrlLarge: String!
-    public let imageUrlXLarge: String!
+
+public struct ProductImage: Codable {
+    var smallImageURL: String
+    var mediumImageURL: String
+    var largeImageURL: String
+    var xlargeImageURL: String
     
-    
-    public init?(json: JSON) {
-        self.imageUrlSmall = "small" <~~ json
-        self.imageUrlMedium = "medium" <~~ json
-        self.imageUrlLarge = "large" <~~ json
-        self.imageUrlXLarge = "xlarge" <~~ json
-        
-    }
-    
-    func toJSON() -> JSON? {
-        return jsonify([
-            "small" ~~> self.imageUrlSmall,
-            "medium" ~~> self.imageUrlMedium,
-            "large" ~~> self.imageUrlLarge,
-            "xlarge" ~~> self.imageUrlXLarge,
-            
-        ])
+    enum CodingKeys: String, CodingKey {
+        case smallImageURL = "small"
+        case mediumImageURL = "medium"
+        case largeImageURL = "large"
+        case xlargeImageURL = "xlarge"
     }
 }
