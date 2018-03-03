@@ -120,12 +120,12 @@ class CardViewController: UIViewController {
         // set up intial cards for display
         // frontmost card (first card of the deck)
         let firstCard = cards[0]
-        
-        
         self.view.addSubview(firstCard)
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
+        firstCard.likeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleLikeTap)))
+        firstCard.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleDislikeTap)))
         
         // the next 3 cards in the deck
         for i in 1...3 {
@@ -181,6 +181,8 @@ class CardViewController: UIViewController {
                 if i == 1 {
                     
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
+                    card.likeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleLikeTap)))
+                    card.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleDislikeTap)))
                 }
             })
             
@@ -259,6 +261,76 @@ class CardViewController: UIViewController {
 }
 
 extension CardViewController {
+    @objc func SELhandleLikeTap (_ sender: UITapGestureRecognizer) {
+        switch sender.state {
+            case .began: break
+            case .cancelled: break
+            case .failed: break
+            case .changed:
+                 dynamicAnimator.removeAllBehaviors()
+        
+            case .ended:
+                dynamicAnimator.removeAllBehaviors()
+                
+                let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
+                pushBehavior.pushDirection = CGVector(dx: 5, dy: 0)
+                pushBehavior.magnitude = 175
+                dynamicAnimator.addBehavior(pushBehavior)
+                
+                
+                // spin after throwing
+                var angular = CGFloat.pi / 2 // angular velocity of spin
+                
+                angular = angular * -1
+                Analytics.logEvent("like_a_product", parameters: nil)
+                
+                let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
+                itemBehavior.friction = 0.2
+                itemBehavior.allowsRotation = true
+                itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
+                dynamicAnimator.addBehavior(itemBehavior)
+                
+                hideFrontCard()
+                showNextCard()
+        case .possible:
+            break
+        }
+    }
+    
+    @objc func SELhandleDislikeTap (_ sender: UITapGestureRecognizer) {
+        switch sender.state {
+        case .began: break
+        case .cancelled: break
+        case .failed: break
+        case .changed:
+            dynamicAnimator.removeAllBehaviors()
+        case .ended:
+           
+            dynamicAnimator.removeAllBehaviors()
+            
+            let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
+            pushBehavior.pushDirection = CGVector(dx: -200, dy: 0)
+            pushBehavior.magnitude = 175
+            dynamicAnimator.addBehavior(pushBehavior)
+            
+            
+            // spin after throwing
+            let angular = CGFloat.pi / 2 // angular velocity of spin
+            
+            Analytics.logEvent("dislike_a_product", parameters: nil)
+            
+            let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
+            itemBehavior.friction = 0.2
+            itemBehavior.allowsRotation = true
+            itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
+            dynamicAnimator.addBehavior(itemBehavior)
+            
+            hideFrontCard()
+            showNextCard()
+        case .possible:
+            break
+        }
+    }
     /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
     @objc func SELhandleCardPan(_ sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
