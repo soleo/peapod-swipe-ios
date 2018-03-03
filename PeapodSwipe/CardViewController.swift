@@ -19,62 +19,9 @@ class CardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        Alamofire.request(
-            URL(string: "https://ec2-13-59-129-187.us-east-2.compute.amazonaws.com/v1/recommendation")!,
-            method: .get,
-            parameters: ["num": "30"]
-            )
-            .validate()
-            .responseJSON { response in
-                guard response.result.isSuccess else {
-                    print("Error while fetching remote rooms: \(response.result.error)")
-                    completion([Product]())
-                    return
-                }
-                
-                guard let value = response.result.value as? [String: Any],
-                    let rows = value["rows"] as? [[String: Any]] else {
-                        print("Malformed data received from fetchAllRooms service")
-                        completion([Product]())
-                        return
-                }
-                
-                let jsonDecoder = JSONDecoder()
-                products = try jsonDecoder.decode([Product].self, from: rows)
-                
-            }
+
     }
    
-//    func fetchProductRecommendations(completion: @escaping ([Product]?) -> Void) {
-//        Alamofire.request(
-//            URL(string: "https://ec2-13-59-129-187.us-east-2.compute.amazonaws.com/v1/recommendation")!,
-//            method: .get,
-//            parameters: ["num": "30"]
-//            )
-//            .validate()
-//            .responseJSON { response in
-//
-//                guard response.result.isSuccess else {
-//                    print("Error while fetching remote rooms: \(response.result.error)")
-//                    completion([Product]())
-//                    return
-//                }
-//
-//                guard let value = response.result.value as? [String: Any],
-//                    let rows = value["rows"] as? [[String: Any]] else {
-//                        print("Malformed data received from fetchAllRooms service")
-//                        completion([Product]())
-//                        return
-//                }
-//
-//                let jsonDecoder = JSONDecoder()
-//                let products = try jsonDecoder.decode([Product].self, from: rows)
-//
-//                completion(products)
-//        }
-//    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Auth.auth().removeStateDidChangeListener(handle!)
@@ -87,12 +34,50 @@ class CardViewController: UIViewController {
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpUI()
         
-        for _ in 1...30 {
-            let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-            cards.append(card)
+        var headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+        var serviceConfig: NSDictionary?
+        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+            serviceConfig = NSDictionary(contentsOfFile: path)
         }
         
-        layoutCards()
+        let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
+        let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
+
+        if let authorizationHeader = Request.authorizationHeader(user: appId, password: appSecret) {
+            headers[authorizationHeader.key] = authorizationHeader.value
+        }
+        
+        Alamofire.request("https://www.peapod.com/api/v2.0/sessionid", method: .get, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseObject{ (response: DataResponse<SesssionResponse>) in
+                
+                if let sessionResult = response.value {
+                    
+                    Alamofire.request(
+                        URL(string: "https://www.peapod.com/api/v2.0/products;jsessionid="+sessionResult.sessionId)!,
+                        method: .get,
+                        parameters: ["zip": "60606", "keywords" :"milk", "flags": "false"],
+                        headers: headers
+                        )
+                        .validate()
+                        .responseObject{ (response: DataResponse<ProductSearchResponseWithSessionId>) in
+                            
+                            // Process searachResponse, of type DataResponse<ProductSearchResponseWithSessionId>:
+                            if let productSearchResult = response.value {
+                                print(productSearchResult)
+                                for product in productSearchResult.response.products {
+                                    //print(product)
+                                    let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), product: product)
+                                    self.cards.append(card)
+                                    self.layoutCards()
+                                }
+                            }
+                    }
+                }
+                
+        }
         
     }
 

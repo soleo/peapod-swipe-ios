@@ -9,16 +9,20 @@
 import Foundation
 
 
-public struct ProductImage: Codable {
-    var smallImageURL: String
-    var mediumImageURL: String
-    var largeImageURL: String
-    var xlargeImageURL: String
+public struct ProductImage: Codable, CustomStringConvertible {
+    let smallImageURL: String
+    let mediumImageURL: String
+    let largeImageURL: String
+    let xlargeImageURL: String
     
     enum CodingKeys: String, CodingKey {
         case smallImageURL = "small"
         case mediumImageURL = "medium"
         case largeImageURL = "large"
         case xlargeImageURL = "xlarge"
+    }
+    
+    public var description: String {
+        return "{ large: \(largeImageURL) }"
     }
 }
