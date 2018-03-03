@@ -9,28 +9,24 @@
 import Foundation
 import Alamofire
 
-class JsessionHandler: RequestAdapter, RequestRetrier {
+class PeapodJsessionHandler: RequestAdapter, RequestRetrier {
     private typealias RefreshCompletion = (_ succeeded: Bool, _ refreshedJesssionId: String?) -> Void
     
     private let sessionManager: SessionManager = {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        configuration.httpShouldSetCookies = true
-//        var headers: HTTPHeaders = [
-//            "Content-Type": "application/json"
-//        ]
-//        
-//        if let authorizationHeader = Request.authorizationHeader(user: clientID, password: clientSecret) {
-//            headers[authorizationHeader.key] = authorizationHeader.value
-//        }
+        //configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        //configuration.httpShouldSetCookies = true
+        configuration.httpAdditionalHeaders = [
+            "Content-Type": "application/json"
+        ]
         return SessionManager(configuration: configuration)
     }()
     
     private let lock = NSLock()
     
-    private var clientID: String
+
     private var baseURLString: String
-    private var clientSecret: String
+    private var basicAuthToken: String
     private var jsessionId: String
     
     private var isRefreshing = false
@@ -38,11 +34,20 @@ class JsessionHandler: RequestAdapter, RequestRetrier {
     
     // MARK: - Initialization
     
-    public init(clientID: String, baseURLString: String, clientSecret: String) {
-        self.clientID = clientID
-        self.baseURLString = baseURLString
-        self.clientSecret = clientSecret
+    public init() {
+        var serviceConfig: NSDictionary?
+        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+            serviceConfig = NSDictionary(contentsOfFile: path)
+        }
+        
+        let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
+        let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
+        let authString = String(format: "%@:%@", appId, appSecret)
+        let base64AuthString = Data(authString.utf8).base64EncodedString()
+        self.basicAuthToken = "Basic " + base64AuthString
+        self.baseURLString = "https://wwww.peapod.com"
         self.jsessionId = ""
+        
     }
     
     // MARK: - RequestAdapter
@@ -50,12 +55,9 @@ class JsessionHandler: RequestAdapter, RequestRetrier {
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix(baseURLString) {
             var urlRequest = urlRequest
-            let loginString = String(format: "%@:%@", self.clientID, self.clientSecret)
-            let loginData = loginString.data(using: String.Encoding.utf8)!
-            let base64LoginString = loginData.base64EncodedString()
-            urlRequest.setValue("Basic " + base64LoginString, forHTTPHeaderField: "Authorization")
-            // Add jession to URL all the time
-            
+             // Add jsession to URL all the time
+            urlRequest.url?.appendPathComponent(";jsessionId="+self.jsessionId)
+            urlRequest.setValue(self.basicAuthToken, forHTTPHeaderField: "Authorization")
             return urlRequest
         }
         
@@ -98,8 +100,6 @@ class JsessionHandler: RequestAdapter, RequestRetrier {
         isRefreshing = true
         
         let getSessionIdEndpoint = "\(baseURLString)/api/v2.0/sessionid"
-        
-        
         
         sessionManager.request(getSessionIdEndpoint,
                                encoding: JSONEncoding.default)

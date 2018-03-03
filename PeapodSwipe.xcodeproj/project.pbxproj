@@ -15,6 +15,12 @@
 		5530DF48204B06600066DF67 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF47204B06600066DF67 /* SessionResponse.swift */; };
 		5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF49204B14890066DF67 /* UIButtonExtension.swift */; };
 		5530DF4C204B1D070066DF67 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */; };
+		5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */; };
+		5549F55A204B42AC00E76A41 /* RecommendedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F559204B42AC00E76A41 /* RecommendedProduct.swift */; };
+		5549F55C204B430500E76A41 /* ProductVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55B204B430500E76A41 /* ProductVote.swift */; };
+		5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */; };
+		5549F560204B44A800E76A41 /* RecommendationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55F204B44A800E76A41 /* RecommendationRouter.swift */; };
+		5549F562204B44B800E76A41 /* VoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F561204B44B800E76A41 /* VoteRouter.swift */; };
 		55A328291FCB4D46003A12B0 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328221FCB4D45003A12B0 /* FirebaseNanoPB.framework */; };
 		55A3282A1FCB4D46003A12B0 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328231FCB4D46003A12B0 /* FirebaseAnalytics.framework */; };
 		55A3282B1FCB4D46003A12B0 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328241FCB4D46003A12B0 /* GoogleToolboxForMac.framework */; };
@@ -33,7 +39,7 @@
 		55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */; };
 		55B0F5F3204A658B00EB2594 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F2204A658B00EB2594 /* StringExtension.swift */; };
 		55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */; };
-		55B0F5F7204A701700EB2594 /* JsessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F6204A701700EB2594 /* JsessionHandler.swift */; };
+		55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */; };
 		A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BBCCB1EF89B4D00ACBF7B /* Product.swift */; };
 		A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB921EEF5D770044D45B /* AppDelegate.swift */; };
 		A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB941EEF5D770044D45B /* CardViewController.swift */; };
@@ -73,6 +79,12 @@
 		5530DF47204B06600066DF67 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		5530DF49204B14890066DF67 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
+		5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodProductSearchRouter.swift; sourceTree = "<group>"; };
+		5549F559204B42AC00E76A41 /* RecommendedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProduct.swift; sourceTree = "<group>"; };
+		5549F55B204B430500E76A41 /* ProductVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVote.swift; sourceTree = "<group>"; };
+		5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProductsResponse.swift; sourceTree = "<group>"; };
+		5549F55F204B44A800E76A41 /* RecommendationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationRouter.swift; sourceTree = "<group>"; };
+		5549F561204B44B800E76A41 /* VoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRouter.swift; sourceTree = "<group>"; };
 		55A328201FCB468B003A12B0 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = ThirdParty/Firebase/module.modulemap; sourceTree = SOURCE_ROOT; };
 		55A328211FCB469D003A12B0 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = ThirdParty/Firebase/Firebase.h; sourceTree = SOURCE_ROOT; };
 		55A328221FCB4D45003A12B0 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseNanoPB.framework; path = ThirdParty/Firebase/Analytics/FirebaseNanoPB.framework; sourceTree = "<group>"; };
@@ -93,7 +105,7 @@
 		55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchResponse.swift; sourceTree = "<group>"; };
 		55B0F5F2204A658B00EB2594 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtension.swift; sourceTree = "<group>"; };
-		55B0F5F6204A701700EB2594 /* JsessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsessionHandler.swift; sourceTree = "<group>"; };
+		55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodJsessionHandler.swift; sourceTree = "<group>"; };
 		A99BBCCB1EF89B4D00ACBF7B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A9ADFB8F1EEF5D770044D45B /* PeapodSwipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeapodSwipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,7 +184,10 @@
 		55B0F5ED204A494C00EB2594 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				55B0F5F6204A701700EB2594 /* JsessionHandler.swift */,
+				55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */,
+				5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */,
+				5549F55F204B44A800E76A41 /* RecommendationRouter.swift */,
+				5549F561204B44B800E76A41 /* VoteRouter.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -184,6 +199,9 @@
 				A9B92CCE1F393A8D00274428 /* ProductImage.swift */,
 				55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */,
 				5530DF47204B06600066DF67 /* SessionResponse.swift */,
+				5549F559204B42AC00E76A41 /* RecommendedProduct.swift */,
+				5549F55B204B430500E76A41 /* ProductVote.swift */,
+				5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -473,15 +491,21 @@
 				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
 				552898F61FCA177200A3195A /* CardViewLabel.swift in Sources */,
 				A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */,
+				5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */,
 				A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */,
 				A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */,
+				5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */,
 				5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */,
+				5549F560204B44A800E76A41 /* RecommendationRouter.swift in Sources */,
 				55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */,
-				55B0F5F7204A701700EB2594 /* JsessionHandler.swift in Sources */,
+				55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */,
 				5530DF48204B06600066DF67 /* SessionResponse.swift in Sources */,
 				552898F81FCA244500A3195A /* AuthViewController.swift in Sources */,
 				55B0F5F3204A658B00EB2594 /* StringExtension.swift in Sources */,
+				5549F562204B44B800E76A41 /* VoteRouter.swift in Sources */,
+				5549F55C204B430500E76A41 /* ProductVote.swift in Sources */,
 				A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */,
+				5549F55A204B42AC00E76A41 /* RecommendedProduct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

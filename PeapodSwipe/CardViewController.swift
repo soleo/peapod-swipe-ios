@@ -27,13 +27,7 @@ class CardViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.Defaults.backgroundColor
-        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
-        setUpUI()
-        
+    func loadProductSearch() {
         var headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
@@ -44,7 +38,7 @@ class CardViewController: UIViewController {
         
         let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
         let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
-
+        
         if let authorizationHeader = Request.authorizationHeader(user: appId, password: appSecret) {
             headers[authorizationHeader.key] = authorizationHeader.value
         }
@@ -56,10 +50,7 @@ class CardViewController: UIViewController {
                 if let sessionResult = response.value {
                     
                     Alamofire.request(
-                        URL(string: "https://www.peapod.com/api/v2.0/products;jsessionid="+sessionResult.sessionId)!,
-                        method: .get,
-                        parameters: ["zip": "60606", "keywords" :"milk", "flags": "false"],
-                        headers: headers
+                        PeapodProductSearchRouter.keywords(sessionResult.sessionId, "bagel", "60606")
                         )
                         .validate()
                         .responseObject{ (response: DataResponse<ProductSearchResponseWithSessionId>) in
@@ -78,7 +69,34 @@ class CardViewController: UIViewController {
                 }
                 
         }
+    }
+    
+    func loadRecommendationData() {
+        Alamofire.request(
+            RecommendationRouter.getProducts(100)
+            )
+            .validate()
+            .responseObject{ (response: DataResponse<RecommendedProductsResponse>) in
+                
+                if let productsResult = response.value {
+                    print(productsResult)
+                    for product in productsResult.products {
+                        //print(product)
+                        let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7), product: product)
+                        self.cards.append(card)
+                        self.layoutCards()
+                    }
+                }
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.Defaults.backgroundColor
+        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
+        setUpUI()
+        //loadProductSearch()
         
+        loadRecommendationData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,6 +120,8 @@ class CardViewController: UIViewController {
         // set up intial cards for display
         // frontmost card (first card of the deck)
         let firstCard = cards[0]
+        
+        
         self.view.addSubview(firstCard)
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
@@ -132,6 +152,8 @@ class CardViewController: UIViewController {
             
             self.view.addSubview(card)
         }
+        
+        cards[0].removeAccessiblityHidden()
         // make sure that the first card in the deck is at the front
         self.view.bringSubview(toFront: cards[0])
     }
@@ -157,6 +179,7 @@ class CardViewController: UIViewController {
                 }
             }, completion: { (_) in
                 if i == 1 {
+                    
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
                 }
             })
@@ -166,11 +189,13 @@ class CardViewController: UIViewController {
         // 2. add a new card (now the 4th card in the deck) to the very back
         if 4 > (cards.count - 1) {
             if cards.count != 1 {
+                cards[1].removeAccessiblityHidden()
                 self.view.bringSubview(toFront: cards[1])
             }
             return
         }
         let newCard = cards[4]
+        
         newCard.layer.zPosition = CGFloat(cards.count - 4)
         let downscale = cardAttributes[3].downscale
         let alpha = cardAttributes[3].alpha
@@ -191,6 +216,7 @@ class CardViewController: UIViewController {
         }, completion: nil)
         
         // first card needs to be in the front for proper interactivity
+        cards[1].removeAccessiblityHidden()
         self.view.bringSubview(toFront: cards[1])
     }
     
