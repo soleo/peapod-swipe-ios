@@ -69,7 +69,7 @@ class CardViewController: UIViewController {
                                 print(productSearchResult)
                                 for product in productSearchResult.response.products {
                                     //print(product)
-                                    let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), product: product)
+                                    let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7), product: product)
                                     self.cards.append(card)
                                     self.layoutCards()
                                 }

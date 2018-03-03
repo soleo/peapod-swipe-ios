@@ -62,7 +62,7 @@ class ImageCard: CardView {
         dislikeButton.setTitle("Dislike", for: .normal)
         dislikeButton.setTitleColor(UIColor.white, for: .normal)
         dislikeButton.setBackgroundColor(color: UIColor.Defaults.alizarin, forState: .normal)
-        dislikeButton.frame = CGRect(x: 12, y: productName.frame.maxY + 50, width: 100, height: 30)
+        dislikeButton.frame = CGRect(x: 12, y: self.frame.height - 30 - 12 , width: 100, height: 30)
         self.addSubview(dislikeButton)
         
         
@@ -70,7 +70,7 @@ class ImageCard: CardView {
         likeButton.setTitle("Like", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
         likeButton.setBackgroundColor(color: UIColor.Defaults.emerald, forState: .normal)
-        likeButton.frame = CGRect(x: self.frame.width - 15 - 100, y: productName.frame.maxY + 50, width: 100, height: 30)
+        likeButton.frame = CGRect(x: self.frame.width - 15 - 100, y: self.frame.height - 30 - 12, width: 100, height: 30)
         self.addSubview(likeButton)
     }
     
