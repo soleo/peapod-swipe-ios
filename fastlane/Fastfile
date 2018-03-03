@@ -19,7 +19,7 @@ platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     # cocoapods
-    carthage
+    # carthage
   end
 
   desc "Runs all the tests"
@@ -30,12 +30,22 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "PeapodSwipe") # Build your app - more options available
-    pilot
+    # Ensure that your git status is not dirty
+    ensure_git_status_clean
 
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+    increment_build_number(build_number: latest_testflight_build_number + 1)
+    sync_code_signing(type: "appstore")    # see code signing guide for more information
+    build_app(scheme: "PeapodSwipe")
+    upload_to_testflight
+    # Commit the version bump
+    commit_version_bump
+
+    # Add a git tag for this build. This will automatically
+    # use an appropriate git tag name
+    add_git_tag
+
+    # Push the new commit and tag back to your git remote
+    push_to_git_remote
   end
 
   desc "Deploy a new version to the App Store"
