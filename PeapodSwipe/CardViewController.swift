@@ -15,6 +15,7 @@ class CardViewController: UIViewController {
     
     var cards = [ImageCard]()
     var products = [RecommendedProduct]()
+    let menuButton = UIButton()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -117,7 +118,7 @@ class CardViewController: UIViewController {
     let cardInteritemSpacing: CGFloat = 15
     
     func setUpUI() {
-        let menuButton = UIButton()
+       
         menuButton.setTitle("MENU", for: UIControlState())
         menuButton.setTitleColor(.white, for: UIControlState())
         menuButton.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
@@ -431,7 +432,7 @@ extension CardViewController {
         
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
         
-        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
+        //let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
         let itemSuggestionAction = UIAlertAction(title: "Suggest Other Items", style: .default, handler: {(alert: UIAlertAction!) in
             self.presentSearchView()
             
@@ -442,12 +443,21 @@ extension CardViewController {
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        alertController.addAction(settingsAction)
+        //alertController.addAction(settingsAction)
         alertController.addAction(itemSuggestionAction)
         alertController.addAction(logoutAction)
         alertController.addAction(cancelAction)
         
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = alertController.popoverPresentationController {
+                popoverController.sourceView = self.menuButton
+                popoverController.sourceRect = self.menuButton.bounds
+            }
+        }
+        
         self.present(alertController, animated: true)
+        
+        
     }
     
     func logoutCurrentUser() {

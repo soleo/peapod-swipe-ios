@@ -73,6 +73,7 @@ class ImageCard: CardView {
         self.addSubview(imageView)
         
         // product name text box
+       
         productName = UILabel()
         productName.textColor = UIColor.Defaults.primaryTextColor
         productName.text = name
@@ -84,6 +85,10 @@ class ImageCard: CardView {
         productName.numberOfLines = 0
         productName.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: self.frame.width - 24, height: 48)
         self.addSubview(productName)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // hide product name label for now because I don't have time to fix the layour yet
+            productName.isHidden = true
+        }
         
         dislikeButton = UIButton()
         dislikeButton.setTitle("Dislike", for: .normal)

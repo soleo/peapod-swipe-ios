@@ -37,7 +37,6 @@
 		55A328361FCB4D61003A12B0 /* leveldb-library.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328341FCB4D61003A12B0 /* leveldb-library.framework */; };
 		55A328371FCB4D61003A12B0 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328351FCB4D61003A12B0 /* FirebaseDatabase.framework */; };
 		55A328391FCB74A8003A12B0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55A328381FCB74A8003A12B0 /* Settings.bundle */; };
-		55A3283B1FCB84E7003A12B0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A3283A1FCB84E7003A12B0 /* MenuViewController.swift */; };
 		55B0F5EA204902CF00EB2594 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B0F5E8204902CF00EB2594 /* AlamofireImage.framework */; };
 		55B0F5EC204A24F300EB2594 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B0F5EB204A24F300EB2594 /* Alamofire.framework */; };
 		55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */; };
@@ -107,7 +106,6 @@
 		55A328341FCB4D61003A12B0 /* leveldb-library.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "leveldb-library.framework"; path = "ThirdParty/Firebase/Database/leveldb-library.framework"; sourceTree = "<group>"; };
 		55A328351FCB4D61003A12B0 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = ThirdParty/Firebase/Database/FirebaseDatabase.framework; sourceTree = "<group>"; };
 		55A328381FCB74A8003A12B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		55A3283A1FCB84E7003A12B0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		55B0F5E8204902CF00EB2594 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		55B0F5EB204A24F300EB2594 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchResponse.swift; sourceTree = "<group>"; };
@@ -257,7 +255,6 @@
 				A9ADFBC51EEF6ADE0044D45B /* Login */,
 				A9ADFBC41EEF6ACF0044D45B /* Cards */,
 				A9ADFB921EEF5D770044D45B /* AppDelegate.swift */,
-				55A3283A1FCB84E7003A12B0 /* MenuViewController.swift */,
 				A9ADFB9E1EEF5D770044D45B /* Info.plist */,
 				5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */,
 				552898FB1FCA332900A3195A /* GoogleService-Info.plist */,
@@ -505,7 +502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */,
-				55A3283B1FCB84E7003A12B0 /* MenuViewController.swift in Sources */,
 				5549F56D204BAA2300E76A41 /* ProductSearchDataSource.swift in Sources */,
 				552898F41FCA124400A3195A /* UIColorExtension.swift in Sources */,
 				55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */,
@@ -614,7 +610,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -737,7 +733,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -802,7 +798,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 25;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
