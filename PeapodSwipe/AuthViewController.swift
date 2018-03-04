@@ -31,7 +31,7 @@ class AuthViewController: UIViewController {
         signInButton.setTitle("Sign In", for: UIControlState())
         signInButton.setTitleColor(UIColor.white, for: UIControlState())
         signInButton.clipsToBounds = true
-        signInButton.addTarget(self, action: #selector(self.SELsignInAnonymously), for: UIControlEvents.touchUpInside)
+        signInButton.addTarget(self, action: #selector(self.SELSignInWithEmail), for: UIControlEvents.touchUpInside)
     
         view.addSubview(signInButton)
         
@@ -60,5 +60,34 @@ extension AuthViewController{
            let cardViewController = CardViewController()
            return self.present(cardViewController, animated: true, completion: nil)
         }
+    }
+    
+    @objc func SELSignInWithEmail() {
+        let alert = UIAlertController(title: "What's your work Email address?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "bagel.everything@ahold.com"
+        })
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            if let email = alert.textFields?.first?.text {
+                print("Your email: \(email)")
+                if self.isValidEmail(emalAddress: email.trim()) {
+                    self.SELsignInAnonymously()
+                }
+            }
+        }))
+        
+        self.present(alert, animated: true)
+    }
+    
+    // Stack Overflow: https://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift#25471164
+    private func isValidEmail(emalAddress:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: emalAddress)
     }
 }
