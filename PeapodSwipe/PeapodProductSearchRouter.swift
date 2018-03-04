@@ -53,19 +53,19 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
         }()
         
         let url = URL(string: PeapodProductSearchRouter.baseURLPath)!
-//        var serviceConfig: NSDictionary?
-//        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
-//            serviceConfig = NSDictionary(contentsOfFile: path)
-//        }
-//
-//        let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
-//        let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
-//        let authString = String(format: "%@:%@", appId, appSecret)
-//        let base64AuthString = Data(authString.utf8).base64EncodedString()
+        var serviceConfig: NSDictionary?
+        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+            serviceConfig = NSDictionary(contentsOfFile: path)
+        }
+
+        let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
+        let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
+        let authString = String(format: "%@:%@", appId, appSecret)
+        let base64AuthString = Data(authString.utf8).base64EncodedString()
         
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
-        //request.setValue("Basic "+base64AuthString, forHTTPHeaderField: "Authorization")
+        request.setValue("Basic "+base64AuthString, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
         
         return try URLEncoding.default.encode(request, with: parameters)

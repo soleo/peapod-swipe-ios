@@ -9,13 +9,12 @@
 import UIKit
 import Firebase
 import Alamofire
-
+import SnapKit
 
 class CardViewController: UIViewController {
     
     var cards = [ImageCard]()
-    var handle: AuthStateDidChangeListenerHandle?
-    var products = [Product]()
+    var products = [RecommendedProduct]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,50 +23,40 @@ class CardViewController: UIViewController {
    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        Auth.auth().removeStateDidChangeListener(handle!)
+
     }
     
-    func loadProductSearch() {
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        var serviceConfig: NSDictionary?
-        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
-            serviceConfig = NSDictionary(contentsOfFile: path)
+    override func viewWillTransition(to size: CGSize,
+                            with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        //let cardFrameSize: CGRect
+  
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape (Card)")
+//            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
+//            for card in cards {
+//                card.frame = cardFrameSize
+//            }
+//            self.removeAllCards()
+//            self.layoutCards()
+            
+        }
+        else if UIDevice.current.orientation.isPortrait {
+           // cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
+            print("Portrait (Card)")
+//            for card in cards {
+//                card.frame = cardFrameSize
+//            }
+//            self.removeAllCards()
+//            self.layoutCards()
         }
         
-        let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
-        let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
         
-        if let authorizationHeader = Request.authorizationHeader(user: appId, password: appSecret) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-        
-        Alamofire.request("https://www.peapod.com/api/v2.0/sessionid", method: .get, headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseObject{ (response: DataResponse<SesssionResponse>) in
-                
-                if let sessionResult = response.value {
-                    
-                    Alamofire.request(
-                        PeapodProductSearchRouter.keywords(sessionResult.sessionId, "bagel", "60606")
-                        )
-                        .validate()
-                        .responseObject{ (response: DataResponse<ProductSearchResponseWithSessionId>) in
-                            
-                            // Process searachResponse, of type DataResponse<ProductSearchResponseWithSessionId>:
-                            if let productSearchResult = response.value {
-                                //print(productSearchResult)
-                                for product in productSearchResult.response.products {
-                                    //print(product)
-                                    let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7), product: product)
-                                    self.cards.append(card)
-                                    self.layoutCards()
-                                }
-                            }
-                    }
-                }
-                
+    }
+    
+    func removeAllCards() {
+        for card in cards {
+            card.removeFromSuperview()
         }
     }
     
@@ -79,10 +68,17 @@ class CardViewController: UIViewController {
             .responseObject{ (response: DataResponse<RecommendedProductsResponse>) in
                 
                 if let productsResult = response.value {
+                    self.products = productsResult.products
                     //print(productsResult)
                     for product in productsResult.products {
                         //print(product)
-                        let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7), product: product)
+                        let cardFrameSize: CGRect
+                        if UIDevice.current.orientation.isLandscape {
+                            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
+                        } else {
+                            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
+                        }
+                        let card = ImageCard(frame: cardFrameSize, product: product)
                         self.cards.append(card)
                         self.layoutCards()
                     }
@@ -108,7 +104,6 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpUI()
-        //loadProductSearch()
         
         loadRecommendationData()
     }
@@ -437,8 +432,14 @@ extension CardViewController {
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
         
         let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
-        let itemSuggestionAction = UIAlertAction(title: "Suggest An Item", style: .default, handler: nil )
-        let logoutAction = UIAlertAction(title: "Logout", style: .default, handler:{(alert: UIAlertAction!) in self.logoutCurrentUser()})
+        let itemSuggestionAction = UIAlertAction(title: "Suggest Other Items", style: .default, handler: {(alert: UIAlertAction!) in
+            self.presentSearchView()
+            
+        })
+        let logoutAction = UIAlertAction(title: "Logout", style: .default, handler:{(alert: UIAlertAction!) in
+            self.logoutCurrentUser()
+            
+        })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
         alertController.addAction(settingsAction)
@@ -459,6 +460,13 @@ extension CardViewController {
         Analytics.logEvent("log_out", parameters: nil)
         let authViewController = AuthViewController()
         return self.present(authViewController, animated: true, completion: nil)
+        
+    }
+    
+    func presentSearchView() {
+        Analytics.logEvent("search_item", parameters: nil)
+        let searchViewController = SearchViewController()
+        return self.present(searchViewController, animated: true, completion: nil)
         
     }
 }

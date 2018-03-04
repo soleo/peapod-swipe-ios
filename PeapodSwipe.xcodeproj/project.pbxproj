@@ -21,6 +21,10 @@
 		5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */; };
 		5549F560204B44A800E76A41 /* RecommendationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55F204B44A800E76A41 /* RecommendationRouter.swift */; };
 		5549F562204B44B800E76A41 /* VoteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F561204B44B800E76A41 /* VoteRouter.swift */; };
+		5549F569204B9F9300E76A41 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F568204B9F9300E76A41 /* SearchViewController.swift */; };
+		5549F56D204BAA2300E76A41 /* ProductSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F56C204BAA2300E76A41 /* ProductSearchDataSource.swift */; };
+		558B4D40204C8E3300C2ED47 /* EmptySearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B4D3F204C8E3300C2ED47 /* EmptySearchResultView.swift */; };
+		558B4D42204C8E4900C2ED47 /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */; };
 		55A328291FCB4D46003A12B0 /* FirebaseNanoPB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328221FCB4D45003A12B0 /* FirebaseNanoPB.framework */; };
 		55A3282A1FCB4D46003A12B0 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328231FCB4D46003A12B0 /* FirebaseAnalytics.framework */; };
 		55A3282B1FCB4D46003A12B0 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55A328241FCB4D46003A12B0 /* GoogleToolboxForMac.framework */; };
@@ -85,6 +89,10 @@
 		5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProductsResponse.swift; sourceTree = "<group>"; };
 		5549F55F204B44A800E76A41 /* RecommendationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationRouter.swift; sourceTree = "<group>"; };
 		5549F561204B44B800E76A41 /* VoteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRouter.swift; sourceTree = "<group>"; };
+		5549F568204B9F9300E76A41 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5549F56C204BAA2300E76A41 /* ProductSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchDataSource.swift; sourceTree = "<group>"; };
+		558B4D3F204C8E3300C2ED47 /* EmptySearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultView.swift; sourceTree = "<group>"; };
+		558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateView.swift; sourceTree = "<group>"; };
 		55A328201FCB468B003A12B0 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = ThirdParty/Firebase/module.modulemap; sourceTree = SOURCE_ROOT; };
 		55A328211FCB469D003A12B0 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = ThirdParty/Firebase/Firebase.h; sourceTree = SOURCE_ROOT; };
 		55A328221FCB4D45003A12B0 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseNanoPB.framework; path = ThirdParty/Firebase/Analytics/FirebaseNanoPB.framework; sourceTree = "<group>"; };
@@ -181,6 +189,17 @@
 			name = UserTour;
 			sourceTree = "<group>";
 		};
+		5549F567204B9F3C00E76A41 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5549F568204B9F9300E76A41 /* SearchViewController.swift */,
+				5549F56C204BAA2300E76A41 /* ProductSearchDataSource.swift */,
+				558B4D3F204C8E3300C2ED47 /* EmptySearchResultView.swift */,
+				558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		55B0F5ED204A494C00EB2594 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +249,7 @@
 		A9ADFB911EEF5D770044D45B /* PeapodSwipe */ = {
 			isa = PBXGroup;
 			children = (
+				5549F567204B9F3C00E76A41 /* Search */,
 				552898FF1FCA3DB500A3195A /* UserTour */,
 				55B0F5ED204A494C00EB2594 /* API */,
 				552898F21FCA121300A3195A /* Extensions */,
@@ -486,6 +506,7 @@
 			files = (
 				A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */,
 				55A3283B1FCB84E7003A12B0 /* MenuViewController.swift in Sources */,
+				5549F56D204BAA2300E76A41 /* ProductSearchDataSource.swift in Sources */,
 				552898F41FCA124400A3195A /* UIColorExtension.swift in Sources */,
 				55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */,
 				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
@@ -493,13 +514,16 @@
 				A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */,
 				5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */,
 				A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */,
+				558B4D40204C8E3300C2ED47 /* EmptySearchResultView.swift in Sources */,
 				A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */,
 				5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */,
 				5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */,
 				5549F560204B44A800E76A41 /* RecommendationRouter.swift in Sources */,
+				5549F569204B9F9300E76A41 /* SearchViewController.swift in Sources */,
 				55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */,
 				55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */,
 				5530DF48204B06600066DF67 /* SessionResponse.swift in Sources */,
+				558B4D42204C8E4900C2ED47 /* LoadingStateView.swift in Sources */,
 				552898F81FCA244500A3195A /* AuthViewController.swift in Sources */,
 				55B0F5F3204A658B00EB2594 /* StringExtension.swift in Sources */,
 				5549F562204B44B800E76A41 /* VoteRouter.swift in Sources */,
