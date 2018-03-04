@@ -33,7 +33,7 @@ platform :ios do
     # Ensure that your git status is not dirty
     # ensure_git_status_clean
 
-    increment_build_number(build_number: latest_testflight_build_number + 1)
+    increment_build_number
     sync_code_signing(type: "appstore")    # see code signing guide for more information
     build_app(scheme: "PeapodSwipe")
     upload_to_testflight
