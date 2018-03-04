@@ -57,7 +57,7 @@ class CardViewController: UIViewController {
                             
                             // Process searachResponse, of type DataResponse<ProductSearchResponseWithSessionId>:
                             if let productSearchResult = response.value {
-                                print(productSearchResult)
+                                //print(productSearchResult)
                                 for product in productSearchResult.response.products {
                                     //print(product)
                                     let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7), product: product)
@@ -79,7 +79,7 @@ class CardViewController: UIViewController {
             .responseObject{ (response: DataResponse<RecommendedProductsResponse>) in
                 
                 if let productsResult = response.value {
-                    print(productsResult)
+                    //print(productsResult)
                     for product in productsResult.products {
                         //print(product)
                         let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7), product: product)
@@ -89,6 +89,20 @@ class CardViewController: UIViewController {
                 }
         }
     }
+    
+    func castProductVote(productId: Int, userVote: Bool) {
+        Alamofire.request(
+            VoteRouter.postVote(productId, userVote)
+            )
+            .validate()
+            .responseString{ (response: DataResponse<String>) in
+                print("{ like: \(userVote), productId: \(productId) }")
+                if let voteResult = response.value {
+                    print(voteResult)
+                }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
@@ -283,6 +297,7 @@ extension CardViewController {
                 
                 angular = angular * -1
                 Analytics.logEvent("like_a_product", parameters: nil)
+                castProductVote(productId: cards[0].productId, userVote: true)
                 
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
                 itemBehavior.friction = 0.2
@@ -318,6 +333,7 @@ extension CardViewController {
             let angular = CGFloat.pi / 2 // angular velocity of spin
             
             Analytics.logEvent("dislike_a_product", parameters: nil)
+            castProductVote(productId: cards[0].productId, userVote: false)
             
             let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
             itemBehavior.friction = 0.2
@@ -395,10 +411,12 @@ extension CardViewController {
                 if currentAngle > 0 {
                     angular = angular * 1
                     Analytics.logEvent("dislike_a_product", parameters: nil)
+                    castProductVote(productId: cards[0].productId, userVote: false)
                     
                 } else {
                     angular = angular * -1
                     Analytics.logEvent("like_a_product", parameters: nil)
+                    castProductVote(productId: cards[0].productId, userVote: true)
                 }
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
                 itemBehavior.friction = 0.2

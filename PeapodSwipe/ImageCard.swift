@@ -19,6 +19,7 @@ class ImageCard: CardView {
     var imageView: UIImageView!
     var productName: UILabel!
     
+    var productId: Int!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,12 +28,15 @@ class ImageCard: CardView {
     convenience init(frame: CGRect, product: Product) {
         self.init(frame: frame)
         
+        self.productId = product.id
         setUpLayout(imageURL: product.images.xlargeImageURL, name: product.name)
+        
     }
     
     convenience init(frame: CGRect, product: RecommendedProduct) {
         self.init(frame: frame)
         
+        self.productId = product.id
         setUpLayout(imageURL: product.images.xlargeImageURL, name: product.name)
     }
     
