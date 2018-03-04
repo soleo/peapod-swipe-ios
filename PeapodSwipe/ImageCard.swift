@@ -65,6 +65,7 @@ class ImageCard: CardView {
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.accessibilityIgnoresInvertColors = true
         self.addSubview(imageView)
         
         // product name text box
@@ -88,7 +89,6 @@ class ImageCard: CardView {
         dislikeButton.isAccessibilityElement = true
         dislikeButton.accessibilityTraits = UIAccessibilityTraitButton
         dislikeButton.accessibilityLabel = "Dislike"
-        
         self.addSubview(dislikeButton)
         
         
@@ -102,15 +102,13 @@ class ImageCard: CardView {
         likeButton.accessibilityLabel = "Like"
         self.addSubview(likeButton)
         
-//        self.accessibilityTraits = UIAccessibilityTraitNone
-//        self.accessibilityLabel = name + ". Like or dislike?"
         imageView.accessibilityElementsHidden = true
         dislikeButton.accessibilityElementsHidden = true
         likeButton.accessibilityElementsHidden = true
         productName.accessibilityElementsHidden = true
     }
     
-    public func removeAccessiblityHidden() {
+    public func removeAccessibilityHidden() {
         imageView.accessibilityElementsHidden = false
         dislikeButton.accessibilityElementsHidden = false
         likeButton.accessibilityElementsHidden = false

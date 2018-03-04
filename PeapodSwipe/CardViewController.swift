@@ -153,7 +153,7 @@ class CardViewController: UIViewController {
             self.view.addSubview(card)
         }
         
-        cards[0].removeAccessiblityHidden()
+        cards[0].removeAccessibilityHidden()
         // make sure that the first card in the deck is at the front
         self.view.bringSubview(toFront: cards[0])
     }
@@ -191,7 +191,7 @@ class CardViewController: UIViewController {
         // 2. add a new card (now the 4th card in the deck) to the very back
         if 4 > (cards.count - 1) {
             if cards.count != 1 {
-                cards[1].removeAccessiblityHidden()
+                cards[1].removeAccessibilityHidden()
                 self.view.bringSubview(toFront: cards[1])
             }
             return
@@ -218,7 +218,7 @@ class CardViewController: UIViewController {
         }, completion: nil)
         
         // first card needs to be in the front for proper interactivity
-        cards[1].removeAccessiblityHidden()
+        cards[1].removeAccessibilityHidden()
         self.view.bringSubview(toFront: cards[1])
     }
     
