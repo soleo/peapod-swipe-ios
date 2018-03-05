@@ -10,8 +10,8 @@ import Foundation
 
 struct ProductSearchResponse: Codable, CustomStringConvertible {
     let products: [Product]
-    let keywords: String
-    var pagination: [String: Int]
+    let keywords: String?
+    var pagination: [String: Int]?
     
     enum CodingKeys: String, CodingKey {
         case products
@@ -19,7 +19,7 @@ struct ProductSearchResponse: Codable, CustomStringConvertible {
         case pagination
     }
     var description: String {
-        return "{ products: \(products), \r\n keywords: \(keywords), \r\n pagination: \(pagination) }"
+        return "{ products: \(products), \r\n keywords: \(String(describing: keywords)), \r\n pagination: \(String(describing: pagination)) }"
     }
 }
 

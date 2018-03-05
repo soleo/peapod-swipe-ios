@@ -70,6 +70,9 @@ class ImageCard: CardView {
         imageView.layer.masksToBounds = true
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
+        
+        imageView.isUserInteractionEnabled = true
+        
         self.addSubview(imageView)
         
         // product name text box
@@ -127,6 +130,7 @@ class ImageCard: CardView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     
 }

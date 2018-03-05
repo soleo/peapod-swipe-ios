@@ -34,18 +34,22 @@ platform :ios do
     # ensure_git_status_clean
 
     increment_build_number
+    #cert
+    #sigh(app_identifier: "com.xinjiangshao.peapod-swipe.mobile")
     sync_code_signing(type: "appstore")    # see code signing guide for more information
-    build_app(scheme: "PeapodSwipe")
+    build_app(
+        scheme: "PeapodSwipe"
+    )
     upload_to_testflight
     # Commit the version bump
-    commit_version_bump
+    # commit_version_bump
 
     # Add a git tag for this build. This will automatically
     # use an appropriate git tag name
-    add_git_tag
+    # add_git_tag
 
     # Push the new commit and tag back to your git remote
-    push_to_git_remote
+    # push_to_git_remote
   end
 
   desc "Deploy a new version to the App Store"

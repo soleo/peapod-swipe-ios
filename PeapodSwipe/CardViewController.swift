@@ -136,7 +136,7 @@ class CardViewController: UIViewController {
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
         firstCard.likeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleLikeTap)))
         firstCard.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleDislikeTap)))
-        
+        firstCard.imageView.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleProductImageTap)))
         // the next 3 cards in the deck
         for i in 1...3 {
             if i > (cards.count - 1) { continue }
@@ -193,6 +193,7 @@ class CardViewController: UIViewController {
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
                     card.likeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleLikeTap)))
                     card.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleDislikeTap)))
+                    card.imageView.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(CardViewController.SELhandleProductImageTap)))
                 }
             })
             
@@ -458,6 +459,25 @@ extension CardViewController {
         self.present(alertController, animated: true)
         
         
+    }
+    
+    @objc func SELhandleProductImageTap (_ sender: UITapGestureRecognizer) {
+        switch sender.state {
+            case .began: break
+            case .cancelled: break
+            case .failed: break
+            case .changed: break
+            case .possible: break
+            case .ended:
+                
+                let productDetailViewController = ProductDetailViewController()
+                productDetailViewController.shouldShowNotifyButton = false
+                productDetailViewController.productId = cards[0].productId
+                self.present(productDetailViewController, animated: true) {
+                    
+                }
+            
+            }
     }
     
     func logoutCurrentUser() {

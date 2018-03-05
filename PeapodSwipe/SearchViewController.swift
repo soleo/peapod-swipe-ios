@@ -88,7 +88,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         // open item detail for that product
-        self.dismissViewController()
+        
+        let productDetailViewController = ProductDetailViewController()
+        productDetailViewController.shouldShowNotifyButton = true
+        productDetailViewController.productId = dataSource.products[indexPath.row].id
+        self.present(productDetailViewController, animated: true) {
+           // self.dismissViewController()
+        }
     }
     
     // MARK: - UISearchBarDelegate
