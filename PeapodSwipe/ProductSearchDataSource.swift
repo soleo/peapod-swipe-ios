@@ -31,14 +31,22 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier:"Cell"),
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier:"SearchCell"),
         product = products[indexPath.row]
         cell.textLabel!.text = product.name
+        cell.textLabel!.isAccessibilityElement = true;
+        cell.textLabel!.accessibilityLabel = product.name;
+        
+//        cell.textLabel!.lineBreakMode = .byWordWrapping
+//        cell.textLabel!.numberOfLines = 0
+//        cell.textLabel!.sizeToFit()
+        cell.detailTextLabel!.text = "Size: \(product.prodSize) , Price: $\(product.price)"
         
         let url = URL(string: product.images.mediumImageURL.trim())!
         cell.imageView?.isAccessibilityElement = true
         cell.imageView?.accessibilityTraits = UIAccessibilityTraitImage
         cell.imageView?.accessibilityLabel = product.name
+        
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: (cell.imageView?.frame.size)!,
             radius: 5
