@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 import Alamofire
+import AlamofireImage
 
 
 struct ProductDetailViewUX {
@@ -63,7 +64,14 @@ class ProductDetailViewController: UIViewController {
         
         loadProductDetailData(productId: productId)
         view.backgroundColor = UIColor.white
-        imageView.contentMode = .scaleAspectFill
+        
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = false
+        imageView.backgroundColor = .white
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imageView.accessibilityIgnoresInvertColors = true
         
         view.addSubview(imageView)
         view.addSubview(nameLabel)
@@ -151,7 +159,18 @@ class ProductDetailViewController: UIViewController {
     
     func showItemDetail(product: Product) {
         self.product = product
-        imageView.af_setImage(withURL: URL(string: self.product.images.xlargeImageURL.trim())!)
+        let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+            size: imageView.frame.size,
+            radius: 5
+        )
+        let url = URL(string: self.product.images.xlargeImageURL.trim())!
+        let placeholderImage = UIImage(named: "placeholder")!
+        imageView.af_setImage(
+            withURL: url,
+            placeholderImage: placeholderImage,
+            filter: filter,
+            imageTransition: .crossDissolve(0.2)
+        )
         nameLabel.text = self.product.name
         ratingLabel.text = "Rating: \(self.product.rating)"
         detailsTextView.text = self.product.extendedInfo?.detail
