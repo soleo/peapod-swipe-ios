@@ -86,10 +86,10 @@ class ProductDetailViewController: UIViewController {
         }
         
         imageView.snp.makeConstraints { (make) in
-            make.top.equalTo(navigationBar.snp.bottom).offset(ProductDetailViewUX.NavigationBarHeight)
+            make.top.equalTo(navigationBar.snp.bottom)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
-            make.height.equalTo(ProductDetailViewUX.ProductImageHeight)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leadingMargin)
+            make.height.equalTo(self.imageView.snp.width)
             
         }
         
@@ -171,6 +171,10 @@ class ProductDetailViewController: UIViewController {
             filter: filter,
             imageTransition: .crossDissolve(0.2)
         )
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityLabel = self.product.name
+        imageView.accessibilityTraits = UIAccessibilityTraitImage
+        
         nameLabel.text = self.product.name
         ratingLabel.text = "Rating: \(self.product.rating)"
         detailsTextView.text = self.product.extendedInfo?.detail
