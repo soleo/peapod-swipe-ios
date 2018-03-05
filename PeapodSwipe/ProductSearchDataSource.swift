@@ -10,6 +10,7 @@ import UIKit
 import AlamofireImage
 
 class ProductSearchDataSource: NSObject, UITableViewDataSource {
+    
     init(tableView: UITableView) {
         self.tableView = tableView
     }
@@ -38,10 +39,17 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
         cell.imageView?.isAccessibilityElement = true
         cell.imageView?.accessibilityTraits = UIAccessibilityTraitImage
         cell.imageView?.accessibilityLabel = product.name
-        
-        cell.imageView?.af_setImage(
-            withURL: url
+        let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
+            size: (cell.imageView?.frame.size)!,
+            radius: 5
         )
+        cell.imageView?.af_setImage(
+            withURL: url,
+            placeholderImage: placeholderImage,
+            filter: filter,
+            imageTransition: .crossDissolve(0.2)
+        )
+        
         cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = false
         cell.imageView?.backgroundColor = .white
@@ -55,4 +63,5 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
     
     private var tableView:  UITableView!
     private let emptySearchResultView = EmptySearchResultView()
+    private let placeholderImage = UIImage(named: "placeholder")
 }
