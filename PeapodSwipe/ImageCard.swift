@@ -11,14 +11,20 @@ import UIKit
 import SnapKit
 import AlamofireImage
 
+struct ImageCardUX {
+    static let titleLabelHeight: CGFloat = 48
+    static let sideMargin: CGFloat = 12
+    static let buttonHeight: CGFloat = 40
+    static let buttonWidth: CGFloat = 100
+}
 
 class ImageCard: CardView {
     
-    var likeButton: UIButton!
-    var dislikeButton: UIButton!
-    var imageView: UIImageView!
-    var productName: UILabel!
-    
+    var likeButton = UIButton()
+    var dislikeButton = UIButton()
+    var imageView = UIImageView()
+    var titleLabel = UILabel()
+    let placeholderImage = UIImage(named: "placeholder")!
     var productId: Int!
     
     override init(frame: CGRect) {
@@ -41,22 +47,17 @@ class ImageCard: CardView {
     }
     
     private func setUpLayout(imageURL:String, name: String) {
-        // large image url
         let url = URL(string: imageURL.trim())!
-        let placeholderImage = UIImage(named: "placeholder")!
         
-        imageView = UIImageView()
-        let imageSize = min(self.frame.width, self.frame.height)
-        imageView.frame = CGRect(x: 12, y: 12, width: imageSize - 24, height: imageSize - 24)
         imageView.isAccessibilityElement = true
         imageView.accessibilityTraits = UIAccessibilityTraitImage
         imageView.accessibilityLabel = name
-        
         
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: imageView.frame.size,
             radius: 5
         )
+        
         imageView.af_setImage(
             withURL: url,
             placeholderImage: placeholderImage,
@@ -70,46 +71,31 @@ class ImageCard: CardView {
         imageView.layer.masksToBounds = true
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
-        
         imageView.isUserInteractionEnabled = true
-        
         self.addSubview(imageView)
-        
-        // product name text box
        
-        productName = UILabel()
-        productName.textColor = UIColor.Defaults.primaryTextColor
-        productName.text = name
-        productName.isAccessibilityElement = true;
-        productName.accessibilityLabel = name;
-        productName.textAlignment = .left
-        productName.layer.masksToBounds = true
-        productName.lineBreakMode = .byWordWrapping
-        productName.numberOfLines = 0
-        productName.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: self.frame.width - 24, height: 48)
-        self.addSubview(productName)
+        titleLabel.textColor = UIColor.Defaults.primaryTextColor
+        titleLabel.text = name
+        titleLabel.isAccessibilityElement = true;
+        titleLabel.accessibilityLabel = name;
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.layer.masksToBounds = true
+        titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.numberOfLines = 0
+        self.addSubview(titleLabel)
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            // hide product name label for now because I don't have time to fix the layour yet
-            productName.isHidden = true
-        }
-        
-        dislikeButton = UIButton()
         dislikeButton.setTitle("Dislike", for: .normal)
         dislikeButton.setTitleColor(UIColor.white, for: .normal)
         dislikeButton.setBackgroundColor(color: UIColor.Defaults.alizarin, forState: .normal)
-        dislikeButton.frame = CGRect(x: 12, y: self.frame.height - 30 - 12 , width: 100, height: 30)
         dislikeButton.isAccessibilityElement = true
         dislikeButton.accessibilityTraits = UIAccessibilityTraitButton
         dislikeButton.accessibilityLabel = "Dislike"
         self.addSubview(dislikeButton)
         
-        
-        likeButton = UIButton()
         likeButton.setTitle("Like", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
         likeButton.setBackgroundColor(color: UIColor.Defaults.emerald, forState: .normal)
-        likeButton.frame = CGRect(x: self.frame.width - 15 - 100, y: self.frame.height - 30 - 12, width: 100, height: 30)
         likeButton.isAccessibilityElement = true
         likeButton.accessibilityTraits = UIAccessibilityTraitButton
         likeButton.accessibilityLabel = "Like"
@@ -118,20 +104,47 @@ class ImageCard: CardView {
         imageView.accessibilityElementsHidden = true
         dislikeButton.accessibilityElementsHidden = true
         likeButton.accessibilityElementsHidden = true
-        productName.accessibilityElementsHidden = true
+        titleLabel.accessibilityElementsHidden = true
+        
+        imageView.snp.makeConstraints { (make) in
+            make.top.left.right.equalToSuperview()
+            make.size.equalTo(self.snp.width)
+        }
+        
+        titleLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(imageView.snp.bottom)
+            make.left.equalToSuperview().offset(ImageCardUX.sideMargin)
+            make.right.equalToSuperview().offset(-ImageCardUX.sideMargin)
+            make.height.greaterThanOrEqualTo(ImageCardUX.titleLabelHeight)
+        }
+        
+        dislikeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.left.equalToSuperview().offset(ImageCardUX.sideMargin)
+            make.bottom.equalToSuperview().offset(-ImageCardUX.sideMargin)
+            make.height.equalTo(ImageCardUX.buttonHeight)
+            make.width.equalTo(ImageCardUX.buttonWidth)
+        }
+        
+        likeButton.snp.makeConstraints { (make) in
+            make.top.greaterThanOrEqualTo(titleLabel.snp.bottom)
+            make.right.equalToSuperview().offset(-ImageCardUX.sideMargin)
+            make.bottom.equalToSuperview().offset(-ImageCardUX.sideMargin)
+            make.height.equalTo(ImageCardUX.buttonHeight)
+            make.width.equalTo(ImageCardUX.buttonWidth)
+        }
     }
     
     public func removeAccessibilityHidden() {
         imageView.accessibilityElementsHidden = false
         dislikeButton.accessibilityElementsHidden = false
         likeButton.accessibilityElementsHidden = false
-        productName.accessibilityElementsHidden = false
+        titleLabel.accessibilityElementsHidden = false
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
 }
 
