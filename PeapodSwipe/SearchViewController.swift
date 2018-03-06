@@ -165,6 +165,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         dismiss(animated: true, completion: nil)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     private var dataSource: ProductSearchDataSource!
     private var searchBar: UISearchBar!
     private var tableView: UITableView!
