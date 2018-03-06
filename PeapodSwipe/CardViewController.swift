@@ -11,6 +11,7 @@ import Firebase
 import Alamofire
 import SnapKit
 
+
 class CardViewController: UIViewController {
     
     var cards = [ImageCard]()
@@ -27,33 +28,21 @@ class CardViewController: UIViewController {
 
     }
     
-    override func viewWillTransition(to size: CGSize,
-                            with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        //let cardFrameSize: CGRect
-  
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape (Card)")
-//            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
-//            for card in cards {
-//                card.frame = cardFrameSize
-//            }
-//            self.removeAllCards()
-//            self.layoutCards()
-            
-        }
-        else if UIDevice.current.orientation.isPortrait {
-           // cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
-            print("Portrait (Card)")
-//            for card in cards {
-//                card.frame = cardFrameSize
-//            }
-//            self.removeAllCards()
-//            self.layoutCards()
-        }
-        
-        
-    }
+//    override func viewWillTransition(to size: CGSize,
+//                            with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.viewWillTransition(to: size, with: coordinator)
+//
+//
+//        if UIDevice.current.orientation.isLandscape {
+//
+//
+//        }
+//        else if UIDevice.current.orientation.isPortrait {
+//
+//        }
+//
+//
+//    }
     
     func removeAllCards() {
         for card in cards {
@@ -121,9 +110,15 @@ class CardViewController: UIViewController {
        
         menuButton.setTitle("MENU", for: UIControlState())
         menuButton.setTitleColor(.white, for: UIControlState())
-        menuButton.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
         menuButton.addTarget(self, action: #selector(CardViewController.SELtoggleMenu), for: .touchUpInside)
         self.view.addSubview(menuButton)
+        
+        menuButton.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(60)
+            make.width.equalTo(120)
+            make.centerX.equalToSuperview()
+        }
     }
     
     func layoutCards() {
@@ -473,9 +468,7 @@ extension CardViewController {
                 let productDetailViewController = ProductDetailViewController()
                 productDetailViewController.shouldShowNotifyButton = false
                 productDetailViewController.productId = cards[0].productId
-                self.present(productDetailViewController, animated: true) {
-                    
-                }
+                self.present(productDetailViewController, animated: true, completion: nil)
             
             }
     }
