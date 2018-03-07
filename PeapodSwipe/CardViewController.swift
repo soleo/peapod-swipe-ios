@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Alamofire
 import SnapKit
-
+import Intents
 
 class CardViewController: UIViewController {
     
@@ -20,6 +20,7 @@ class CardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadRecommendationData()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -85,8 +86,12 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpUI()
-        
-        loadRecommendationData()
+        // Siri Configuration
+//        INPreferences.requestSiriAuthorization { (status) in
+//            
+//        }
+//        
+//        INVocabulary.shared().setVocabularyStrings(["peapod", "grocery", "list"], of: .notebookItemTitle)
     }
 
     override func didReceiveMemoryWarning() {

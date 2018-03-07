@@ -62,12 +62,13 @@ class ProductDetailViewController: UIViewController {
         view.addSubview(likeButton)
         view.addSubview(detailsTextView)
         
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.layer.masksToBounds = true
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 0
         
-        detailsTextView.font = UIFont.systemFont(ofSize: 14)
+        detailsTextView.font = UIFont.systemFont(ofSize: 16)
+        detailsTextView.isEditable = false
         
         likeButton.setTitle("I Love this!", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
