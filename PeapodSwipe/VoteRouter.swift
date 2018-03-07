@@ -11,10 +11,10 @@ import Alamofire
 
 public enum VoteRouter: URLRequestConvertible {
     static let baseURLPath = "https://swipe-api.akang.info/v1/product"
-    
+
     case getVote(Int)
     case postVote(Int, Bool)
-    
+
     var method: HTTPMethod {
         switch self {
         case .getVote:
@@ -23,7 +23,7 @@ public enum VoteRouter: URLRequestConvertible {
             return .post
         }
     }
-    
+
     var path: String {
         switch self {
         case .getVote(let productId):
@@ -32,7 +32,7 @@ public enum VoteRouter: URLRequestConvertible {
             return "/\(productId)/vote"
         }
     }
-    
+
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
@@ -48,9 +48,8 @@ public enum VoteRouter: URLRequestConvertible {
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
         request.timeoutInterval = TimeInterval(10 * 1000)
-        
+
         return try JSONEncoding.default.encode(request, with: parameters)
     }
-    
-    
+
 }

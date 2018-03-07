@@ -11,9 +11,9 @@ import Alamofire
 
 public enum RecommendationRouter: URLRequestConvertible {
     static let baseURLPath = "https://swipe-api.akang.info/v1/recommendation"
-    
+
     case getProducts(Int)
-    
+
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
@@ -29,9 +29,8 @@ public enum RecommendationRouter: URLRequestConvertible {
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.get.rawValue
         request.timeoutInterval = TimeInterval(10 * 1000)
-        
+
         return try URLEncoding.default.encode(request, with: parameters)
     }
-    
-   
+
 }

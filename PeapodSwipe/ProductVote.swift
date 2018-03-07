@@ -9,16 +9,15 @@
 import Foundation
 
 public struct ProductVote: Codable, CustomStringConvertible {
-    
+
     var id: Int
     var like: Bool
 
-    
     enum CodingKeys: String, CodingKey {
         case id = "productId"
         case like
     }
-    
+
     public var description: String {
         return "Vote: { productId: \(id), \r\n vote: \(like) }"
     }

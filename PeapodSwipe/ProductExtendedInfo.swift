@@ -12,13 +12,13 @@ public struct ProductExtendedInfo: Codable, CustomStringConvertible {
     let brandText: String?
     let detail: String?
    // let active: Bool
-    
+
     enum CodingKeys: String, CodingKey {
         case brandText
         case detail
        // case active
     }
-    public var description: String  {
+    public var description: String {
         return """
             {
                 brand: \(String(describing: brandText)), \r\n

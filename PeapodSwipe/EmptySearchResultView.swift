@@ -10,14 +10,14 @@ import UIKit
 import SnapKit
 
 private struct EmptySearchViewUX {
-    
+
     static let NoResultsFont: UIFont = UIFont.systemFont(ofSize: 16)
     static let NoResultsTextColor: UIColor = UIColor.lightGray
-    
+
 }
 
 class EmptySearchResultView: UIView {
-    
+
     // We use the search bar height to maintain visual balance with the whitespace on this screen. The
     // title label is centered visually using the empty view + search bar height as the size to center with.
     var searchBarHeight: CGFloat = 0 {
@@ -25,7 +25,7 @@ class EmptySearchResultView: UIView {
             setNeedsUpdateConstraints()
         }
     }
-    
+
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = EmptySearchViewUX.NoResultsFont
@@ -33,12 +33,12 @@ class EmptySearchResultView: UIView {
         label.text = "No Result Found! Try Another Keyword?"
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(titleLabel)
     }
-    
+
     internal override func updateConstraints() {
         super.updateConstraints()
         titleLabel.snp.remakeConstraints { make in
@@ -46,7 +46,7 @@ class EmptySearchResultView: UIView {
             make.centerY.equalTo(self).offset(-(searchBarHeight / 2))
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

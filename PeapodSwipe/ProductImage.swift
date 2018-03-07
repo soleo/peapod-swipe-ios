@@ -8,20 +8,19 @@
 
 import Foundation
 
-
 public struct ProductImage: Codable, CustomStringConvertible {
     let smallImageURL: String
     let mediumImageURL: String
     let largeImageURL: String
     let xlargeImageURL: String
-    
+
     enum CodingKeys: String, CodingKey {
         case smallImageURL = "small"
         case mediumImageURL = "medium"
         case largeImageURL = "large"
         case xlargeImageURL = "xlarge"
     }
-    
+
     public var description: String {
         return "{ large: \(largeImageURL) }"
     }

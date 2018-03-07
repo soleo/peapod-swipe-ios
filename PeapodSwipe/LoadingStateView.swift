@@ -11,26 +11,26 @@ import UIKit
 import SnapKit
 
 class LoadingStateView: UIView {
-    
+
     var searchBarHeight: CGFloat = 0 {
         didSet {
             setNeedsUpdateConstraints()
         }
     }
-    
+
     lazy var indicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         indicator.hidesWhenStopped = false
         return indicator
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(indicator)
         backgroundColor = UIColor.white
         indicator.startAnimating()
     }
-    
+
     internal override func updateConstraints() {
         super.updateConstraints()
         indicator.snp.remakeConstraints { make in
@@ -38,9 +38,8 @@ class LoadingStateView: UIView {
             make.centerY.equalTo(self).offset(-(searchBarHeight / 2))
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

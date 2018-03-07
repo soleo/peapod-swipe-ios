@@ -12,7 +12,6 @@ struct ProductSearchResponse: Codable, CustomStringConvertible {
     let products: [Product]
     let keywords: String?
 
-    
     enum CodingKeys: String, CodingKey {
         case products
         case keywords
@@ -22,16 +21,15 @@ struct ProductSearchResponse: Codable, CustomStringConvertible {
     }
 }
 
-
 struct ProductSearchResponseWithSessionId: Codable, CustomStringConvertible {
     let sessionId: String
     let response: ProductSearchResponse
-    
+
     enum CodingKeys: String, CodingKey {
         case sessionId
         case response
     }
-    
+
     var description: String {
         return "ProductSearch: { SessionId: \(sessionId), \r\n response: \(response)}"
     }

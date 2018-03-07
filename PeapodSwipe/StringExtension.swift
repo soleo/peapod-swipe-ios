@@ -7,8 +7,7 @@
 //
 
 import Foundation
-extension String
-{
+extension String {
     func trim() -> String {
         return self.trimmingCharacters(in: NSCharacterSet.whitespaces)
     }

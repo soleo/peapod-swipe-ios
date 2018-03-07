@@ -8,18 +8,17 @@
 
 import Foundation
 public struct RecommendedProduct: Codable, CustomStringConvertible {
-    
+
     var id: Int
     var name: String
     var images: ProductImage
-    
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "productId"
         case name
         case images
     }
-    
+
     public var description: String {
         return "Recommended Product: { name: \(name), \r\n productId: \(id), \r\n images: \(images) }"
     }

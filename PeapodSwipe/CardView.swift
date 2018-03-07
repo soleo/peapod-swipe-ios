@@ -13,45 +13,45 @@ public enum CardOption: String {
     case like1 = "I love it!"
     case like2 = "I do like it"
     case like3 = "It's fine"
-    
+
     case dislike1 = "Terrible!"
     case dislike2 = "I do not"
     case dislike3 = "Not enough"
 }
 
 class CardView: UIView {
-    
+
     var greenLabel: CardViewLabel!
     var redLabel: CardViewLabel!
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         // card style
         self.backgroundColor = .white
         self.layer.cornerRadius = 10
-        
+
         // labels on top left and right
         let padding: CGFloat = 30
-        
+
         greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: UIColor.Defaults.primaryColor)
         greenLabel.isHidden = true
         self.addSubview(greenLabel)
-        
+
         redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: UIColor.Defaults.secondaryColor)
         redLabel.isHidden = true
         self.addSubview(redLabel)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func showOptionLabel(_ option: CardOption) {
         if option == .like1 || option == .like2 || option == .like3 {
-            
+
             greenLabel.text = option.rawValue
-            
+
             // fade out redLabel
             if !redLabel.isHidden {
                 UIView.animate(withDuration: 0.15, animations: {
@@ -60,7 +60,7 @@ class CardView: UIView {
                     self.redLabel.isHidden = true
                 })
             }
-            
+
             // fade in greenLabel
             if greenLabel.isHidden {
                 greenLabel.alpha = 0
@@ -69,11 +69,11 @@ class CardView: UIView {
                     self.greenLabel.alpha = 1
                 })
             }
-            
+
         } else {
-            
+
             redLabel.text = option.rawValue
-            
+
             // fade out greenLabel
             if !greenLabel.isHidden {
                 UIView.animate(withDuration: 0.15, animations: {
@@ -82,7 +82,7 @@ class CardView: UIView {
                     self.greenLabel.isHidden = true
                 })
             }
-            
+
             // fade in redLabel
             if redLabel.isHidden {
                 redLabel.alpha = 0
@@ -93,9 +93,9 @@ class CardView: UIView {
             }
         }
     }
-    
+
     var isHidingOptionLabel = false
-    
+
     func hideOptionLabel() {
         // fade out greenLabel
         if !greenLabel.isHidden {
@@ -120,5 +120,5 @@ class CardView: UIView {
             })
         }
     }
-    
+
 }

@@ -10,13 +10,13 @@ import UIKit
 import AlamofireImage
 
 class ProductSearchDataSource: NSObject, UITableViewDataSource {
-    
+
     init(tableView: UITableView) {
         self.tableView = tableView
     }
-    
+
     var products: [Product] = [] { didSet { tableView.reloadData() }}
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let searchResultTotal = products.count
         if searchResultTotal == 0 {
@@ -28,33 +28,32 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
         }
         return searchResultTotal
     }
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier:"SearchCell"),
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "SearchCell"),
         product = products[indexPath.row]
         cell.textLabel!.text = product.name
-        cell.textLabel!.isAccessibilityElement = true;
-        cell.textLabel!.accessibilityLabel = product.name;
+        cell.textLabel!.isAccessibilityElement = true
+        cell.textLabel!.accessibilityLabel = product.name
         cell.detailTextLabel!.text = "Size: \(product.prodSize)"
-        
+
         let url = URL(string: product.images.mediumImageURL.trim())!
         cell.imageView?.isAccessibilityElement = true
         cell.imageView?.accessibilityTraits = UIAccessibilityTraitImage
         cell.imageView?.accessibilityLabel = product.name
-        
+
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: (cell.imageView?.frame.size)!,
             radius: 5
         )
-        
+
         cell.imageView?.af_setImage(
             withURL: url,
             placeholderImage: placeholderImage,
             filter: filter,
             imageTransition: .crossDissolve(0.2)
         )
-        
+
         cell.imageView?.contentMode = .scaleAspectFit
         cell.imageView?.clipsToBounds = false
         cell.imageView?.backgroundColor = .white
@@ -62,11 +61,11 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
         cell.imageView?.layer.masksToBounds = true
         cell.imageView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         cell.imageView?.accessibilityIgnoresInvertColors = true
-        
+
         return cell
     }
-    
-    private var tableView:  UITableView!
+
+    private var tableView: UITableView!
     private let emptySearchResultView = EmptySearchResultView()
     private let placeholderImage = UIImage(named: "placeholder")
 }

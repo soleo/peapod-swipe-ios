@@ -10,20 +10,20 @@ import Foundation
 import Alamofire
 
 public enum PeapodProductSearchRouter: URLRequestConvertible {
-    
+
     static let baseURLPath = "https://www.peapod.com/api/v2.0"
     static let sessionTokenParam = ";jsession="
-    
+
     case keywords(String, String, String)
     case details(String, Int)
-    
+
     var method: HTTPMethod {
         switch self {
         case .keywords, .details:
             return .get
         }
     }
-    
+
     var path: String {
         switch self {
         case .keywords(let sessionId, _, _):
@@ -32,7 +32,7 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
             return "/products/\(productId)" + PeapodProductSearchRouter.sessionTokenParam + sessionId
         }
     }
-    
+
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
@@ -43,7 +43,7 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
                     "flags": "false",
                     "rows": "30"
                 ]
-                
+
             case .details:
                 return [
                     "serviceLocationId": "27346"
@@ -52,7 +52,7 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
                 return [:]
             }
         }()
-        
+
         let url = URL(string: PeapodProductSearchRouter.baseURLPath)!
         var serviceConfig: NSDictionary?
         if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
@@ -63,13 +63,13 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
         let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
         let authString = String(format: "%@:%@", appId, appSecret)
         let base64AuthString = Data(authString.utf8).base64EncodedString()
-        
+
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
         request.setValue("Basic "+base64AuthString, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
-        
+
         return try URLEncoding.default.encode(request, with: parameters)
     }
-    
+
 }

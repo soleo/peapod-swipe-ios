@@ -10,11 +10,11 @@ import Foundation
 
 struct RecommendedProductsResponse: Codable, CustomStringConvertible {
     let products: [RecommendedProduct]
-    
+
     enum CodingKeys: String, CodingKey {
         case products
     }
-    
+
     var description: String {
         return "{ products: \(products) }"
     }

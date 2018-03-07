@@ -10,10 +10,10 @@ import Foundation
 
 struct SesssionResponse: Codable, CustomStringConvertible {
     let sessionId: String
-    
+
     enum CodingKeys: String, CodingKey {
         case sessionId
-       
+
     }
     var description: String {
         return "{ sessionId: \(sessionId) }"
