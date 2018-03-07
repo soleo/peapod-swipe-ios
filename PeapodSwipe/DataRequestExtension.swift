@@ -33,11 +33,12 @@ extension DataRequest {
             guard case let .success(jsonData) = result else{
                 return .failure(BackendError.jsonSerialization(error: result.error!))
             }
-            
+
             // (1)- Json Decoder. Decodes the data object into expected type T
             // throws error when failes
             let decoder = JSONDecoder()
-            guard let responseObject = try? decoder.decode(T.self, from: jsonData)else{
+            guard let responseObject = try? decoder.decode(T.self, from: jsonData) else {
+                
                 return .failure(BackendError.objectSerialization(reason: "JSON object could not be serialized \(String(data: jsonData, encoding: .utf8)!)"))
             }
             return .success(responseObject)

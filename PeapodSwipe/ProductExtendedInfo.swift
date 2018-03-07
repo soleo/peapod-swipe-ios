@@ -10,7 +10,7 @@ import Foundation
 
 public struct ProductExtendedInfo: Codable, CustomStringConvertible {
     let brandText: String?
-    let detail: String
+    let detail: String?
    // let active: Bool
     
     enum CodingKeys: String, CodingKey {
@@ -22,7 +22,7 @@ public struct ProductExtendedInfo: Codable, CustomStringConvertible {
         return """
             {
                 brand: \(String(describing: brandText)), \r\n
-                detail: \(detail)
+                detail: \(String(describing: detail))
             }
         """
     }

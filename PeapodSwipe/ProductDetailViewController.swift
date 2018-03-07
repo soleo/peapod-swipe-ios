@@ -27,14 +27,16 @@ class ProductDetailViewController: UIViewController {
     var productId: Int!
     var shouldShowNotifyButton: Bool!
     
-    let nameLabel = UILabel()
+    let titleLabel = UILabel()
     let imageView = UIImageView()
     let ratingLabel = UILabel()
     let detailsTextView = UITextView()
-    let notifyAdminButton = UIButton()
+    let likeButton = UIButton()
+    let placeholderImage = UIImage(named: "placeholder")
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadProductDetailData(productId: productId)
         
     }
     
@@ -44,82 +46,88 @@ class ProductDetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        let navigationBar = UINavigationBar()
-        view.addSubview(navigationBar)
-        
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.dismissViewController))
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.dismissViewController))
-        let notifyButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.dismissViewController))
-        
-        let navigationItem = UINavigationItem(title: "Product Detail")
-        navigationItem.rightBarButtonItem = cancelButton
-        if shouldShowNotifyButton {
-            navigationItem.leftBarButtonItem = notifyButton
-        }else {
-            navigationItem.leftBarButtonItem = doneButton
-        }
-        
-        
-        navigationBar.items = [navigationItem]
-        
-        loadProductDetailData(productId: productId)
         view.backgroundColor = UIColor.white
         
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = false
         imageView.backgroundColor = .white
-        imageView.layer.cornerRadius = 5
+        imageView.layer.cornerRadius = 0
         imageView.layer.masksToBounds = true
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
         
         view.addSubview(imageView)
-        view.addSubview(nameLabel)
+        view.addSubview(titleLabel)
         view.addSubview(ratingLabel)
+        view.addSubview(likeButton)
         view.addSubview(detailsTextView)
         
-        navigationBar.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.topMargin)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leadingMargin)
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin)
-            make.height.equalTo(ProductDetailViewUX.NavigationBarHeight)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.layer.masksToBounds = true
+        titleLabel.lineBreakMode = .byWordWrapping
+        titleLabel.numberOfLines = 0
+        
+        detailsTextView.font = UIFont.systemFont(ofSize: 14)
+        
+        likeButton.setTitle("I Love this!", for: .normal)
+        likeButton.setTitleColor(UIColor.white, for: .normal)
+        likeButton.backgroundColor = UIColor.Defaults.pandaBlue
+        likeButton.layer.cornerRadius = 5
+        likeButton.layer.masksToBounds = true
+        likeButton.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(ProductDetailViewController.dismissViewController)))
+        
+        if shouldShowNotifyButton {
+            likeButton.isHidden = false
+        } else {
+            likeButton.isHidden = true
         }
         
         imageView.snp.makeConstraints { (make) in
-            make.top.equalTo(navigationBar.snp.bottom)
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leadingMargin)
-            make.height.equalTo(self.imageView.snp.width)
-            
+            make.top.equalTo(self.view.snp.top)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(self.view.snp.width)
         }
         
-        nameLabel.snp.makeConstraints { (make) in
+        titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.imageView.snp.bottom).offset(10)
+            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
+            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
+            make.height.greaterThanOrEqualTo(ProductDetailViewUX.NameLabelHeight)
+        }
+        
+        ratingLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(self.titleLabel.snp.bottom)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
             make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
         }
         
-        ratingLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.nameLabel.snp.bottom)
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
+        likeButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.ratingLabel.snp.bottom)
+            make.left.right.equalTo(self.ratingLabel)
             make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
         }
         
         detailsTextView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.ratingLabel.snp.bottom)
+            if shouldShowNotifyButton {
+                make.top.equalTo(self.likeButton.snp.bottom)
+            }else{
+                make.top.equalTo(self.ratingLabel.snp.bottom)
+            }
+            
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
             make.bottom.equalTo(self.view)
         }
         
-        
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(ProductDetailViewController.dismissViewController)))
     }
     
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     func loadProductDetailData(productId: Int) {
         var headers: HTTPHeaders = [
             "Content-Type": "application/json"
@@ -149,6 +157,7 @@ class ProductDetailViewController: UIViewController {
                         .responseObject{ (response: DataResponse<ProductSearchResponseWithSessionId>) in
                             
                             if let productSearchResult = response.value {
+                                //print(productSearchResult)
                                 self.showItemDetail(product: productSearchResult.response.products[0])
                             }
                     }
@@ -161,10 +170,10 @@ class ProductDetailViewController: UIViewController {
         self.product = product
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: imageView.frame.size,
-            radius: 5
+            radius: 0
         )
         let url = URL(string: self.product.images.xlargeImageURL.trim())!
-        let placeholderImage = UIImage(named: "placeholder")!
+        
         imageView.af_setImage(
             withURL: url,
             placeholderImage: placeholderImage,
@@ -175,8 +184,15 @@ class ProductDetailViewController: UIViewController {
         imageView.accessibilityLabel = self.product.name
         imageView.accessibilityTraits = UIAccessibilityTraitImage
         
-        nameLabel.text = self.product.name
-        ratingLabel.text = "Rating: \(self.product.rating)"
+        titleLabel.text = self.product.name
+        if (self.product.rating?.isLessThanOrEqualTo(0.0))! {
+            ratingLabel.text = ""
+            ratingLabel.isHidden = true
+        }else{
+            ratingLabel.text = "Rating: \(self.product.rating as! Float)"
+            ratingLabel.isHidden = false
+        }
+        
         detailsTextView.text = self.product.extendedInfo?.detail
     }
 }

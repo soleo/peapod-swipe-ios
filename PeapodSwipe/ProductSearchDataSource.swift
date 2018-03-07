@@ -36,11 +36,7 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
         cell.textLabel!.text = product.name
         cell.textLabel!.isAccessibilityElement = true;
         cell.textLabel!.accessibilityLabel = product.name;
-        
-//        cell.textLabel!.lineBreakMode = .byWordWrapping
-//        cell.textLabel!.numberOfLines = 0
-//        cell.textLabel!.sizeToFit()
-        cell.detailTextLabel!.text = "Size: \(product.prodSize) , Price: $\(product.price)"
+        cell.detailTextLabel!.text = "Size: \(product.prodSize)"
         
         let url = URL(string: product.images.mediumImageURL.trim())!
         cell.imageView?.isAccessibilityElement = true
@@ -51,6 +47,7 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
             size: (cell.imageView?.frame.size)!,
             radius: 5
         )
+        
         cell.imageView?.af_setImage(
             withURL: url,
             placeholderImage: placeholderImage,

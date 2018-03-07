@@ -17,17 +17,17 @@ public struct Product: Codable, CustomStringConvertible {
     
     var prodSize: String
     var unitPrice: Float
-    var unitMeasure: String
-    var price: Float
-    var regularPrice: Float
+    var unitMeasure: String?
+    var price: Float?
+    var regularPrice: Float?
     
-    var rootCatId: Int
-    var rootCatSeq: Int
-    var rootCatName: String
-    var upc: String
-    var hasSubstitute: Bool
+    var rootCatId: Int?
+    var rootCatSeq: Int?
+    var rootCatName: String?
+    var upc: String?
+    var hasSubstitute: Bool?
     var substituteId: Int?
-    var rating: Float
+    var rating: Float?
     var ratingReviewsSuppressed: Bool?
     var marketSpecificReviews: Bool?
     var reviewId: String?

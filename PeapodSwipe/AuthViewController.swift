@@ -38,10 +38,8 @@ class AuthViewController: UIViewController {
         
         signInButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(50)
-            make.width.equalTo(view.frame.width - 20*2)
+            make.width.equalTo(300)
             make.bottom.equalTo(view).offset(-20)
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
             make.centerX.equalTo(view)
         }
     }

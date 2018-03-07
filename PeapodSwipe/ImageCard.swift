@@ -87,18 +87,22 @@ class ImageCard: CardView {
         
         dislikeButton.setTitle("Dislike", for: .normal)
         dislikeButton.setTitleColor(UIColor.white, for: .normal)
-        dislikeButton.setBackgroundColor(color: UIColor.Defaults.alizarin, forState: .normal)
+        dislikeButton.setBackgroundColor(color: UIColor.Defaults.tomatoRed, forState: .normal)
         dislikeButton.isAccessibilityElement = true
         dislikeButton.accessibilityTraits = UIAccessibilityTraitButton
         dislikeButton.accessibilityLabel = "Dislike"
+        dislikeButton.layer.cornerRadius = 5
+        dislikeButton.layer.masksToBounds = true
         self.addSubview(dislikeButton)
         
         likeButton.setTitle("Like", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
-        likeButton.setBackgroundColor(color: UIColor.Defaults.emerald, forState: .normal)
+        likeButton.setBackgroundColor(color: UIColor.Defaults.puppyGreen, forState: .normal)
         likeButton.isAccessibilityElement = true
         likeButton.accessibilityTraits = UIAccessibilityTraitButton
         likeButton.accessibilityLabel = "Like"
+        likeButton.layer.cornerRadius = 5
+        likeButton.layer.masksToBounds = true
         self.addSubview(likeButton)
         
         imageView.accessibilityElementsHidden = true

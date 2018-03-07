@@ -32,12 +32,15 @@ extension UIColor {
         static let emerald   = UIColor(rgb: 0x2ecc71)
         static let alizarin  = UIColor(rgb: 0xe74c3c)
         static let midnightBlue = UIColor(rgb: 0x2c3e50)
+        static let puppyGreen = UIColor(rgb: 0x5ea000)
+        static let burgerYellow = UIColor(red:0.96, green:0.81, blue:0.46, alpha:1.0)
+        static let pandaBlue = UIColor(rgb: 0x008bac)
+        static let tomatoRed = UIColor(rgb: 0xe53e30)
         
-        
-        static let primaryColor = Defaults.emerald
-        static let secondaryColor = Defaults.alizarin
+        static let primaryColor = UIColor.Defaults.puppyGreen
+        static let secondaryColor = UIColor.Defaults.tomatoRed
         static let backgroundColor = UIColor(rgb: 0x363636)
-        static let primaryTextColor = Defaults.Grey80
+        static let primaryTextColor = UIColor.Defaults.Grey80
     }
 
 }

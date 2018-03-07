@@ -35,22 +35,6 @@ class CardViewController: UIViewController {
 
     }
     
-//    override func viewWillTransition(to size: CGSize,
-//                            with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: size, with: coordinator)
-//
-//
-//        if UIDevice.current.orientation.isLandscape {
-//
-//
-//        }
-//        else if UIDevice.current.orientation.isPortrait {
-//
-//        }
-//
-//
-//    }
-    
     func removeAllCards() {
         for card in cards {
             card.removeFromSuperview()
