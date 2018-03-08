@@ -74,7 +74,7 @@ class ProductDetailViewController: UIViewController {
         likeButton.backgroundColor = UIColor.Defaults.pandaBlue
         likeButton.layer.cornerRadius = 5
         likeButton.layer.masksToBounds = true
-        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController)))
+        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.likeProductFromItemDetail)))
 
         if shouldShowNotifyButton {
             likeButton.isHidden = false
@@ -126,6 +126,19 @@ class ProductDetailViewController: UIViewController {
 
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func likeProductFromItemDetail() {
+        Alamofire.request(
+            VoteRouter.postVote(self.productId, true)
+            )
+            .validate()
+            .responseString { (response: DataResponse<String>) in
+               
+                if let voteResult = response.value {
+                    print(voteResult)
+                }
+        }
     }
 
     func loadProductDetailData(productId: Int) {

@@ -397,13 +397,14 @@ extension CardViewController {
 
                 if currentAngle > 0 {
                     angular = angular * 1
-                    Analytics.logEvent("dislike_a_product", parameters: nil)
-                    castProductVote(productId: cards[0].productId, userVote: false)
-
-                } else {
-                    angular = angular * -1
+                    
                     Analytics.logEvent("like_a_product", parameters: nil)
                     castProductVote(productId: cards[0].productId, userVote: true)
+                } else {
+                    angular = angular * -1
+                    
+                    Analytics.logEvent("dislike_a_product", parameters: nil)
+                    castProductVote(productId: cards[0].productId, userVote: false)
                 }
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
                 itemBehavior.friction = 0.2
@@ -423,7 +424,7 @@ extension CardViewController {
 
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
 
-        //let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
         let itemSuggestionAction = UIAlertAction(title: "Suggest Other Items", style: .default, handler: {(alert: UIAlertAction!) in
             self.presentSearchView()
 
@@ -434,7 +435,7 @@ extension CardViewController {
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        //alertController.addAction(settingsAction)
+        alertController.addAction(settingsAction)
         alertController.addAction(itemSuggestionAction)
         alertController.addAction(logoutAction)
         alertController.addAction(cancelAction)

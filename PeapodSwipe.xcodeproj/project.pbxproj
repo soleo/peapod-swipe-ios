@@ -116,6 +116,7 @@
 		55B0F5F2204A658B00EB2594 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtension.swift; sourceTree = "<group>"; };
 		55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodJsessionHandler.swift; sourceTree = "<group>"; };
+		55B258082050D537002AD4EE /* Peapod Swipe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Peapod Swipe.entitlements"; sourceTree = "<group>"; };
 		A99BBCCB1EF89B4D00ACBF7B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A9ADFB8F1EEF5D770044D45B /* Peapod Swipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peapod Swipe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -202,6 +203,13 @@
 			name = Search;
 			sourceTree = "<group>";
 		};
+		55629FB3204F998C00055B65 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
 		558B4D43204CBC8200C2ED47 /* ProductDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +268,8 @@
 		A9ADFB911EEF5D770044D45B /* PeapodSwipe */ = {
 			isa = PBXGroup;
 			children = (
+				55B258082050D537002AD4EE /* Peapod Swipe.entitlements */,
+				55629FB3204F998C00055B65 /* Setting */,
 				558B4D43204CBC8200C2ED47 /* ProductDetail */,
 				5549F567204B9F3C00E76A41 /* Search */,
 				552898FF1FCA3DB500A3195A /* UserTour */,
@@ -414,7 +424,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.SafariKeychain = {
 								enabled = 0;
@@ -664,6 +674,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
+				CODE_SIGN_ENTITLEMENTS = "PeapodSwipe/Peapod Swipe.entitlements";
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -845,6 +856,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
+				CODE_SIGN_ENTITLEMENTS = "PeapodSwipe/Peapod Swipe.entitlements";
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -872,6 +884,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
+				CODE_SIGN_ENTITLEMENTS = "PeapodSwipe/Peapod Swipe.entitlements";
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
