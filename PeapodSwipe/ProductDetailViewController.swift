@@ -123,6 +123,9 @@ class ProductDetailViewController: UIViewController {
 
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController)))
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        imageView.addGestureRecognizer(swipeDown)
     }
 
     @objc func dismissViewController() {
@@ -171,7 +174,7 @@ class ProductDetailViewController: UIViewController {
                         .responseObject { (response: DataResponse<ProductSearchResponseWithSessionId>) in
 
                             if let productSearchResult = response.value {
-                                //print(productSearchResult)
+                                print(productSearchResult)
                                 self.showItemDetail(product: productSearchResult.response.products[0])
                             }
                     }

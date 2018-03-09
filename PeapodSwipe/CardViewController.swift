@@ -17,6 +17,7 @@ class CardViewController: UIViewController {
     var cards = [ImageCard]()
     var products = [RecommendedProduct]()
     let menuButton = UIButton()
+    var isAnimating: Bool = false
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,6 +44,13 @@ class CardViewController: UIViewController {
     }
 
     func loadRecommendationData() {
+        let cardFrameSize: CGRect
+        if UIDevice.current.orientation.isLandscape {
+            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
+        } else {
+            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
+        }
+        
         Alamofire.request(
             RecommendationRouter.getProducts(100)
             )
@@ -53,13 +61,7 @@ class CardViewController: UIViewController {
                     self.products = productsResult.products
 
                     for product in productsResult.products {
-
-                        let cardFrameSize: CGRect
-                        if UIDevice.current.orientation.isLandscape {
-                            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
-                        } else {
-                            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
-                        }
+                       
                         let card = ImageCard(frame: cardFrameSize, product: product)
                         self.cards.append(card)
                         self.layoutCards()
@@ -222,6 +224,7 @@ class CardViewController: UIViewController {
 
         // first card needs to be in the front for proper interactivity
         cards[1].removeAccessibilityHidden()
+        self.isAnimating = false
         self.view.bringSubview(toFront: cards[1])
     }
 
@@ -301,6 +304,7 @@ extension CardViewController {
     }
 
     @objc func SELhandleDislikeTap (_ sender: UITapGestureRecognizer) {
+        
         switch sender.state {
         case .began: break
         case .cancelled: break
@@ -308,7 +312,7 @@ extension CardViewController {
         case .changed:
             dynamicAnimator.removeAllBehaviors()
         case .ended:
-
+            
             dynamicAnimator.removeAllBehaviors()
 
             let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
@@ -339,7 +343,7 @@ extension CardViewController {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
         let optionLength: CGFloat = 60
         // distance user must pan right or left to trigger an option
-        let requiredOffsetFromCenter: CGFloat = 15
+        let requiredOffsetFromCenter: CGFloat = 20
 
         let panLocationInView = sender.location(in: view)
         let panLocationInCard = sender.location(in: cards[0])
@@ -376,7 +380,7 @@ extension CardViewController {
             }
 
         case .ended:
-
+            
             dynamicAnimator.removeAllBehaviors()
 
             if !(cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) || cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter)) {
@@ -384,6 +388,11 @@ extension CardViewController {
                 let snapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
                 dynamicAnimator.addBehavior(snapBehavior)
             } else {
+                
+                if self.isAnimating {
+                    return
+                }
+                self.isAnimating  = true
 
                 let velocity = sender.velocity(in: self.view)
                 let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
