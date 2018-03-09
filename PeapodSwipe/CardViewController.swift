@@ -111,9 +111,9 @@ class CardViewController: UIViewController {
         self.view.addSubview(menuButton)
 
         menuButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
-            make.height.equalTo(60)
-            make.width.equalTo(120)
+            make.bottom.equalToSuperview().offset(-10)
+            make.height.equalTo(50)
+            make.width.equalTo(100)
             make.centerX.equalToSuperview()
         }
     }

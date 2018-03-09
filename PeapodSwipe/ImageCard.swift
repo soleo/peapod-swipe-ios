@@ -97,7 +97,7 @@ class ImageCard: CardView {
 
         likeButton.setTitle("Like", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
-        likeButton.setBackgroundColor(color: UIColor.Defaults.puppyGreen, forState: .normal)
+        likeButton.setBackgroundColor(color: UIColor.Defaults.peaGreen, forState: .normal)
         likeButton.isAccessibilityElement = true
         likeButton.accessibilityTraits = UIAccessibilityTraitButton
         likeButton.accessibilityLabel = "Like"

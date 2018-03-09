@@ -31,6 +31,7 @@ public struct Product: Codable, CustomStringConvertible {
     var marketSpecificReviews: Bool?
     var reviewId: String?
     var extendedInfo: ProductExtendedInfo?
+    var productFlags: ProductFlagCollection?
 
     enum CodingKeys: String, CodingKey {
         case id = "prodId"
@@ -52,6 +53,7 @@ public struct Product: Codable, CustomStringConvertible {
         case marketSpecificReviews
         case reviewId
         case extendedInfo
+        case productFlags
     }
 
     public var description: String {

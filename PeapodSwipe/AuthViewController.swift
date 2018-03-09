@@ -32,20 +32,30 @@ class AuthViewController: UIViewController {
         signInButton.setTitle("Sign In", for: UIControlState())
         signInButton.setTitleColor(UIColor.white, for: UIControlState())
         signInButton.clipsToBounds = true
+        signInButton.layer.cornerRadius = 5
+        signInButton.layer.masksToBounds = true
         signInButton.addTarget(self, action: #selector(self.SELSignInWithEmail), for: UIControlEvents.touchUpInside)
 
         view.addSubview(signInButton)
 
         signInButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(50)
-            make.width.equalTo(300)
-            make.bottom.equalTo(view).offset(-20)
-            make.centerX.equalTo(view)
+            make.width.equalTo(self.view).offset(-20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.centerX.equalTo(self.view)
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -107,13 +117,5 @@ extension AuthViewController {
 
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: emalAddress)
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
 }

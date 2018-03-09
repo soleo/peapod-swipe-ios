@@ -14,7 +14,8 @@ import AlamofireImage
 
 struct ProductDetailViewUX {
     static let ProductImageHeight: CGFloat = 300
-    static let NameLabelHeight: CGFloat = 40
+    static let titleLabelHeight: CGFloat = 32 * 2
+    static let NameLabelHeight: CGFloat = 50
     static let SideMargin: CGFloat = 12
     static let NavigationBarHeight: CGFloat = 50
 
@@ -57,21 +58,21 @@ class ProductDetailViewController: UIViewController {
 
         view.addSubview(imageView)
         view.addSubview(titleLabel)
-        view.addSubview(ratingLabel)
+        //view.addSubview(ratingLabel)
         view.addSubview(likeButton)
-        view.addSubview(detailsTextView)
+        //view.addSubview(detailsTextView)
 
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         titleLabel.layer.masksToBounds = true
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 0
 
-        detailsTextView.font = UIFont.systemFont(ofSize: 16)
-        detailsTextView.isEditable = false
+//        detailsTextView.font = UIFont.systemFont(ofSize: 16)
+//        detailsTextView.isEditable = false
 
         likeButton.setTitle("I Love this!", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
-        likeButton.backgroundColor = UIColor.Defaults.pandaBlue
+        likeButton.backgroundColor = UIColor.Defaults.waterBlue
         likeButton.layer.cornerRadius = 5
         likeButton.layer.masksToBounds = true
         likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.likeProductFromItemDetail)))
@@ -92,33 +93,33 @@ class ProductDetailViewController: UIViewController {
             make.top.equalTo(self.imageView.snp.bottom).offset(10)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
-            make.height.greaterThanOrEqualTo(ProductDetailViewUX.NameLabelHeight)
+            make.height.greaterThanOrEqualTo(ProductDetailViewUX.titleLabelHeight)
         }
 
-        ratingLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.titleLabel.snp.bottom)
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
-            make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
-        }
+//        ratingLabel.snp.makeConstraints { (make) in
+//            make.top.equalTo(self.titleLabel.snp.bottom)
+//            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
+//            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
+//            make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
+//        }
 
         likeButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.ratingLabel.snp.bottom)
-            make.left.right.equalTo(self.ratingLabel)
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(ProductDetailViewUX.SideMargin)
+            make.left.right.equalTo(self.titleLabel)
             make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
         }
 
-        detailsTextView.snp.makeConstraints { (make) in
-            if shouldShowNotifyButton {
-                make.top.equalTo(self.likeButton.snp.bottom)
-            } else {
-                make.top.equalTo(self.ratingLabel.snp.bottom)
-            }
-
-            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
-            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
-            make.bottom.equalTo(self.view)
-        }
+//        detailsTextView.snp.makeConstraints { (make) in
+//            if shouldShowNotifyButton {
+//                make.top.equalTo(self.likeButton.snp.bottom)
+//            } else {
+//                make.top.equalTo(self.ratingLabel.snp.bottom)
+//            }
+//
+//            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
+//            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
+//            make.bottom.equalTo(self.view)
+//        }
 
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController)))
@@ -134,7 +135,7 @@ class ProductDetailViewController: UIViewController {
             )
             .validate()
             .responseString { (response: DataResponse<String>) in
-               
+                print("Love \(self.productId)")
                 if let voteResult = response.value {
                     print(voteResult)
                 }
@@ -198,14 +199,14 @@ class ProductDetailViewController: UIViewController {
         imageView.accessibilityTraits = UIAccessibilityTraitImage
 
         titleLabel.text = self.product.name
-        if (self.product.rating?.isLessThanOrEqualTo(0.0))! {
-            ratingLabel.text = ""
-            ratingLabel.isHidden = true
-        } else {
-            ratingLabel.text = "Rating: \(self.product.rating as! Float)"
-            ratingLabel.isHidden = false
-        }
+//        if (self.product.rating?.isLessThanOrEqualTo(0.0))! {
+//            ratingLabel.text = ""
+//            ratingLabel.isHidden = true
+//        } else {
+//            ratingLabel.text = "Rating: \(self.product.rating as! Float)"
+//            ratingLabel.isHidden = false
+//        }
 
-        detailsTextView.text = self.product.extendedInfo?.detail
+ //       detailsTextView.text = self.product.extendedInfo?.detail
     }
 }
