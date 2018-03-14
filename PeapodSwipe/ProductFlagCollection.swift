@@ -15,10 +15,9 @@ public struct ProductFlagCollection: Codable {
     let peanut: ProductRichFlag?
     let organic: ProductRichFlag?
     let privateLabel: ProductRichFlag?
-    
+
     let kosher: Bool?
 
-    
     enum CodingKeys: String, CodingKey {
         case dairy
         case egg

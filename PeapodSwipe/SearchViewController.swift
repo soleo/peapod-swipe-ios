@@ -13,7 +13,6 @@ import SnapKit
 private struct SearchViewUX {
     static let SearchHeight: CGFloat = 58
     static let RowHeight: CGFloat = 58
-    static let CancelButtonHeight: CGFloat = 60
 
 }
 class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDelegate {
@@ -26,16 +25,18 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         searchBar = UISearchBar()
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.backgroundColor = UIColor.clear
-        searchBar.tintColor = UIColor.Defaults.primaryTextColor
         searchBar.placeholder = "Search Product ..."
         searchBar.delegate = self
         searchBar.isTranslucent = true
+        searchBar.tintColor = UIColor.Defaults.primaryColor
+
         // https://stackoverflow.com/questions/21191801/how-to-add-a-1-pixel-gray-border-around-a-uisearchbar-textfield/21192270
         for s in self.searchBar.subviews[0].subviews {
             if s is UITextField {
                 s.layer.borderWidth = 1.0
                 s.layer.cornerRadius = 10
                 s.layer.borderColor = UIColor.Defaults.backgroundColor.cgColor
+                s.layer.backgroundColor = UIColor.Defaults.Grey30.cgColor
             }
         }
 
@@ -45,7 +46,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         tableView.estimatedRowHeight = SearchViewUX.RowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         view.addSubview(tableView)
-        view.addSubview(cancelButton)
         view.addSubview(loadingStateView)
         loadingStateView.isHidden = true
 
@@ -62,15 +62,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         tableView.snp.makeConstraints { (make) in
             make.top.equalTo(searchBar.snp.bottom)
             make.left.right.equalTo(self.view)
-            make.bottom.equalTo(self.cancelButton.snp.top)
-        }
-        cancelButton.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.tableView.snp.bottom)
             make.bottom.equalTo(self.view)
-            make.height.equalTo(SearchViewUX.CancelButtonHeight)
-
         }
+
         loadingStateView.snp.makeConstraints { (make) in
             make.edges.equalTo(tableView)
         }
@@ -104,6 +98,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
             }
 
         }
+        //searchBar.setShowsCancelButton(false, animated: true)
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Search service
@@ -174,12 +179,5 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
     private var searchBar: UISearchBar!
     private var tableView: UITableView!
     private let loadingStateView = LoadingStateView()
-    private let cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Cancel", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.Defaults.backgroundColor
-        button.addTarget(self, action: #selector(SearchViewController.dismissViewController), for: .touchUpInside)
-        return button
-    }()
+
 }

@@ -47,6 +47,8 @@
 		55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */; };
 		55B2580A2050D88A002AD4EE /* ProductRichFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B258092050D88A002AD4EE /* ProductRichFlag.swift */; };
 		55B2580C2050D98F002AD4EE /* ProductFlagCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */; };
+		55D49C5320522D2D00F7D383 /* ProductFlagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D49C5220522D2D00F7D383 /* ProductFlagLabel.swift */; };
+		55D49C5520522DB700F7D383 /* ProductInformationScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D49C5420522DB700F7D383 /* ProductInformationScrollView.swift */; };
 		A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BBCCB1EF89B4D00ACBF7B /* Product.swift */; };
 		A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB921EEF5D770044D45B /* AppDelegate.swift */; };
 		A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB941EEF5D770044D45B /* CardViewController.swift */; };
@@ -120,6 +122,8 @@
 		55B258082050D537002AD4EE /* Peapod Swipe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Peapod Swipe.entitlements"; sourceTree = "<group>"; };
 		55B258092050D88A002AD4EE /* ProductRichFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRichFlag.swift; sourceTree = "<group>"; };
 		55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFlagCollection.swift; sourceTree = "<group>"; };
+		55D49C5220522D2D00F7D383 /* ProductFlagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFlagLabel.swift; sourceTree = "<group>"; };
+		55D49C5420522DB700F7D383 /* ProductInformationScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInformationScrollView.swift; sourceTree = "<group>"; };
 		A99BBCCB1EF89B4D00ACBF7B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A9ADFB8F1EEF5D770044D45B /* Peapod Swipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peapod Swipe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,13 +199,20 @@
 			name = UserTour;
 			sourceTree = "<group>";
 		};
+		5541D90220588BAB003C3D4E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 		5549F567204B9F3C00E76A41 /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				5549F568204B9F9300E76A41 /* SearchViewController.swift */,
 				5549F56C204BAA2300E76A41 /* ProductSearchDataSource.swift */,
 				558B4D3F204C8E3300C2ED47 /* EmptySearchResultView.swift */,
-				558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -217,6 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				558B4D44204CBC9B00C2ED47 /* ProductDetailViewController.swift */,
+				55D49C5220522D2D00F7D383 /* ProductFlagLabel.swift */,
+				55D49C5420522DB700F7D383 /* ProductInformationScrollView.swift */,
 			);
 			name = ProductDetail;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 		A9ADFB911EEF5D770044D45B /* PeapodSwipe */ = {
 			isa = PBXGroup;
 			children = (
+				5541D90220588BAB003C3D4E /* Shared */,
 				55B258082050D537002AD4EE /* Peapod Swipe.entitlements */,
 				55629FB3204F998C00055B65 /* Setting */,
 				558B4D43204CBC8200C2ED47 /* ProductDetail */,
@@ -365,6 +379,7 @@
 				A9ADFB8C1EEF5D770044D45B /* Frameworks */,
 				A9ADFB8D1EEF5D770044D45B /* Resources */,
 				A9B92CD51F39427700274428 /* Run Script */,
+				5541D9012057525D003C3D4E /* Run Lint Script */,
 			);
 			buildRules = (
 			);
@@ -502,6 +517,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5541D9012057525D003C3D4E /* Run Lint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Lint Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -e\n\nif ! which swiftlint > /dev/null; then\necho \"error: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more.\"\nexit 1\nfi\n\n#swiftlint";
+		};
 		A9B92CD51F39427700274428 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -532,6 +561,7 @@
 				A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */,
 				5549F56D204BAA2300E76A41 /* ProductSearchDataSource.swift in Sources */,
 				552898F41FCA124400A3195A /* UIColorExtension.swift in Sources */,
+				55D49C5520522DB700F7D383 /* ProductInformationScrollView.swift in Sources */,
 				55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */,
 				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
 				552898F61FCA177200A3195A /* CardViewLabel.swift in Sources */,
@@ -545,6 +575,7 @@
 				5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */,
 				5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */,
 				5549F560204B44A800E76A41 /* RecommendationRouter.swift in Sources */,
+				55D49C5320522D2D00F7D383 /* ProductFlagLabel.swift in Sources */,
 				5549F569204B9F9300E76A41 /* SearchViewController.swift in Sources */,
 				55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */,
 				55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */,
@@ -642,7 +673,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -766,7 +797,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -831,7 +862,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 31;
+				CURRENT_PROJECT_VERSION = 33;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

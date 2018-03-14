@@ -50,7 +50,7 @@ class CardViewController: UIViewController {
         } else {
             cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
         }
-        
+
         Alamofire.request(
             RecommendationRouter.getProducts(100)
             )
@@ -61,7 +61,7 @@ class CardViewController: UIViewController {
                     self.products = productsResult.products
 
                     for product in productsResult.products {
-                       
+
                         let card = ImageCard(frame: cardFrameSize, product: product)
                         self.cards.append(card)
                         self.layoutCards()
@@ -304,7 +304,7 @@ extension CardViewController {
     }
 
     @objc func SELhandleDislikeTap (_ sender: UITapGestureRecognizer) {
-        
+
         switch sender.state {
         case .began: break
         case .cancelled: break
@@ -312,7 +312,7 @@ extension CardViewController {
         case .changed:
             dynamicAnimator.removeAllBehaviors()
         case .ended:
-            
+
             dynamicAnimator.removeAllBehaviors()
 
             let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
@@ -380,7 +380,7 @@ extension CardViewController {
             }
 
         case .ended:
-            
+
             dynamicAnimator.removeAllBehaviors()
 
             if !(cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) || cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter)) {
@@ -388,7 +388,7 @@ extension CardViewController {
                 let snapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
                 dynamicAnimator.addBehavior(snapBehavior)
             } else {
-                
+
                 if self.isAnimating {
                     return
                 }
@@ -406,12 +406,12 @@ extension CardViewController {
 
                 if currentAngle > 0 {
                     angular = angular * 1
-                    
+
                     Analytics.logEvent("like_a_product", parameters: nil)
                     castProductVote(productId: cards[0].productId, userVote: true)
                 } else {
                     angular = angular * -1
-                    
+
                     Analytics.logEvent("dislike_a_product", parameters: nil)
                     castProductVote(productId: cards[0].productId, userVote: false)
                 }

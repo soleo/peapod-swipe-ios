@@ -41,7 +41,7 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
                     "keywords": keywords,
                     "zip": zip,
                     "flags": "false",
-                    "rows": "30"
+                    "rows": "120"
                 ]
 
             case .details:

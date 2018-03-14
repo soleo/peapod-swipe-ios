@@ -31,13 +31,15 @@ class ProductDetailViewController: UIViewController {
     let imageView = UIImageView()
     let ratingLabel = UILabel()
     let detailsTextView = UITextView()
+    let productInformationScrollView = ProductInformationScrollView()
     let likeButton = UIButton()
     let placeholderImage = UIImage(named: "placeholder")
+    let loadingStateView = LoadingStateView()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadingStateView.isHidden = false
         loadProductDetailData(productId: productId)
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,19 +58,12 @@ class ProductDetailViewController: UIViewController {
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
 
-        view.addSubview(imageView)
-        view.addSubview(titleLabel)
-        //view.addSubview(ratingLabel)
-        view.addSubview(likeButton)
-        //view.addSubview(detailsTextView)
+        loadingStateView.isHidden = true
 
         titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         titleLabel.layer.masksToBounds = true
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 0
-
-//        detailsTextView.font = UIFont.systemFont(ofSize: 16)
-//        detailsTextView.isEditable = false
 
         likeButton.setTitle("I Love this!", for: .normal)
         likeButton.setTitleColor(UIColor.white, for: .normal)
@@ -76,12 +71,23 @@ class ProductDetailViewController: UIViewController {
         likeButton.layer.cornerRadius = 5
         likeButton.layer.masksToBounds = true
         likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.likeProductFromItemDetail)))
-
         if shouldShowNotifyButton {
             likeButton.isHidden = false
         } else {
             likeButton.isHidden = true
         }
+
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController)))
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        imageView.addGestureRecognizer(swipeDown)
+
+        view.addSubview(loadingStateView)
+        view.addSubview(imageView)
+        view.addSubview(titleLabel)
+        view.addSubview(likeButton)
+        view.addSubview(productInformationScrollView)
 
         imageView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view.snp.top)
@@ -96,42 +102,32 @@ class ProductDetailViewController: UIViewController {
             make.height.greaterThanOrEqualTo(ProductDetailViewUX.titleLabelHeight)
         }
 
-//        ratingLabel.snp.makeConstraints { (make) in
-//            make.top.equalTo(self.titleLabel.snp.bottom)
-//            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
-//            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
-//            make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
-//        }
-
         likeButton.snp.makeConstraints { (make) in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(ProductDetailViewUX.SideMargin)
             make.left.right.equalTo(self.titleLabel)
             make.height.equalTo(ProductDetailViewUX.NameLabelHeight)
         }
 
-//        detailsTextView.snp.makeConstraints { (make) in
-//            if shouldShowNotifyButton {
-//                make.top.equalTo(self.likeButton.snp.bottom)
-//            } else {
-//                make.top.equalTo(self.ratingLabel.snp.bottom)
-//            }
-//
-//            make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailingMargin).offset(-ProductDetailViewUX.SideMargin)
-//            make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading).offset(ProductDetailViewUX.SideMargin)
-//            make.bottom.equalTo(self.view)
-//        }
+        productInformationScrollView.snp.makeConstraints { (make) in
+            if shouldShowNotifyButton {
+                make.top.equalTo(self.likeButton.snp.bottom)
+            } else {
+                make.top.equalTo(self.titleLabel.snp.bottom)
+            }
 
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController)))
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController))
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
-        imageView.addGestureRecognizer(swipeDown)
+            make.left.right.bottom.equalTo(self.view)
+        }
+
+        loadingStateView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
+        }
+
     }
 
     @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func likeProductFromItemDetail() {
         Alamofire.request(
             VoteRouter.postVote(self.productId, true)
@@ -141,6 +137,7 @@ class ProductDetailViewController: UIViewController {
                 print("Love \(self.productId)")
                 if let voteResult = response.value {
                     print(voteResult)
+                    self.dismiss(animated: true, completion: nil)
                 }
         }
     }
@@ -202,14 +199,38 @@ class ProductDetailViewController: UIViewController {
         imageView.accessibilityTraits = UIAccessibilityTraitImage
 
         titleLabel.text = self.product.name
-//        if (self.product.rating?.isLessThanOrEqualTo(0.0))! {
-//            ratingLabel.text = ""
-//            ratingLabel.isHidden = true
-//        } else {
-//            ratingLabel.text = "Rating: \(self.product.rating as! Float)"
-//            ratingLabel.isHidden = false
-//        }
+        loadingStateView.isHidden = true
 
- //       detailsTextView.text = self.product.extendedInfo?.detail
+        addProductFlags()
+    }
+
+    func addProductFlags() {
+        if (self.product.productFlags?.dairy?.flag)! {
+            productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+        }
+
+        if (self.product.productFlags?.gluten?.flag)! {
+            productInformationScrollView.addProductFlag(labelText: "Gluten-free")
+        }
+
+        if (self.product.productFlags?.peanut?.flag)! {
+            productInformationScrollView.addProductFlag(labelText: "Peanut-free")
+        }
+
+        if (self.product.productFlags?.egg?.flag)! {
+            productInformationScrollView.addProductFlag(labelText: "Egg-free")
+        }
+
+        if (self.product.productFlags?.privateLabel?.flag)! {
+            productInformationScrollView.addProductFlag(labelText: "Store Brand")
+        }
+
+        if (self.product.productFlags?.organic?.flag)! {
+            productInformationScrollView.addProductFlag(labelText: "Organic")
+        }
+
+        if (self.product.productFlags?.kosher)! {
+            productInformationScrollView.addProductFlag(labelText: "Kosher")
+        }
     }
 }

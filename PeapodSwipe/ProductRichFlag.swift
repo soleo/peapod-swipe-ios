@@ -11,7 +11,7 @@ import Foundation
 public struct ProductRichFlag: Codable {
     let flag: Bool?
     let imageURL: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case flag
         case imageURL
