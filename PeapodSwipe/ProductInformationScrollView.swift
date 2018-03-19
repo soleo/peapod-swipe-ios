@@ -15,14 +15,13 @@ class ProductInformationScrollView: UIScrollView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //self.showsHorizontalScrollIndicator = false
 
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
+        stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
-        stackView.spacing = 5
+        stackView.spacing = 8.0
         stackView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview().inset(10)
             make.width.equalToSuperview().offset(-20)

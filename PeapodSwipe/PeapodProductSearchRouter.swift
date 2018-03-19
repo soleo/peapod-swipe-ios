@@ -46,7 +46,8 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
 
             case .details:
                 return [
-                    "serviceLocationId": "27346"
+                    "serviceLocationId": "27346",
+                    "nutrition": "true"
                 ]
             default:
                 return [:]

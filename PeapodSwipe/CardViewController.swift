@@ -17,30 +17,24 @@ class CardViewController: UIViewController {
     var cards = [ImageCard]()
     var products = [RecommendedProduct]()
     let menuButton = UIButton()
-    var isAnimating: Bool = false
-
+    let cardsViewContainer = UIView()
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
     }
-
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-    }
-
-    func removeAllCards() {
-        for card in cards {
-            card.removeFromSuperview()
-        }
     }
 
     func loadRecommendationData() {
@@ -59,9 +53,7 @@ class CardViewController: UIViewController {
 
                 if let productsResult = response.value {
                     self.products = productsResult.products
-
                     for product in productsResult.products {
-
                         let card = ImageCard(frame: cardFrameSize, product: product)
                         self.cards.append(card)
                         self.layoutCards()
@@ -87,7 +79,7 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
-        setUpUI()
+        configureMenuLayout()
         loadRecommendationData()
         // Siri Configuration
 //        INPreferences.requestSiriAuthorization { (status) in
@@ -105,8 +97,9 @@ class CardViewController: UIViewController {
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
 
-    func setUpUI() {
-
+    func configureMenuLayout() {
+        
+        
         menuButton.setTitle("MENU", for: UIControlState())
         menuButton.setTitleColor(.white, for: UIControlState())
         menuButton.addTarget(self, action: #selector(CardViewController.SELtoggleMenu), for: .touchUpInside)
@@ -127,10 +120,12 @@ class CardViewController: UIViewController {
         self.view.addSubview(firstCard)
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
+        
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
         firstCard.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
         firstCard.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleDislikeTap)))
         firstCard.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleProductImageTap)))
+        
         // the next 3 cards in the deck
         for i in 1...3 {
             if i > (cards.count - 1) { continue }
@@ -224,7 +219,7 @@ class CardViewController: UIViewController {
 
         // first card needs to be in the front for proper interactivity
         cards[1].removeAccessibilityHidden()
-        self.isAnimating = false
+        
         self.view.bringSubview(toFront: cards[1])
     }
 
@@ -388,11 +383,6 @@ extension CardViewController {
                 let snapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
                 dynamicAnimator.addBehavior(snapBehavior)
             } else {
-
-                if self.isAnimating {
-                    return
-                }
-                self.isAnimating  = true
 
                 let velocity = sender.velocity(in: self.view)
                 let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)

@@ -16,6 +16,7 @@
 		5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF49204B14890066DF67 /* UIButtonExtension.swift */; };
 		5530DF4C204B1D070066DF67 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */; };
 		5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */; };
+		5535B5C3205D7B3B00D6A5DB /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */; };
 		5549F55A204B42AC00E76A41 /* RecommendedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F559204B42AC00E76A41 /* RecommendedProduct.swift */; };
 		5549F55C204B430500E76A41 /* ProductVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55B204B430500E76A41 /* ProductVote.swift */; };
 		5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */; };
@@ -88,6 +89,7 @@
 		5530DF49204B14890066DF67 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
 		5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodProductSearchRouter.swift; sourceTree = "<group>"; };
+		5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5549F559204B42AC00E76A41 /* RecommendedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProduct.swift; sourceTree = "<group>"; };
 		5549F55B204B430500E76A41 /* ProductVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVote.swift; sourceTree = "<group>"; };
 		5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProductsResponse.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				55B0F5F2204A658B00EB2594 /* StringExtension.swift */,
 				55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */,
 				5530DF49204B14890066DF67 /* UIButtonExtension.swift */,
+				5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -286,18 +289,18 @@
 		A9ADFB911EEF5D770044D45B /* PeapodSwipe */ = {
 			isa = PBXGroup;
 			children = (
+				552898F21FCA121300A3195A /* Extensions */,
 				5541D90220588BAB003C3D4E /* Shared */,
-				55B258082050D537002AD4EE /* Peapod Swipe.entitlements */,
+				A99BBCCA1EF89AC000ACBF7B /* Model */,
+				55B0F5ED204A494C00EB2594 /* API */,
 				55629FB3204F998C00055B65 /* Setting */,
 				558B4D43204CBC8200C2ED47 /* ProductDetail */,
 				5549F567204B9F3C00E76A41 /* Search */,
 				552898FF1FCA3DB500A3195A /* UserTour */,
-				55B0F5ED204A494C00EB2594 /* API */,
-				552898F21FCA121300A3195A /* Extensions */,
-				A99BBCCA1EF89AC000ACBF7B /* Model */,
 				A9ADFBC51EEF6ADE0044D45B /* Login */,
 				A9ADFBC41EEF6ACF0044D45B /* ProductCards */,
 				A9ADFB921EEF5D770044D45B /* AppDelegate.swift */,
+				55B258082050D537002AD4EE /* Peapod Swipe.entitlements */,
 				A9ADFB9E1EEF5D770044D45B /* Info.plist */,
 				5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */,
 				552898FB1FCA332900A3195A /* GoogleService-Info.plist */,
@@ -578,6 +581,7 @@
 				55D49C5320522D2D00F7D383 /* ProductFlagLabel.swift in Sources */,
 				5549F569204B9F9300E76A41 /* SearchViewController.swift in Sources */,
 				55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */,
+				5535B5C3205D7B3B00D6A5DB /* UIViewControllerExtension.swift in Sources */,
 				55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */,
 				558B4D45204CBC9B00C2ED47 /* ProductDetailViewController.swift in Sources */,
 				5530DF48204B06600066DF67 /* SessionResponse.swift in Sources */,

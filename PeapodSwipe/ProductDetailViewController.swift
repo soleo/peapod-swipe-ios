@@ -169,9 +169,9 @@ class ProductDetailViewController: UIViewController {
                         )
                         .validate()
                         .responseObject { (response: DataResponse<ProductSearchResponseWithSessionId>) in
-
+                            print(response.value)
                             if let productSearchResult = response.value {
-                                print(productSearchResult)
+                                
                                 self.showItemDetail(product: productSearchResult.response.products[0])
                             }
                     }
@@ -202,8 +202,16 @@ class ProductDetailViewController: UIViewController {
         loadingStateView.isHidden = true
 
         addProductFlags()
+        
+        //addProductFakeFlags()
     }
-
+    func addProductFakeFlags() {
+        productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+        productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+        productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+        productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+        productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+    }
     func addProductFlags() {
         if (self.product.productFlags?.dairy?.flag)! {
             productInformationScrollView.addProductFlag(labelText: "Dairy-free")
