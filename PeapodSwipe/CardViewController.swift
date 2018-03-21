@@ -18,20 +18,20 @@ class CardViewController: UIViewController {
     var products = [RecommendedProduct]()
     let menuButton = UIButton()
     let cardsViewContainer = UIView()
-    
+
     override var prefersStatusBarHidden: Bool {
         return false
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -98,8 +98,7 @@ class CardViewController: UIViewController {
     let cardInteritemSpacing: CGFloat = 15
 
     func configureMenuLayout() {
-        
-        
+
         menuButton.setTitle("MENU", for: UIControlState())
         menuButton.setTitleColor(.white, for: UIControlState())
         menuButton.addTarget(self, action: #selector(CardViewController.SELtoggleMenu), for: .touchUpInside)
@@ -120,12 +119,12 @@ class CardViewController: UIViewController {
         self.view.addSubview(firstCard)
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
-        
+
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
         firstCard.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
         firstCard.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleDislikeTap)))
         firstCard.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleProductImageTap)))
-        
+
         // the next 3 cards in the deck
         for i in 1...3 {
             if i > (cards.count - 1) { continue }
@@ -219,7 +218,7 @@ class CardViewController: UIViewController {
 
         // first card needs to be in the front for proper interactivity
         cards[1].removeAccessibilityHidden()
-        
+
         self.view.bringSubview(toFront: cards[1])
     }
 

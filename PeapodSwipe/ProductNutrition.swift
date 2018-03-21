@@ -18,7 +18,7 @@ public struct ProductNutrition: Codable {
     let saturatedFat: Float?
     let sodium: Float?
     let sodiumShow: Bool?
-    
+
     enum CodingKeys: String, CodingKey {
         case nutritionShow
         case totalCaloriesShow
