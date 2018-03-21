@@ -17,6 +17,8 @@
 		5530DF4C204B1D070066DF67 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */; };
 		5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */; };
 		5535B5C3205D7B3B00D6A5DB /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */; };
+		5535B5C52061DDC500D6A5DB /* ProductNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */; };
+		5535B5C72061E94D00D6A5DB /* ProductNutritionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C62061E94D00D6A5DB /* ProductNutritionLabel.swift */; };
 		5549F55A204B42AC00E76A41 /* RecommendedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F559204B42AC00E76A41 /* RecommendedProduct.swift */; };
 		5549F55C204B430500E76A41 /* ProductVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55B204B430500E76A41 /* ProductVote.swift */; };
 		5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */; };
@@ -90,6 +92,8 @@
 		5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
 		5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodProductSearchRouter.swift; sourceTree = "<group>"; };
 		5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNutrition.swift; sourceTree = "<group>"; };
+		5535B5C62061E94D00D6A5DB /* ProductNutritionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNutritionLabel.swift; sourceTree = "<group>"; };
 		5549F559204B42AC00E76A41 /* RecommendedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProduct.swift; sourceTree = "<group>"; };
 		5549F55B204B430500E76A41 /* ProductVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductVote.swift; sourceTree = "<group>"; };
 		5549F55D204B440700E76A41 /* RecommendedProductsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedProductsResponse.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				558B4D44204CBC9B00C2ED47 /* ProductDetailViewController.swift */,
 				55D49C5220522D2D00F7D383 /* ProductFlagLabel.swift */,
 				55D49C5420522DB700F7D383 /* ProductInformationScrollView.swift */,
+				5535B5C62061E94D00D6A5DB /* ProductNutritionLabel.swift */,
 			);
 			name = ProductDetail;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				558B4D46204CDFC200C2ED47 /* ProductExtendedInfo.swift */,
 				55B258092050D88A002AD4EE /* ProductRichFlag.swift */,
 				55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */,
+				5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 				552898F61FCA177200A3195A /* CardViewLabel.swift in Sources */,
 				A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */,
 				5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */,
+				5535B5C52061DDC500D6A5DB /* ProductNutrition.swift in Sources */,
 				A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */,
 				55B2580C2050D98F002AD4EE /* ProductFlagCollection.swift in Sources */,
 				55B2580A2050D88A002AD4EE /* ProductRichFlag.swift in Sources */,
@@ -593,6 +600,7 @@
 				A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */,
 				5549F55A204B42AC00E76A41 /* RecommendedProduct.swift in Sources */,
 				558B4D47204CDFC200C2ED47 /* ProductExtendedInfo.swift in Sources */,
+				5535B5C72061E94D00D6A5DB /* ProductNutritionLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,7 +685,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -801,7 +809,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -866,7 +874,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 34;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

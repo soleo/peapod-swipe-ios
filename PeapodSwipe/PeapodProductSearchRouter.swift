@@ -36,21 +36,22 @@ public enum PeapodProductSearchRouter: URLRequestConvertible {
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
-            case .keywords(_, let keywords, let zip):
-                return [
-                    "keywords": keywords,
-                    "zip": zip,
-                    "flags": "false",
-                    "rows": "120"
-                ]
+                case .keywords(_, let keywords, let zip):
+                    return [
+                        "keywords": keywords,
+                        "zip": zip,
+                        "flags": "false",
+                        "rows": "120"
+                    ]
 
-            case .details:
-                return [
-                    "serviceLocationId": "27346",
-                    "nutrition": "true"
-                ]
-            default:
-                return [:]
+                case .details:
+                    return [
+                        "serviceLocationId": "27346",
+                        "nutrition": "true",
+                        "extendedInfo": "true"
+                    ]
+                default:
+                    return [:]
             }
         }()
 
