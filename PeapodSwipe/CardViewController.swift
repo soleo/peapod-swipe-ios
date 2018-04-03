@@ -81,12 +81,7 @@ class CardViewController: UIViewController {
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         configureMenuLayout()
         loadRecommendationData()
-        // Siri Configuration
-//        INPreferences.requestSiriAuthorization { (status) in
-//            
-//        }
-//        
-//        INVocabulary.shared().setVocabularyStrings(["peapod", "grocery", "list"], of: .notebookItemTitle)
+        
     }
 
     override func didReceiveMemoryWarning() {

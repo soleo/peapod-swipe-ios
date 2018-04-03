@@ -172,7 +172,7 @@ class ProductDetailViewController: UIViewController {
                             print("ProductId: \(productId)")
 
                             if let productSearchResult = response.value {
-                                print(response.value)
+                                //print(response.value)
                                 self.showItemDetail(product: productSearchResult.response.products[0])
                             }
                     }

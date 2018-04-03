@@ -11,12 +11,11 @@ import Foundation
 public struct ProductExtendedInfo: Codable, CustomStringConvertible {
     let brandText: String?
     let detail: String?
-   // let active: Bool
+  
 
     enum CodingKeys: String, CodingKey {
         case brandText
         case detail
-       // case active
     }
     public var description: String {
         return """

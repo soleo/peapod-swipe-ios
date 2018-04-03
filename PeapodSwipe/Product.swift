@@ -59,6 +59,6 @@ public struct Product: Codable, CustomStringConvertible {
     }
 
     public var description: String {
-        return "Product: { name: \(name), \r\n productId: \(id), \r\n images: \(images), \r\n size: \(prodSize), \r\n unit price: \(unitPrice), \r\n unit measure: \(unitMeasure), \r\n rating: \(rating)}"
+        return "Product: { name: \(name), \r\n productId: \(id), \r\n images: \(images), \r\n size: \(prodSize), \r\n unit price: \(unitPrice), \r\n unit measure: \(unitMeasure ?? ""), \r\n rating: \(rating ?? 0.0)}"
     }
 }
