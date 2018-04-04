@@ -20,8 +20,8 @@ public struct ProductExtendedInfo: Codable, CustomStringConvertible {
     public var description: String {
         return """
             {
-                brand: \(String(describing: brandText)), \r\n
-                detail: \(String(describing: detail))
+                brand: \(brandText ?? "Not Set"), \r\n
+                detail: \(detail ?? "Not Set")
             }
         """
     }

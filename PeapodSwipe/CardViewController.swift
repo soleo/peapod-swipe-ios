@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Alamofire
 import SnapKit
-import Intents
+import RxSwift
 
 class CardViewController: UIViewController {
 
@@ -29,7 +29,6 @@ class CardViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,44 +36,11 @@ class CardViewController: UIViewController {
 
     }
 
-    func loadRecommendationData() {
-        let cardFrameSize: CGRect
-        if UIDevice.current.orientation.isLandscape {
-            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
-        } else {
-            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
-        }
-
-        Alamofire.request(
-            RecommendationRouter.getProducts(100)
-            )
-            .validate()
-            .responseObject { (response: DataResponse<RecommendedProductsResponse>) in
-
-                if let productsResult = response.value {
-                    self.products = productsResult.products
-                    for product in productsResult.products {
-                        let card = ImageCard(frame: cardFrameSize, product: product)
-                        self.cards.append(card)
-                        self.layoutCards()
-                    }
-                }
-        }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-
-    func castProductVote(productId: Int, userVote: Bool) {
-        Alamofire.request(
-            VoteRouter.postVote(productId, userVote)
-            )
-            .validate()
-            .responseString { (response: DataResponse<String>) in
-                print("{ like: \(userVote), productId: \(productId) }")
-                if let voteResult = response.value {
-                    print(voteResult)
-                }
-        }
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
@@ -82,11 +48,6 @@ class CardViewController: UIViewController {
         configureMenuLayout()
         loadRecommendationData()
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
@@ -106,7 +67,45 @@ class CardViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
-
+    
+    func loadRecommendationData() {
+        let cardFrameSize: CGRect
+        if UIDevice.current.orientation.isLandscape {
+            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
+        } else {
+            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
+        }
+        
+        Alamofire.request(
+            RecommendationRouter.getProducts(100)
+            )
+            .validate()
+            .responseObject { (response: DataResponse<RecommendedProductsResponse>) in
+                
+                if let productsResult = response.value {
+                    self.products = productsResult.products
+                    for product in productsResult.products {
+                        let card = ImageCard(frame: cardFrameSize, product: product)
+                        self.cards.append(card)
+                        self.layoutCards()
+                    }
+                }
+        }
+    }
+    
+    func castProductVote(productId: Int, userVote: Bool) {
+        Alamofire.request(
+            VoteRouter.postVote(productId, userVote)
+            )
+            .validate()
+            .responseString { (response: DataResponse<String>) in
+                print("{ like: \(userVote), productId: \(productId) }")
+                if let voteResult = response.value {
+                    print(voteResult)
+                }
+        }
+    }
+   
     func layoutCards() {
         // set up intial cards for display
         // frontmost card (first card of the deck)
@@ -114,7 +113,6 @@ class CardViewController: UIViewController {
         self.view.addSubview(firstCard)
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
-
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
         firstCard.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
         firstCard.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleDislikeTap)))
@@ -161,7 +159,7 @@ class CardViewController: UIViewController {
             let card = cards[i]
             let newDownscale = cardAttributes[i - 1].downscale
             let newAlpha = cardAttributes[i - 1].alpha
-            UIView.animate(withDuration: animationDuration, delay: (TimeInterval(i - 1) * (animationDuration / 2)), usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+            UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
                 card.transform = CGAffineTransform(scaleX: newDownscale, y: newDownscale)
                 card.alpha = newAlpha
                 if i == 1 {
@@ -177,7 +175,7 @@ class CardViewController: UIViewController {
                     card.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
                     card.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleDislikeTap)))
                     card.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleProductImageTap)))
-                }
+               }
             })
 
         }
@@ -213,7 +211,6 @@ class CardViewController: UIViewController {
 
         // first card needs to be in the front for proper interactivity
         cards[1].removeAccessibilityHidden()
-
         self.view.bringSubview(toFront: cards[1])
     }
 
@@ -229,28 +226,28 @@ class CardViewController: UIViewController {
 
     /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.
     func hideFrontCard() {
-        if #available(iOS 10.0, *) {
-            var cardRemoveTimer: Timer? = nil
-            cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { [weak self] (_) in
-                guard self != nil else { return }
-                if !(self!.view.bounds.contains(self!.cards[0].center)) {
-                    cardRemoveTimer!.invalidate()
-                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: { [weak self] in
-                        guard self != nil else { return }
-                        self!.cards[0].alpha = 0.0
-                        }, completion: { [weak self] (_) in
-                            self!.removeOldFrontCard()
-                    })
-                }
-            })
-        } else {
+//        if #available(iOS 10.0, *) {
+//            var cardRemoveTimer: Timer? = nil
+//            cardRemoveTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self] (_) in
+//                guard self != nil else { return }
+//                if !(self!.view.bounds.contains(self!.cards[0].center)) {
+//                    cardRemoveTimer!.invalidate()
+//                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: { [weak self] in
+//                        guard self != nil else { return }
+//                        self!.cards[0].alpha = 0.0
+//                        }, completion: { [weak self] (_) in
+//                            self!.removeOldFrontCard()
+//                    })
+//                }
+//            })
+//        } else {
             // fallback for earlier versions
-            UIView.animate(withDuration: 0.2, delay: 1.5, options: [.curveEaseIn], animations: {
+            UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
                 self.cards[0].alpha = 0.0
             }, completion: { (_) in
                 self.removeOldFrontCard()
             })
-        }
+        //}
     }
 
 }
@@ -332,7 +329,7 @@ extension CardViewController {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
         let optionLength: CGFloat = 60
         // distance user must pan right or left to trigger an option
-        let requiredOffsetFromCenter: CGFloat = 20
+        let requiredOffsetFromCenter: CGFloat = 50
 
         let panLocationInView = sender.location(in: view)
         let panLocationInCard = sender.location(in: cards[0])
@@ -424,7 +421,6 @@ extension CardViewController {
         })
         let logoutAction = UIAlertAction(title: "Logout", style: .default, handler: {(alert: UIAlertAction!) in
             self.logoutCurrentUser()
-
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
