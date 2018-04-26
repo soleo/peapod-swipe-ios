@@ -1,5 +1,5 @@
 //
-//  RecommendationRouter.swift
+//  SearchRouter.swift
 //  PeapodSwipe
 //
 //  Created by Xinjiang Shao on 3/3/18.
@@ -9,30 +9,47 @@
 import Foundation
 import Alamofire
 
-public enum RecommendationRouter: URLRequestConvertible {
-    static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1/recommendation"
+public enum ProductSearchRouter: URLRequestConvertible {
 
-    case getProducts(Int)
-    
+    static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1"
+
+    case keywords(String)
+    case details(Int)
+
     var method: HTTPMethod {
         switch self {
-        case .getProducts:
+        case .keywords, .details:
             return .get
         }
     }
+
+    var path: String {
+        switch self {
+        case .keywords(_):
+            return "/org-product-search"
+        case .details(let productId):
+            return "/product/\(productId)"
+        }
+    }
+
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
-            case .getProducts(let recommendationSize):
-                return [
-                    "num": recommendationSize
-                ]
-            default:
-                return [:]
+                case .keywords(let keywords):
+                    return [
+                        "keywords": keywords,
+                        "index": 0,
+                        "size": "120"
+                    ]
+
+                case .details:
+                    return [:]
+                default:
+                    return [:]
             }
         }()
-       
-        let url = URL(string: RecommendationRouter.baseURLPath)!
+
+        let url = URL(string: ProductSearchRouter.baseURLPath)!
         var serviceConfig: NSDictionary?
         if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
             serviceConfig = NSDictionary(contentsOfFile: path)

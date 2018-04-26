@@ -127,39 +127,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
     }
 
     func loadProductSearch(searchTerm: String) {
-        var headers: HTTPHeaders = [
-            "Content-Type": "application/json"
-        ]
-        var serviceConfig: NSDictionary?
-        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
-            serviceConfig = NSDictionary(contentsOfFile: path)
-        }
+        Alamofire.request(
+            ProductSearchRouter.keywords(searchTerm)
+            )
+            .validate()
+            .responseObject { (response: DataResponse<ProductSearchResponseWithSessionId>) in
 
-        let appId = serviceConfig?.object(forKey: "CLIENT_ID") as! String
-        let appSecret = serviceConfig?.object(forKey: "CLIENT_SECRET") as! String
-
-        if let authorizationHeader = Request.authorizationHeader(user: appId, password: appSecret) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-
-        Alamofire.request("https://www.peapod.com/api/v2.0/sessionid", method: .get, headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseObject { (response: DataResponse<SesssionResponse>) in
-
-                if let sessionResult = response.value {
-
-                    Alamofire.request(
-                        PeapodProductSearchRouter.keywords(sessionResult.sessionId, searchTerm, "60606")
-                        )
-                        .validate()
-                        .responseObject { (response: DataResponse<ProductSearchResponseWithSessionId>) in
-
-                            if let productSearchResult = response.value {
-                                self.showSearchResult(products: productSearchResult.response.products)
-                            }
-                    }
+                if let productSearchResult = response.value {
+                    self.showSearchResult(products: productSearchResult.response.products)
                 }
-
         }
     }
 

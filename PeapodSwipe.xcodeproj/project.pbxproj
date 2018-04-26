@@ -15,7 +15,7 @@
 		5530DF48204B06600066DF67 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF47204B06600066DF67 /* SessionResponse.swift */; };
 		5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF49204B14890066DF67 /* UIButtonExtension.swift */; };
 		5530DF4C204B1D070066DF67 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */; };
-		5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */; };
+		5530DF4E204B24A40066DF67 /* ProductSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF4D204B24A40066DF67 /* ProductSearchRouter.swift */; };
 		5535B5C3205D7B3B00D6A5DB /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */; };
 		5535B5C52061DDC500D6A5DB /* ProductNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */; };
 		5535B5C72061E94D00D6A5DB /* ProductNutritionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C62061E94D00D6A5DB /* ProductNutritionLabel.swift */; };
@@ -47,7 +47,6 @@
 		55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */; };
 		55B0F5F3204A658B00EB2594 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F2204A658B00EB2594 /* StringExtension.swift */; };
 		55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */; };
-		55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */; };
 		55B2580A2050D88A002AD4EE /* ProductRichFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B258092050D88A002AD4EE /* ProductRichFlag.swift */; };
 		55B2580C2050D98F002AD4EE /* ProductFlagCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */; };
 		55B8607820744B2900FC6C1E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B8607720744B2800FC6C1E /* RxSwift.framework */; };
@@ -93,7 +92,7 @@
 		5530DF47204B06600066DF67 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		5530DF49204B14890066DF67 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
-		5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodProductSearchRouter.swift; sourceTree = "<group>"; };
+		5530DF4D204B24A40066DF67 /* ProductSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchRouter.swift; sourceTree = "<group>"; };
 		5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNutrition.swift; sourceTree = "<group>"; };
 		5535B5C62061E94D00D6A5DB /* ProductNutritionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNutritionLabel.swift; sourceTree = "<group>"; };
@@ -127,7 +126,6 @@
 		55B0F5F0204A597200EB2594 /* ProductSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchResponse.swift; sourceTree = "<group>"; };
 		55B0F5F2204A658B00EB2594 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtension.swift; sourceTree = "<group>"; };
-		55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodJsessionHandler.swift; sourceTree = "<group>"; };
 		55B258082050D537002AD4EE /* Peapod Swipe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Peapod Swipe.entitlements"; sourceTree = "<group>"; };
 		55B258092050D88A002AD4EE /* ProductRichFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRichFlag.swift; sourceTree = "<group>"; };
 		55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFlagCollection.swift; sourceTree = "<group>"; };
@@ -254,8 +252,7 @@
 		55B0F5ED204A494C00EB2594 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				55B0F5F6204A701700EB2594 /* PeapodJsessionHandler.swift */,
-				5530DF4D204B24A40066DF67 /* PeapodProductSearchRouter.swift */,
+				5530DF4D204B24A40066DF67 /* ProductSearchRouter.swift */,
 				5549F55F204B44A800E76A41 /* RecommendationRouter.swift */,
 				5549F561204B44B800E76A41 /* VoteRouter.swift */,
 			);
@@ -593,7 +590,7 @@
 				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
 				552898F61FCA177200A3195A /* CardViewLabel.swift in Sources */,
 				A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */,
-				5530DF4E204B24A40066DF67 /* PeapodProductSearchRouter.swift in Sources */,
+				5530DF4E204B24A40066DF67 /* ProductSearchRouter.swift in Sources */,
 				5535B5C52061DDC500D6A5DB /* ProductNutrition.swift in Sources */,
 				A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */,
 				55B2580C2050D98F002AD4EE /* ProductFlagCollection.swift in Sources */,
@@ -607,7 +604,6 @@
 				5549F569204B9F9300E76A41 /* SearchViewController.swift in Sources */,
 				55B0F5F1204A597200EB2594 /* ProductSearchResponse.swift in Sources */,
 				5535B5C3205D7B3B00D6A5DB /* UIViewControllerExtension.swift in Sources */,
-				55B0F5F7204A701700EB2594 /* PeapodJsessionHandler.swift in Sources */,
 				558B4D45204CBC9B00C2ED47 /* ProductDetailViewController.swift in Sources */,
 				5530DF48204B06600066DF67 /* SessionResponse.swift in Sources */,
 				558B4D42204C8E4900C2ED47 /* LoadingStateView.swift in Sources */,
@@ -705,7 +701,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -762,7 +758,7 @@
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/Firebase";
 			};
 			name = Beta;
@@ -831,7 +827,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -898,7 +894,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -948,7 +944,7 @@
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/Firebase";
 			};
 			name = Debug;
@@ -976,7 +972,7 @@
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/Firebase";
 			};
 			name = Release;

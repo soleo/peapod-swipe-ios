@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 public enum VoteRouter: URLRequestConvertible {
-    static let baseURLPath = "https://swipe-api.akang.info/v1/product"
+    static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1/product"
 
     case getVote(Int)
     case postVote(Int, Bool)
@@ -45,8 +45,16 @@ public enum VoteRouter: URLRequestConvertible {
             }
         }()
         let url = URL(string: VoteRouter.baseURLPath)!
+        var serviceConfig: NSDictionary?
+        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+            serviceConfig = NSDictionary(contentsOfFile: path)
+        }
+        
+        let token = serviceConfig?.object(forKey: "BEARER_TOKEN") as! String
+        
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
+        request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
 
         return try JSONEncoding.default.encode(request, with: parameters)

@@ -2,4 +2,5 @@ github "Alamofire/Alamofire" ~> 4.6
 github "Alamofire/AlamofireImage" ~> 3.3
 github "SnapKit/SnapKit" ~> 4.0.0
 github "soheilbm/Firebase"
+github "matthewpalmer/Locksmith"
 github "ReactiveX/RxSwift" ~> 4.0

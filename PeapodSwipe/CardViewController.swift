@@ -242,7 +242,7 @@ class CardViewController: UIViewController {
 //            })
 //        } else {
             // fallback for earlier versions
-            UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
                 self.cards[0].alpha = 0.0
             }, completion: { (_) in
                 self.removeOldFrontCard()
