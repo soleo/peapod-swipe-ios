@@ -9,10 +9,11 @@
 import Foundation
 
 public struct ProductFlagCollection: Codable {
-    let dairy: ProductRichFlag?
-    let egg: ProductRichFlag?
-    let gluten: ProductRichFlag?
-    let peanut: ProductRichFlag?
+    
+    let dairy: Bool?
+    let egg: Bool?
+    let gluten: Bool?
+    let peanut: Bool?
     let organic: ProductRichFlag?
     let privateLabel: ProductRichFlag?
 

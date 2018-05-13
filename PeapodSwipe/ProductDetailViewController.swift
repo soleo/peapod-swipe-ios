@@ -147,12 +147,10 @@ class ProductDetailViewController: UIViewController {
             ProductSearchRouter.details(productId)
             )
             .validate()
-            .responseObject { (response: DataResponse<ProductSearchResponseWithSessionId>) in
+            .responseObject { (response: DataResponse<Product>) in
                 print("ProductId: \(productId)")
-
                 if let productSearchResult = response.value {
-                    
-                    self.showItemDetail(product: productSearchResult.response.products[0])
+                    self.showItemDetail(product: productSearchResult)
                 }
         }
     
@@ -181,35 +179,35 @@ class ProductDetailViewController: UIViewController {
 
         addProductFlags()
 
-        productInformationScrollView.addNutritionLabel(calorieTotal: (self.product.nutrition?.totalCalories)!, saturatedFatTotal: (self.product.nutrition?.saturatedFat)!, sodiumTotal: (self.product.nutrition?.sodium)!, sugarTotal: (self.product.nutrition?.sugar)!)
+        productInformationScrollView.addNutritionLabel(calorieTotal: self.product.nutrition?.totalCalories, saturatedFatTotal: self.product.nutrition?.saturatedFat, sodiumTotal: self.product.nutrition?.sodium, sugarTotal: self.product.nutrition?.sugar)
     }
 
     func addProductFlags() {
-        if (self.product.productFlags?.dairy?.flag)! {
+        if (self.product.productFlags?.dairy) != nil {
             productInformationScrollView.addProductFlag(labelText: "Dairy-free")
         }
 
-        if (self.product.productFlags?.gluten?.flag)! {
+        if (self.product.productFlags?.gluten) != nil {
             productInformationScrollView.addProductFlag(labelText: "Gluten-free")
         }
 
-        if (self.product.productFlags?.peanut?.flag)! {
+        if (self.product.productFlags?.peanut) != nil {
             productInformationScrollView.addProductFlag(labelText: "Peanut-free")
         }
 
-        if (self.product.productFlags?.egg?.flag)! {
+        if (self.product.productFlags?.egg) != nil {
             productInformationScrollView.addProductFlag(labelText: "Egg-free")
         }
 
-        if (self.product.productFlags?.privateLabel?.flag)! {
+        if (self.product.productFlags?.privateLabel?.flag) != nil {
             productInformationScrollView.addProductFlag(labelText: "Store Brand")
         }
 
-        if (self.product.productFlags?.organic?.flag)! {
+        if (self.product.productFlags?.organic?.flag) != nil {
             productInformationScrollView.addProductFlag(labelText: "Organic")
         }
 
-        if (self.product.productFlags?.kosher)! {
+        if (self.product.productFlags?.kosher) != nil {
             productInformationScrollView.addProductFlag(labelText: "Kosher")
         }
     }

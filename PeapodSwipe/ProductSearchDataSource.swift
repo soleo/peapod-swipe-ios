@@ -35,7 +35,9 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
         cell.textLabel!.text = product.name
         cell.textLabel!.isAccessibilityElement = true
         cell.textLabel!.accessibilityLabel = product.name
-        cell.detailTextLabel!.text = "Size: \(product.prodSize)"
+        if let prodSize = product.prodSize {
+            cell.detailTextLabel!.text = "Size: \(prodSize)"
+        }
 
         let url = URL(string: product.images.mediumImageURL.trim())!
         cell.imageView?.isAccessibilityElement = true

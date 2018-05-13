@@ -13,6 +13,7 @@ class ProductInformationScrollView: UIScrollView {
     var productFlags = [ProductFlagLabel]()
     let productFlagStackView = UIStackView()
     let productNutritionStackView = UIStackView()
+    var nuntritionFactCounter = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,16 +57,37 @@ class ProductInformationScrollView: UIScrollView {
         self.productFlags.append(productFlag)
     }
 
-    func addNutritionLabel(calorieTotal: Float, saturatedFatTotal: Float, sodiumTotal: Float, sugarTotal: Float) {
+    func addNutritionLabel(calorieTotal: Float?, saturatedFatTotal: Float?, sodiumTotal: Float?, sugarTotal: Float?) {
         let calorieLabel = ProductNutritionLabel()
-        calorieLabel.text = "Calorie: \(calorieTotal)"
+        if calorieTotal != nil {
+            calorieLabel.text = "Calorie\r\n\(calorieTotal ?? 0)"
+        } else {
+            calorieLabel.text = "Calorie\r\n--"
+        }
+        
         let saturatedFatLabel = ProductNutritionLabel()
-        saturatedFatLabel.text = "Sat Fat: \(saturatedFatTotal)g"
+        if saturatedFatTotal != nil {
+            saturatedFatLabel.text = "Sat Fat\r\n\(saturatedFatTotal ?? 0)g"
+        }else {
+            saturatedFatLabel.text = "Sat Fat\r\n--"
+        }
+        
         let sodiumLabel = ProductNutritionLabel()
-        sodiumLabel.text = "Sodium: \(sodiumTotal)mg"
+        if sodiumTotal != nil{
+            sodiumLabel.text = "Sodium\r\n\(sodiumTotal ?? 0)mg"
+           
+        } else {
+            sodiumLabel.text = "Sodium\r\n--"
+        }
+        
         let sugarLabel = ProductNutritionLabel()
-        sugarLabel.text = "Sugar: \(sugarTotal)g"
-
+        if sugarTotal != nil {
+            sugarLabel.text = "Sugar\r\n\(sugarTotal ?? 0)g"
+           
+        } else {
+            sugarLabel.text = "Sugar\r\n--"
+        }
+       
         productNutritionStackView.addArrangedSubview(calorieLabel)
         productNutritionStackView.addArrangedSubview(saturatedFatLabel)
         productNutritionStackView.addArrangedSubview(sodiumLabel)
@@ -86,6 +108,7 @@ class ProductInformationScrollView: UIScrollView {
         sugarLabel.snp.makeConstraints { (make) in
             make.height.equalTo(calorieLabel)
         }
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -38,7 +38,7 @@ public enum VoteRouter: URLRequestConvertible {
             switch self {
             case .postVote(_, let vote):
                 return [
-                    "like": vote
+                    "likes": vote
                 ]
             default:
                 return [:]

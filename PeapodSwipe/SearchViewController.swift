@@ -131,10 +131,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
             ProductSearchRouter.keywords(searchTerm)
             )
             .validate()
-            .responseObject { (response: DataResponse<ProductSearchResponseWithSessionId>) in
+            .responseObject { (response: DataResponse<ProductSearchResponse>) in
 
                 if let productSearchResult = response.value {
-                    self.showSearchResult(products: productSearchResult.response.products)
+                    self.showSearchResult(products: productSearchResult.products)
                 }
         }
     }

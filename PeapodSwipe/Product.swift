@@ -14,8 +14,8 @@ public struct Product: Codable, CustomStringConvertible {
     var name: String
     var images: ProductImage
 
-    var prodSize: String
-    var unitPrice: Float
+    var prodSize: String?
+    var unitPrice: Float?
     var unitMeasure: String?
     var price: Float?
     var regularPrice: Float?
@@ -54,11 +54,17 @@ public struct Product: Codable, CustomStringConvertible {
         case marketSpecificReviews
         case reviewId
         case extendedInfo
-        case productFlags
+        case productFlags = "flags"
         case nutrition
     }
 
     public var description: String {
-        return "Product: { name: \(name), \r\n productId: \(id), \r\n images: \(images), \r\n size: \(prodSize), \r\n unit price: \(unitPrice), \r\n unit measure: \(unitMeasure ?? ""), \r\n rating: \(rating ?? 0.0)}"
+        return """
+            Product: {
+                name: \(name),
+                productId: \(id),
+                images: \(images)
+            }
+        """
     }
 }

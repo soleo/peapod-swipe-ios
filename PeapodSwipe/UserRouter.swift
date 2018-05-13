@@ -1,55 +1,54 @@
 //
-//  SearchRouter.swift
+//  UserRouter.swift
 //  PeapodSwipe
 //
-//  Created by Xinjiang Shao on 3/3/18.
+//  Created by Xinjiang Shao on 4/25/18.
 //  Copyright © 2018 Xinjiang Shao. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-public enum ProductSearchRouter: URLRequestConvertible {
-
+public enum UserRouter: URLRequestConvertible {
     static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1"
-
-    case keywords(String)
-    case details(Int)
-
+    
+    case register(String, String)
+    case requestForMagicLink(String)
+    case signInByMagicLink(String)
+    
     var method: HTTPMethod {
         switch self {
-        case .keywords, .details:
-            return .get
+        case .register, .requestForMagicLink, .signInByMagicLink:
+            return .post
         }
     }
-
+    
     var path: String {
         switch self {
-            case .keywords(_):
-                return "/product-search"
-            case .details(let productId):
-                return "/product/\(productId)"
+        case .register(_, _):
+            return "/employee/register"
+        case .requestForMagicLink(_):
+            return "/magic-link/request"
+        case .signInByMagicLink(let token):
+            return "/magic-link/auth/\(token)"
         }
     }
-
+    
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
-                case .keywords(let keywords):
-                    return [
-                        "keywords": keywords,
-                        "index": 0,
-                        "size": "120"
-                    ]
-
-                case .details:
-                    return [:]
-                default:
-                    return [:]
+            case .register(let email, let inviteCode):
+                return [
+                    "email": email,
+                    "inviteCode": inviteCode,
+                    "name": "",
+                    "nickname": ""
+                ]
+            default:
+                return [:]
             }
         }()
-
-        let url = URL(string: ProductSearchRouter.baseURLPath)!
+        let url = URL(string: VoteRouter.baseURLPath)!
         var serviceConfig: NSDictionary?
         if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
             serviceConfig = NSDictionary(contentsOfFile: path)
@@ -61,8 +60,8 @@ public enum ProductSearchRouter: URLRequestConvertible {
         request.httpMethod = method.rawValue
         request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
-
-        return try URLEncoding.default.encode(request, with: parameters)
+        
+        return try JSONEncoding.default.encode(request, with: parameters)
     }
-
+    
 }

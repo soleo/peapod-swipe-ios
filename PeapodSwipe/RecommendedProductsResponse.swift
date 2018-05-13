@@ -9,7 +9,7 @@
 import Foundation
 
 struct RecommendedProductsResponse: Codable, CustomStringConvertible {
-    let products: [RecommendedProduct]
+    let products: [Product]
 
     enum CodingKeys: String, CodingKey {
         case products

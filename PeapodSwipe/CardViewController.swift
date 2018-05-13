@@ -15,7 +15,7 @@ import RxSwift
 class CardViewController: UIViewController {
 
     var cards = [ImageCard]()
-    var products = [RecommendedProduct]()
+    var products = [Product]()
     let menuButton = UIButton()
     let cardsViewContainer = UIView()
 

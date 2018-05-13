@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import Alamofire
 
 class AuthViewController: UIViewController {
 
@@ -73,11 +74,15 @@ extension AuthViewController {
     }
 
     @objc func SELSignInWithEmail() {
-        let alert = UIAlertController(title: "What's your work Email address?", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Your Email and Invite Code, Please?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "bagel.is.everything@ahold.com"
+        })
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "your invite code"
         })
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
@@ -85,6 +90,15 @@ extension AuthViewController {
             if let email = alert.textFields?.first?.text?.trim() {
                 print("Your email: \(email)")
                 if self.isValidEmail(emalAddress: email) {
+//                    Alamofire.request(
+//                        UserRouter.register(email, "bagels")
+//                        )
+//                        .validate()
+//                        .responseObject { (response: DataResponse<String>) in
+//                            
+//                            // Find the bearer token and store it in keychain for any other requests
+//                    }
+                    
                     Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
                         if error != nil {
                             print("Sign In error: \(String(describing: error))")

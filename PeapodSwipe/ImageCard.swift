@@ -39,13 +39,6 @@ class ImageCard: CardView {
 
     }
 
-    convenience init(frame: CGRect, product: RecommendedProduct) {
-        self.init(frame: frame)
-
-        self.productId = product.id
-        setUpLayout(imageURL: product.images.xlargeImageURL, name: product.name)
-    }
-
     private func setUpLayout(imageURL: String, name: String) {
         let url = URL(string: imageURL.trim())!
 
