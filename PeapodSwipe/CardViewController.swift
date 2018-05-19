@@ -394,24 +394,26 @@ extension CardViewController {
                 var angular = CGFloat.pi / 2 // angular velocity of spin
 
                 let currentAngle: Double = atan2(Double(cards[0].transform.b), Double(cards[0].transform.a))
-                // I cannot trust the current angel, it gave me falsy result
                 if currentAngle > 0 {
                     angular = angular * 1
-
-                    Analytics.logEvent("like_a_product", parameters: nil)
-                    castProductVote(productId: cards[0].productId, userVote: true)
                 } else {
-                    angular = angular * -1
-
-                    Analytics.logEvent("dislike_a_product", parameters: nil)
-                    castProductVote(productId: cards[0].productId, userVote: false)
+                     angular = angular * -1
                 }
+
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
                 itemBehavior.friction = 0.2
                 itemBehavior.allowsRotation = true
                 itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
                 dynamicAnimator.addBehavior(itemBehavior)
-
+                // I cannot trust the current angel, it gave me falsy result
+                let pushDirection = velocity.x
+                if pushDirection > 0 {
+                    Analytics.logEvent("like_a_product", parameters: nil)
+                    castProductVote(productId: cards[0].productId, userVote: true)
+                } else {
+                    Analytics.logEvent("dislike_a_product", parameters: nil)
+                    castProductVote(productId: cards[0].productId, userVote: false)
+                }
                 hideFrontCard()
                 showNextCard()
             }
