@@ -11,18 +11,18 @@ import Alamofire
 
 public enum UserRouter: URLRequestConvertible {
     static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1"
-    
+
     case register(String, String)
     case requestForMagicLink(String)
     case signInByMagicLink(String)
-    
+
     var method: HTTPMethod {
         switch self {
         case .register, .requestForMagicLink, .signInByMagicLink:
             return .post
         }
     }
-    
+
     var path: String {
         switch self {
         case .register(_, _):
@@ -33,7 +33,7 @@ public enum UserRouter: URLRequestConvertible {
             return "/magic-link/auth/\(token)"
         }
     }
-    
+
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
@@ -41,27 +41,24 @@ public enum UserRouter: URLRequestConvertible {
                 return [
                     "email": email,
                     "inviteCode": inviteCode,
-                    "name": "",
-                    "nickname": ""
+                    "name": email,
+                    "nickname": email
+                ]
+            case .requestForMagicLink(let email):
+                return [
+                    "email": email
                 ]
             default:
                 return [:]
             }
         }()
-        let url = URL(string: VoteRouter.baseURLPath)!
-        var serviceConfig: NSDictionary?
-        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
-            serviceConfig = NSDictionary(contentsOfFile: path)
-        }
-        
-        let token = serviceConfig?.object(forKey: "BEARER_TOKEN") as! String
-        
+        let url = URL(string: UserRouter.baseURLPath)!
+
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
-        request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
-        
+
         return try JSONEncoding.default.encode(request, with: parameters)
     }
-    
+
 }

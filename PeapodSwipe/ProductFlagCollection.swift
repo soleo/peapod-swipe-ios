@@ -9,7 +9,7 @@
 import Foundation
 
 public struct ProductFlagCollection: Codable {
-    
+
     let dairy: Bool?
     let egg: Bool?
     let gluten: Bool?

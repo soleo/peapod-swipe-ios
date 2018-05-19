@@ -20,4 +20,3 @@ struct ProductSearchResponse: Codable, CustomStringConvertible {
         return "{ products: \(products), \r\n keywords: \(String(describing: keywords)) }"
     }
 }
-

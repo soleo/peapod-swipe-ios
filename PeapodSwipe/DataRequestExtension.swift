@@ -19,6 +19,7 @@ enum BackendError: Error {
 }
 
 extension DataRequest {
+
     /// @Returns - DataRequest
     /// completionHandler handles JSON Object T
     @discardableResult func responseObject<T: Decodable> (

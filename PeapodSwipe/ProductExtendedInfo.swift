@@ -11,7 +11,6 @@ import Foundation
 public struct ProductExtendedInfo: Codable, CustomStringConvertible {
     let brandText: String?
     let detail: String?
-  
 
     enum CodingKeys: String, CodingKey {
         case brandText

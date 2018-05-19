@@ -79,45 +79,83 @@ extension AuthViewController {
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "bagel.is.everything@ahold.com"
+            textField.keyboardType = .emailAddress
+            textField.returnKeyType = .done
         })
-        
+
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "your invite code"
+            textField.autocorrectionType = .no
         })
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
 
             if let email = alert.textFields?.first?.text?.trim() {
                 print("Your email: \(email)")
-                if self.isValidEmail(emalAddress: email) {
-//                    Alamofire.request(
-//                        UserRouter.register(email, "bagels")
-//                        )
-//                        .validate()
-//                        .responseObject { (response: DataResponse<String>) in
-//                            
-//                            // Find the bearer token and store it in keychain for any other requests
-//                    }
-                    
-                    Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-                        if error != nil {
-                            print("Sign In error: \(String(describing: error))")
-                            Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-                                print("Sign In error: \(String(describing: error))")
-                                if error == nil {
-                                    Analytics.logEvent("sign_up", parameters: [ "email": email ])
-                                    let cardViewController = CardViewController()
-                                    return self.present(cardViewController, animated: true, completion: nil)
-                                }
-                            })
+                if self.isValidEmail(emalAddress: email), let inviteCode = alert.textFields?.last?.text?.trim() {
+                    Alamofire.request(
+                        UserRouter.register(email, inviteCode)
+                        )
+                        .responseJSON { response in
 
-                        } else {
-                            Analytics.logEvent("sign_in", parameters: [ "email": email ])
-                            let cardViewController = CardViewController()
-                            return self.present(cardViewController, animated: true, completion: nil)
-                        }
+                            switch response.result {
+                                case .failure:
+                                    if let httpStatusCode = response.response?.statusCode {
+                                        switch(httpStatusCode) {
+                                        case 409:
+                                            // Send The Magic Link to User
+                                            print(httpStatusCode)
+                                            Alamofire.request(
+                                                UserRouter.requestForMagicLink(email)
+                                            )
+                                            break
+                                        case 201:
+                                            if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
+                                                print(bearerToken)
+                                                Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+                                                    print("Sign In error: \(String(describing: error))")
+                                                    if error == nil {
+                                                        Analytics.logEvent("sign_up", parameters: [ "email": email ])
+                                                        let cardViewController = CardViewController()
+                                                        return self.present(cardViewController, animated: true, completion: nil)
+                                                    }
+                                                })
+                                            }
+                                            break
+                                        default:
+                                            print("peapod \(httpStatusCode)")
+                                        }
+                                    }
 
-                    })
+                                break
+
+                                case .success:
+
+                                    break
+                            }
+                            //debugPrint(response)
+                            // Find the bearer token and store it in keychain for any other requests
+                    }
+
+//                    Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+//                        if error != nil {
+//                            print("Sign In error: \(String(describing: error))")
+//                            Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+//                                print("Sign In error: \(String(describing: error))")
+//                                if error == nil {
+//                                    Analytics.logEvent("sign_up", parameters: [ "email": email ])
+//                                    let cardViewController = CardViewController()
+//                                    return self.present(cardViewController, animated: true, completion: nil)
+//                                }
+//                            })
+//
+//                        } else {
+//                            Analytics.logEvent("sign_in", parameters: [ "email": email ])
+//                            let cardViewController = CardViewController()
+//                            return self.present(cardViewController, animated: true, completion: nil)
+//                        }
+//
+//                    })
                 }
             }
         }))

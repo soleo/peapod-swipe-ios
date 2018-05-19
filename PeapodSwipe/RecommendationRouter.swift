@@ -13,7 +13,7 @@ public enum RecommendationRouter: URLRequestConvertible {
     static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1/recommendation"
 
     case getProducts(Int)
-    
+
     var method: HTTPMethod {
         switch self {
         case .getProducts:
@@ -31,15 +31,15 @@ public enum RecommendationRouter: URLRequestConvertible {
                 return [:]
             }
         }()
-       
+
         let url = URL(string: RecommendationRouter.baseURLPath)!
         var serviceConfig: NSDictionary?
         if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
             serviceConfig = NSDictionary(contentsOfFile: path)
         }
-        
+
         let token = serviceConfig?.object(forKey: "BEARER_TOKEN") as! String
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")

@@ -44,7 +44,6 @@ class ProductDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
     }
 
     override func viewDidLoad() {
@@ -153,7 +152,7 @@ class ProductDetailViewController: UIViewController {
                     self.showItemDetail(product: productSearchResult)
                 }
         }
-    
+
     }
 
     func showItemDetail(product: Product) {

@@ -64,30 +64,30 @@ class ProductInformationScrollView: UIScrollView {
         } else {
             calorieLabel.text = "Calorie\r\n--"
         }
-        
+
         let saturatedFatLabel = ProductNutritionLabel()
         if saturatedFatTotal != nil {
             saturatedFatLabel.text = "Sat Fat\r\n\(saturatedFatTotal ?? 0)g"
-        }else {
+        } else {
             saturatedFatLabel.text = "Sat Fat\r\n--"
         }
-        
+
         let sodiumLabel = ProductNutritionLabel()
-        if sodiumTotal != nil{
+        if sodiumTotal != nil {
             sodiumLabel.text = "Sodium\r\n\(sodiumTotal ?? 0)mg"
-           
+
         } else {
             sodiumLabel.text = "Sodium\r\n--"
         }
-        
+
         let sugarLabel = ProductNutritionLabel()
         if sugarTotal != nil {
             sugarLabel.text = "Sugar\r\n\(sugarTotal ?? 0)g"
-           
+
         } else {
             sugarLabel.text = "Sugar\r\n--"
         }
-       
+
         productNutritionStackView.addArrangedSubview(calorieLabel)
         productNutritionStackView.addArrangedSubview(saturatedFatLabel)
         productNutritionStackView.addArrangedSubview(sodiumLabel)
@@ -108,7 +108,7 @@ class ProductInformationScrollView: UIScrollView {
         sugarLabel.snp.makeConstraints { (make) in
             make.height.equalTo(calorieLabel)
         }
-        
+
     }
 
     required init?(coder aDecoder: NSCoder) {

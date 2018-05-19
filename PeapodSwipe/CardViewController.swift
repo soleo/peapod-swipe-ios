@@ -40,14 +40,14 @@ class CardViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         configureMenuLayout()
         loadRecommendationData()
-        
+
     }
 
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
@@ -67,7 +67,7 @@ class CardViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
-    
+
     func loadRecommendationData() {
         let cardFrameSize: CGRect
         if UIDevice.current.orientation.isLandscape {
@@ -75,13 +75,13 @@ class CardViewController: UIViewController {
         } else {
             cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
         }
-        
+
         Alamofire.request(
             RecommendationRouter.getProducts(100)
             )
             .validate()
             .responseObject { (response: DataResponse<RecommendedProductsResponse>) in
-                
+
                 if let productsResult = response.value {
                     self.products = productsResult.products
                     for product in productsResult.products {
@@ -92,7 +92,7 @@ class CardViewController: UIViewController {
                 }
         }
     }
-    
+
     func castProductVote(productId: Int, userVote: Bool) {
         Alamofire.request(
             VoteRouter.postVote(productId, userVote)
@@ -105,7 +105,7 @@ class CardViewController: UIViewController {
                 }
         }
     }
-   
+
     func layoutCards() {
         // set up intial cards for display
         // frontmost card (first card of the deck)

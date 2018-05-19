@@ -54,9 +54,9 @@ public enum ProductSearchRouter: URLRequestConvertible {
         if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
             serviceConfig = NSDictionary(contentsOfFile: path)
         }
-        
+
         let token = serviceConfig?.object(forKey: "BEARER_TOKEN") as! String
-        
+
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
         request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
