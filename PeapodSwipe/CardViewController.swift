@@ -18,6 +18,7 @@ class CardViewController: UIViewController {
     var products = [Product]()
     let menuButton = UIButton()
     let cardsViewContainer = UIView()
+    let loadingStateView = LoadingStateView()
 
     override var prefersStatusBarHidden: Bool {
         return false
@@ -45,7 +46,8 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
-        configureMenuLayout()
+        configureIntialLayout()
+
         loadRecommendationData()
 
     }
@@ -53,7 +55,7 @@ class CardViewController: UIViewController {
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
 
-    func configureMenuLayout() {
+    func configureIntialLayout() {
 
         menuButton.setTitle("MENU", for: UIControlState())
         menuButton.setTitleColor(.white, for: UIControlState())
@@ -65,6 +67,13 @@ class CardViewController: UIViewController {
             make.height.equalTo(50)
             make.width.equalTo(100)
             make.centerX.equalToSuperview()
+        }
+
+        self.view.addSubview(loadingStateView)
+        loadingStateView.isHidden = false
+
+        loadingStateView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view)
         }
     }
 
@@ -87,15 +96,16 @@ class CardViewController: UIViewController {
                     for product in productsResult.products {
                         let card = ImageCard(frame: cardFrameSize, product: product)
                         self.cards.append(card)
-                        self.layoutCards()
                     }
+                    self.layoutCards()
+                    self.loadingStateView.isHidden = true
                 }
         }
     }
 
     func castProductVote(productId: Int, userVote: Bool) {
         Alamofire.request(
-            VoteRouter.postVote(productId, userVote)
+            ProductRouter.postVote(productId, userVote)
             )
             .validate()
             .responseString { (response: DataResponse<String>) in
@@ -384,7 +394,7 @@ extension CardViewController {
                 var angular = CGFloat.pi / 2 // angular velocity of spin
 
                 let currentAngle: Double = atan2(Double(cards[0].transform.b), Double(cards[0].transform.a))
-
+                // I cannot trust the current angel, it gave me falsy result
                 if currentAngle > 0 {
                     angular = angular * 1
 

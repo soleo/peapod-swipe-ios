@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import os.log
+import Alamofire
+import Default
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,14 +65,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
 
         var didHandleActivity = false
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL,
+            let _ = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                return false
+        }
+        let authToken = url.lastPathComponent
+        if url.pathComponents.contains("magic-link") {
+            Alamofire.request(
+                UserRouter.signInByMagicLink(authToken)
+            )
+            .validate()
+            .responseJSON { response in
 
-        if let rootVC = self.window?.rootViewController {
-            let vc = CardViewController()
-            rootVC.present(vc, animated: true, completion: { () -> Void in
-                restorationHandler([vc])
-                didHandleActivity = true
-                print("Deep linking")
-            })
+                // 1. Get beareer token get Authorization
+                // 2. Store in UserDefaults for now, but ideally should be keychain
+                // 3. Show cards
+
+                if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
+
+                    let key: String = String(describing: UserSetting.self)
+
+                    if var settings = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self) {
+                        settings.token = bearerToken
+                        let email = settings.email
+                        print (settings)
+
+                        if let rootVC = self.window?.rootViewController {
+
+                            Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+                                if error != nil {
+                                    print("Sign In error: \(String(describing: error))")
+                                    Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+                                        print("Sign In error: \(String(describing: error))")
+                                        if error == nil {
+                                            Analytics.logEvent("sign_up", parameters: [ "email": email ])
+                                            let vc = CardViewController()
+                                            rootVC.present(vc, animated: true, completion: { () -> Void in
+                                                restorationHandler([vc])
+                                                didHandleActivity = true
+                                                os_log("Presented Deep Link Result", log: OSLog.default, type: .info)
+                                            })
+                                        }
+                                    })
+                                } else {
+                                    Analytics.logEvent("sign_in", parameters: [ "email": email ])
+                                    let vc = CardViewController()
+                                    rootVC.present(vc, animated: true, completion: { () -> Void in
+                                        restorationHandler([vc])
+                                        didHandleActivity = true
+                                        os_log("Presented Deep Link Result", log: OSLog.default, type: .info)
+                                    })
+                                }
+                            })
+
+                        }
+                    }
+                }
+            }
         }
 
         return didHandleActivity

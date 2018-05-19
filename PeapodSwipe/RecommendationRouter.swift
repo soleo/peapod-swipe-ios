@@ -33,16 +33,12 @@ public enum RecommendationRouter: URLRequestConvertible {
         }()
 
         let url = URL(string: RecommendationRouter.baseURLPath)!
-        var serviceConfig: NSDictionary?
-        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
-            serviceConfig = NSDictionary(contentsOfFile: path)
-        }
-
-        let token = serviceConfig?.object(forKey: "BEARER_TOKEN") as! String
+        let key = String(describing: UserSetting.self)
+        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self)
 
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
+        request.setValue(setting?.token, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
 
         return try URLEncoding.default.encode(request, with: parameters)

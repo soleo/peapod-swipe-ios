@@ -1,6 +1,6 @@
 github "Alamofire/Alamofire" "4.7.2"
 github "Alamofire/AlamofireImage" "3.3.1"
-github "ReactiveX/RxSwift" "4.1.2"
+github "Nirma/Default" "2.1.0"
 github "SnapKit/SnapKit" "4.0.0"
 github "matthewpalmer/Locksmith" "4.0.0"
 github "soheilbm/Firebase" "4.10.0"

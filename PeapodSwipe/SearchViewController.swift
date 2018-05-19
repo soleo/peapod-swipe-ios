@@ -128,7 +128,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
 
     func loadProductSearch(searchTerm: String) {
         Alamofire.request(
-            ProductSearchRouter.keywords(searchTerm)
+            SearchRouter.keywords(searchTerm)
             )
             .validate()
             .responseObject { (response: DataResponse<ProductSearchResponse>) in

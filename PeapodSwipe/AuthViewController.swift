@@ -61,17 +61,6 @@ class AuthViewController: UIViewController {
 }
 
 extension AuthViewController {
-    @objc func SELsignInAnonymously() {
-
-        return Auth.auth().signInAnonymously() { (user, error) in
-            // ...
-            // print(user)
-           Analytics.logEvent("sign_in", parameters: nil)
-
-           let cardViewController = CardViewController()
-           return self.present(cardViewController, animated: true, completion: nil)
-        }
-    }
 
     @objc func SELSignInWithEmail() {
         let alert = UIAlertController(title: "Your Email and Invite Code, Please?", message: nil, preferredStyle: .alert)
@@ -91,7 +80,7 @@ extension AuthViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
 
             if let email = alert.textFields?.first?.text?.trim() {
-                print("Your email: \(email)")
+                //print("Your email: \(email)")
                 if self.isValidEmail(emalAddress: email), let inviteCode = alert.textFields?.last?.text?.trim() {
                     Alamofire.request(
                         UserRouter.register(email, inviteCode)
@@ -104,7 +93,6 @@ extension AuthViewController {
                                         switch(httpStatusCode) {
                                         case 409:
                                             // Send The Magic Link to User
-                                            print(httpStatusCode)
                                             Alamofire.request(
                                                 UserRouter.requestForMagicLink(email)
                                             )
@@ -112,6 +100,10 @@ extension AuthViewController {
                                         case 201:
                                             if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
                                                 print(bearerToken)
+                                                let setting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, hasTouredBefore: false)
+                                                let key: String = String(describing: UserSetting.self)
+                                                UserDefaults.standard.df.store(setting, forKey: key)
+
                                                 Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
                                                     print("Sign In error: \(String(describing: error))")
                                                     if error == nil {
@@ -133,29 +125,8 @@ extension AuthViewController {
 
                                     break
                             }
-                            //debugPrint(response)
-                            // Find the bearer token and store it in keychain for any other requests
                     }
 
-//                    Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-//                        if error != nil {
-//                            print("Sign In error: \(String(describing: error))")
-//                            Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-//                                print("Sign In error: \(String(describing: error))")
-//                                if error == nil {
-//                                    Analytics.logEvent("sign_up", parameters: [ "email": email ])
-//                                    let cardViewController = CardViewController()
-//                                    return self.present(cardViewController, animated: true, completion: nil)
-//                                }
-//                            })
-//
-//                        } else {
-//                            Analytics.logEvent("sign_in", parameters: [ "email": email ])
-//                            let cardViewController = CardViewController()
-//                            return self.present(cardViewController, animated: true, completion: nil)
-//                        }
-//
-//                    })
                 }
             }
         }))

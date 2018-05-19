@@ -129,7 +129,7 @@ class ProductDetailViewController: UIViewController {
 
     @objc func likeProductFromItemDetail() {
         Alamofire.request(
-            VoteRouter.postVote(self.productId, true)
+            ProductRouter.postVote(self.productId, true)
             )
             .validate()
             .responseString { (response: DataResponse<String>) in
@@ -143,7 +143,7 @@ class ProductDetailViewController: UIViewController {
 
     func loadProductDetailData(productId: Int) {
         Alamofire.request(
-            ProductSearchRouter.details(productId)
+            ProductRouter.details(productId)
             )
             .validate()
             .responseObject { (response: DataResponse<Product>) in

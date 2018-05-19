@@ -8,17 +8,17 @@
 
 import Foundation
 import Alamofire
+import Default
 
-public enum ProductSearchRouter: URLRequestConvertible {
+public enum SearchRouter: URLRequestConvertible {
 
     static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1"
 
     case keywords(String)
-    case details(Int)
 
     var method: HTTPMethod {
         switch self {
-        case .keywords, .details:
+        case .keywords:
             return .get
         }
     }
@@ -27,8 +27,6 @@ public enum ProductSearchRouter: URLRequestConvertible {
         switch self {
             case .keywords(_):
                 return "/product-search"
-            case .details(let productId):
-                return "/product/\(productId)"
         }
     }
 
@@ -42,24 +40,17 @@ public enum ProductSearchRouter: URLRequestConvertible {
                         "size": "120"
                     ]
 
-                case .details:
-                    return [:]
                 default:
                     return [:]
             }
         }()
 
-        let url = URL(string: ProductSearchRouter.baseURLPath)!
-        var serviceConfig: NSDictionary?
-        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
-            serviceConfig = NSDictionary(contentsOfFile: path)
-        }
-
-        let token = serviceConfig?.object(forKey: "BEARER_TOKEN") as! String
-
+        let url = URL(string: SearchRouter.baseURLPath)!
+        let key = String(describing: UserSetting.self)
+        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self)
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
-        request.setValue("Bearer "+token, forHTTPHeaderField: "Authorization")
+        request.setValue(setting?.token, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
 
         return try URLEncoding.default.encode(request, with: parameters)
