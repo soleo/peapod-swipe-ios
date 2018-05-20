@@ -27,7 +27,7 @@ class LoadingStateView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(indicator)
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.Defaults.lightBackgroudColor
         indicator.startAnimating()
     }
 

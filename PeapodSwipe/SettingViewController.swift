@@ -13,8 +13,9 @@ class SettingViewController: UIViewController {
     let dismissButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.Defaults.lightBackgroudColor
         dismissButton.setTitle("Dismiss", for: .normal)
-        //dismissButton.backgroundColor = .white
+        dismissButton.setTitleColor(UIColor.Defaults.primaryColor, for: .normal)
         dismissButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissViewController)))
         self.view.addSubview(dismissButton)
 
