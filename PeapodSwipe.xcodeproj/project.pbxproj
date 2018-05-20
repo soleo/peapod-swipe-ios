@@ -453,7 +453,7 @@
 				A9ADFB8B1EEF5D770044D45B /* Sources */,
 				A9ADFB8C1EEF5D770044D45B /* Frameworks */,
 				A9ADFB8D1EEF5D770044D45B /* Resources */,
-				A9B92CD51F39427700274428 /* Run Script */,
+				A9B92CD51F39427700274428 /* Run Carthage Copy Script */,
 				5541D9012057525D003C3D4E /* Run Lint Script */,
 			);
 			buildRules = (
@@ -620,7 +620,7 @@
 			shellPath = /bin/bash;
 			shellScript = "set -e\n\nif ! which swiftlint > /dev/null; then\necho \"error: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more.\"\necho \"Open iTerm2: $ brew install swiftlint\"\nexit 1\nfi\n\nswiftlint autocorrect";
 		};
-		A9B92CD51F39427700274428 /* Run Script */ = {
+		A9B92CD51F39427700274428 /* Run Carthage Copy Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -634,7 +634,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Default.framework",
 			);
-			name = "Run Script";
+			name = "Run Carthage Copy Script";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",

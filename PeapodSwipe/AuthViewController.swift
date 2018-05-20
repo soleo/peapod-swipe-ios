@@ -79,7 +79,7 @@ extension AuthViewController {
 
     func showRetryMessage() {
         let alert = UIAlertController(title: "Something Went Wrong", message: "Could retry your Email and invite code?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
 
@@ -115,49 +115,39 @@ extension AuthViewController {
                         UserRouter.register(email, inviteCode)
                         )
                         .responseJSON { response in
-
-                            switch response.result {
-                                case .failure:
-                                    if let httpStatusCode = response.response?.statusCode {
-                                        switch(httpStatusCode) {
-                                        case 409:
-                                            // Send The Magic Link to User
-                                            Alamofire.request(
-                                                UserRouter.requestForMagicLink(email)
-                                                )
-                                                .response(completionHandler: { (response) in
-                                                    // show an alert to tell user to check their mailbox
-                                                    self.showMagicLinkAlert(email: email)
-                                                })
-                                            break
-                                        case 201:
-                                            if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
-                                                print(bearerToken)
-                                                let setting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, hasTouredBefore: false)
-                                                let key: String = String(describing: UserSetting.self)
-                                                UserDefaults.standard.df.store(setting, forKey: key)
-
-                                                Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-                                                    print("Sign In error: \(String(describing: error))")
-                                                    if error == nil {
-                                                        Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])
-                                                        let cardViewController = CardViewController()
-                                                        return self.present(cardViewController, animated: true, completion: nil)
-                                                    }
-                                                })
-                                            }
-                                            break
-                                        default:
-                                            self.showRetryMessage()
-                                            print("peapod \(httpStatusCode)")
-                                        }
-                                    }
-
-                                break
-
-                                case .success:
-                                    self.showRetryMessage()
+                            if let httpStatusCode = response.response?.statusCode {
+                                switch(httpStatusCode) {
+                                case 409:
+                                    // Send The Magic Link to User
+                                    Alamofire.request(
+                                        UserRouter.requestForMagicLink(email)
+                                        )
+                                        .response(completionHandler: { (response) in
+                                            // show an alert to tell user to check their mailbox
+                                            self.showMagicLinkAlert(email: email)
+                                        })
                                     break
+                                case 201:
+                                    if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
+                                        print(bearerToken)
+                                        let setting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, hasTouredBefore: false)
+                                        let key: String = String(describing: UserSetting.self)
+                                        UserDefaults.standard.df.store(setting, forKey: key)
+
+                                        Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+                                            print("Sign In error: \(String(describing: error))")
+                                            if error == nil {
+                                                Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])
+                                                let cardViewController = CardViewController()
+                                                return self.present(cardViewController, animated: true, completion: nil)
+                                            }
+                                        })
+                                    }
+                                    break
+                                default:
+                                    self.showRetryMessage()
+                                    print("peapod \(httpStatusCode)")
+                                }
                             }
                     }
 

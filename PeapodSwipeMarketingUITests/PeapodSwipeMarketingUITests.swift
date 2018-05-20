@@ -27,10 +27,9 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         
         let app = XCUIApplication()
         let signInButton = app.buttons["Sign In"]
-        XCTAssert(signInButton.exists, "Sign In Button Exists")
+        //XCTAssert(signInButton.exists, "Sign In Button Exists")
        
         signInButton.tap()
-        
         snapshot("1SignInScreen")
         
         let signInAlert = app.alerts["Sign In"]
@@ -47,25 +46,22 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         app.typeText("bagels")
         
         signInAlert.buttons["OK"].tap()
-        waitForExpectations(timeout: 5, handler: nil)
-        //XCTAssert(signInAlert.buttons["OK"].exists, "Sign In Alert OK Button Exsits")
+        
+        XCTAssert(app.buttons["MENU"].exists, "Menu Exsits")
         snapshot("2ProductCardsScreen")
         
         // Swipe
         app.swipeLeft()
         snapshot("3ProductCardDislikeScreen")
-        
-        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssert(app.buttons["Dislike"].exists, "Dislike Button Exsits")
         
         app.swipeRight()
         snapshot("4ProductCardLikeScreen")
-        
-        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssert(app.buttons["Like"].exists, "Like Button Exsits")
         
         app.collectionViews.images.firstMatch.tap()
-        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssert(app.images.count > 0, "Item Image Exsits")
         snapshot("5ProductDetailScreen")
-        
         
     }
 }
