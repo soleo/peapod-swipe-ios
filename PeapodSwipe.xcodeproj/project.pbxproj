@@ -13,7 +13,6 @@
 		552898FA1FCA291000A3195A /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552898F91FCA291000A3195A /* SnapKit.framework */; };
 		552898FC1FCA332900A3195A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 552898FB1FCA332900A3195A /* GoogleService-Info.plist */; };
 		5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF49204B14890066DF67 /* UIButtonExtension.swift */; };
-		5530DF4C204B1D070066DF67 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */; };
 		5530DF4E204B24A40066DF67 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5530DF4D204B24A40066DF67 /* SearchRouter.swift */; };
 		5535B5C3205D7B3B00D6A5DB /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */; };
 		5535B5C52061DDC500D6A5DB /* ProductNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */; };
@@ -92,7 +91,6 @@
 		552898F91FCA291000A3195A /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		552898FB1FCA332900A3195A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5530DF49204B14890066DF67 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
-		5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
 		5530DF4D204B24A40066DF67 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		5535B5C2205D7B3B00D6A5DB /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNutrition.swift; sourceTree = "<group>"; };
@@ -320,7 +318,6 @@
 				A9ADFB921EEF5D770044D45B /* AppDelegate.swift */,
 				55B258082050D537002AD4EE /* Peapod Swipe.entitlements */,
 				A9ADFB9E1EEF5D770044D45B /* Info.plist */,
-				5530DF4B204B1D070066DF67 /* PeapodService-Info.plist */,
 				552898FB1FCA332900A3195A /* GoogleService-Info.plist */,
 				A9ADFB961EEF5D770044D45B /* Main.storyboard */,
 				A9ADFB991EEF5D770044D45B /* Assets.xcassets */,
@@ -519,7 +516,6 @@
 				A9ADFB9D1EEF5D770044D45B /* LaunchScreen.storyboard in Resources */,
 				552898FC1FCA332900A3195A /* GoogleService-Info.plist in Resources */,
 				55A328391FCB74A8003A12B0 /* Settings.bundle in Resources */,
-				5530DF4C204B1D070066DF67 /* PeapodService-Info.plist in Resources */,
 				A9ADFB9A1EEF5D770044D45B /* Assets.xcassets in Resources */,
 				A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */,
 			);
@@ -711,7 +707,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 51;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -837,7 +833,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 51;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -904,7 +900,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 48;
+				CURRENT_PROJECT_VERSION = 51;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

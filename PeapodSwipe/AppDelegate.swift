@@ -20,17 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let vcToPresent: UIViewController!
-        if Auth.auth().currentUser != nil {
-            // User is signed in.
-            let mainViewController = CardViewController()
-            vcToPresent = mainViewController
-        } else {
-            // No user is signed in.
-            let authViewController = AuthViewController()
-            vcToPresent = authViewController
-        }
-        window.rootViewController = vcToPresent
+
+        let authViewController = AuthViewController()
+        window.rootViewController = authViewController
         window.makeKeyAndVisible()
         self.window = window
 
@@ -94,28 +86,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let rootVC = self.window?.rootViewController {
 
                             Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-                                if error != nil {
-                                    print("Sign In error: \(String(describing: error))")
-                                    Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-                                        print("Sign In error: \(String(describing: error))")
-                                        if error == nil {
-                                            Analytics.logEvent("sign_up", parameters: [ "email": email ])
-                                            let vc = CardViewController()
-                                            rootVC.present(vc, animated: true, completion: { () -> Void in
-                                                restorationHandler([vc])
-                                                didHandleActivity = true
-                                                os_log("Presented Deep Link Result", log: OSLog.default, type: .info)
-                                            })
-                                        }
-                                    })
-                                } else {
+                                if error == nil {
                                     Analytics.logEvent("sign_in", parameters: [ "email": email ])
                                     let vc = CardViewController()
-                                    rootVC.present(vc, animated: true, completion: { () -> Void in
-                                        restorationHandler([vc])
-                                        didHandleActivity = true
-                                        os_log("Presented Deep Link Result", log: OSLog.default, type: .info)
+                                    rootVC.dismiss(animated: true, completion: {
+                                        rootVC.present(vc, animated: true, completion: { () -> Void in
+                                            restorationHandler([vc])
+                                            didHandleActivity = true
+                                            os_log("Magic Link Authentication", log: OSLog.default, type: .info)
+                                        })
                                     })
+
+                                } else {
+                                    os_log("Failed To Login Via Magic Link", log: OSLog.default, type: .info)
                                 }
                             })
 

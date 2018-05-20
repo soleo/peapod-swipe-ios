@@ -36,12 +36,9 @@ public enum SearchRouter: URLRequestConvertible {
                 case .keywords(let keywords):
                     return [
                         "keywords": keywords,
-                        "index": 0,
+                        "index": "0",
                         "size": "120"
                     ]
-
-                default:
-                    return [:]
             }
         }()
 

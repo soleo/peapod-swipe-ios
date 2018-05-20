@@ -58,12 +58,33 @@ class AuthViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+
+        if Auth.auth().currentUser != nil {
+            // User is signed in.
+            let mainViewController = CardViewController()
+            self.present(mainViewController, animated: true, completion: nil)
+        }
+    }
 }
 
 extension AuthViewController {
+    func showMagicLinkAlert(email: String) {
+        let alert = UIAlertController(title: "Check Your Mail Inbox", message: "A magic link has been sent to "+email, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Sure", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+
+    func showRetryMessage() {
+        let alert = UIAlertController(title: "Something Went Wrong", message: "Could retry your Email and invite code?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
 
     @objc func SELSignInWithEmail() {
-        let alert = UIAlertController(title: "Your Email and Invite Code, Please?", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sign In", message: "Your Email and invie code, Please?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         alert.addTextField(configurationHandler: { textField in
@@ -73,7 +94,7 @@ extension AuthViewController {
         })
 
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "your invite code"
+            textField.placeholder = "your invite code, like bagels"
             textField.autocorrectionType = .no
         })
 
@@ -95,7 +116,11 @@ extension AuthViewController {
                                             // Send The Magic Link to User
                                             Alamofire.request(
                                                 UserRouter.requestForMagicLink(email)
-                                            )
+                                                )
+                                                .response(completionHandler: { (response) in
+                                                    // show an alert to tell user to check their mailbox
+                                                    self.showMagicLinkAlert(email: email)
+                                                })
                                             break
                                         case 201:
                                             if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
@@ -107,7 +132,7 @@ extension AuthViewController {
                                                 Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
                                                     print("Sign In error: \(String(describing: error))")
                                                     if error == nil {
-                                                        Analytics.logEvent("sign_up", parameters: [ "email": email ])
+                                                        Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])
                                                         let cardViewController = CardViewController()
                                                         return self.present(cardViewController, animated: true, completion: nil)
                                                     }
@@ -115,6 +140,7 @@ extension AuthViewController {
                                             }
                                             break
                                         default:
+                                            self.showRetryMessage()
                                             print("peapod \(httpStatusCode)")
                                         }
                                     }
@@ -122,7 +148,7 @@ extension AuthViewController {
                                 break
 
                                 case .success:
-
+                                    self.showRetryMessage()
                                     break
                             }
                     }

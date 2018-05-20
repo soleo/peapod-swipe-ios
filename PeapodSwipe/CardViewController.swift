@@ -34,7 +34,6 @@ class CardViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,16 +45,15 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Defaults.backgroundColor
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
-        configureIntialLayout()
-
+        configureInitialLayout()
+        loadingStateView.isHidden = false
         loadRecommendationData()
-
     }
 
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
 
-    func configureIntialLayout() {
+    func configureInitialLayout() {
 
         menuButton.setTitle("MENU", for: UIControlState())
         menuButton.setTitleColor(.white, for: UIControlState())
@@ -70,7 +68,6 @@ class CardViewController: UIViewController {
         }
 
         self.view.addSubview(loadingStateView)
-        loadingStateView.isHidden = false
 
         loadingStateView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
@@ -426,18 +423,20 @@ extension CardViewController {
 
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
 
-        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: nil)
         let itemSuggestionAction = UIAlertAction(title: "Suggest Other Items", style: .default, handler: {(alert: UIAlertAction!) in
             self.presentSearchView()
+        })
 
+        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: {(alert: UIAlertAction!) in
+            self.presentSettingView()
         })
         let logoutAction = UIAlertAction(title: "Logout", style: .default, handler: {(alert: UIAlertAction!) in
             self.logoutCurrentUser()
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        alertController.addAction(settingsAction)
         alertController.addAction(itemSuggestionAction)
+        alertController.addAction(settingsAction)
         alertController.addAction(logoutAction)
         alertController.addAction(cancelAction)
 
@@ -486,6 +485,13 @@ extension CardViewController {
         Analytics.logEvent("search_item", parameters: nil)
         let searchViewController = SearchViewController()
         return self.present(searchViewController, animated: true, completion: nil)
+
+    }
+
+    func presentSettingView() {
+        Analytics.logEvent("settings", parameters: nil)
+        let settingViewController = SettingViewController()
+        return self.present(settingViewController, animated: true, completion: nil)
 
     }
 }

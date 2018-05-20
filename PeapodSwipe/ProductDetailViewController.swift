@@ -57,8 +57,6 @@ class ProductDetailViewController: UIViewController {
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
 
-        loadingStateView.isHidden = true
-
         titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         titleLabel.layer.masksToBounds = true
         titleLabel.lineBreakMode = .byWordWrapping
@@ -150,6 +148,7 @@ class ProductDetailViewController: UIViewController {
                 print("ProductId: \(productId)")
                 if let productSearchResult = response.value {
                     self.showItemDetail(product: productSearchResult)
+                    self.loadingStateView.isHidden = true
                 }
         }
 
@@ -174,39 +173,39 @@ class ProductDetailViewController: UIViewController {
         imageView.accessibilityTraits = UIAccessibilityTraitImage
 
         titleLabel.text = self.product.name
-        loadingStateView.isHidden = true
 
-        addProductFlags()
+        addProductQuickFacts()
 
         productInformationScrollView.addNutritionLabel(calorieTotal: self.product.nutrition?.totalCalories, saturatedFatTotal: self.product.nutrition?.saturatedFat, sodiumTotal: self.product.nutrition?.sodium, sugarTotal: self.product.nutrition?.sugar)
+
     }
 
-    func addProductFlags() {
-        if (self.product.productFlags?.dairy) != nil {
+    func addProductQuickFacts() {
+        if (self.product.productFlags?.dairy) != nil && (self.product.productFlags?.dairy)! {
             productInformationScrollView.addProductFlag(labelText: "Dairy-free")
         }
 
-        if (self.product.productFlags?.gluten) != nil {
+        if (self.product.productFlags?.gluten) != nil && (self.product.productFlags?.gluten)! {
             productInformationScrollView.addProductFlag(labelText: "Gluten-free")
         }
 
-        if (self.product.productFlags?.peanut) != nil {
+        if (self.product.productFlags?.peanut) != nil && (self.product.productFlags?.peanut)! {
             productInformationScrollView.addProductFlag(labelText: "Peanut-free")
         }
 
-        if (self.product.productFlags?.egg) != nil {
+        if (self.product.productFlags?.egg) != nil && (self.product.productFlags?.egg)! {
             productInformationScrollView.addProductFlag(labelText: "Egg-free")
         }
 
-        if (self.product.productFlags?.privateLabel?.flag) != nil {
+        if (self.product.productFlags?.privateLabel?.flag) != nil && (self.product.productFlags?.privateLabel?.flag)! {
             productInformationScrollView.addProductFlag(labelText: "Store Brand")
         }
 
-        if (self.product.productFlags?.organic?.flag) != nil {
+        if (self.product.productFlags?.organic?.flag) != nil && (self.product.productFlags?.organic?.flag)! {
             productInformationScrollView.addProductFlag(labelText: "Organic")
         }
 
-        if (self.product.productFlags?.kosher) != nil {
+        if (self.product.productFlags?.kosher) != nil && (self.product.productFlags?.kosher)! {
             productInformationScrollView.addProductFlag(labelText: "Kosher")
         }
     }

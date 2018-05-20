@@ -27,8 +27,6 @@ public enum RecommendationRouter: URLRequestConvertible {
                 return [
                     "num": recommendationSize
                 ]
-            default:
-                return [:]
             }
         }()
 
