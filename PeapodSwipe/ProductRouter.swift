@@ -55,8 +55,20 @@ public enum ProductRouter: URLRequestConvertible {
 
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
-        request.setValue(setting?.token, forHTTPHeaderField: "Authorization")
         request.timeoutInterval = TimeInterval(10 * 1000)
+
+        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+            var serviceConfig: NSDictionary?
+            if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+                serviceConfig = NSDictionary(contentsOfFile: path)
+            }
+
+            let token = serviceConfig?.object(forKey: "TEST_TOKEN") as! String
+            request.setValue(token, forHTTPHeaderField: "Authorization")
+
+        } else {
+            request.setValue(setting?.token, forHTTPHeaderField: "Authorization")
+        }
 
         return try JSONEncoding.default.encode(request, with: parameters)
     }

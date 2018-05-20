@@ -99,6 +99,14 @@ extension AuthViewController {
         })
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+                Auth.auth().signInAnonymously(completion: { (user, error) in
+                    let cardViewController = CardViewController()
+                    return self.present(cardViewController, animated: true, completion: nil)
+                })
+
+                return
+            }
 
             if let email = alert.textFields?.first?.text?.trim() {
                 //print("Your email: \(email)")

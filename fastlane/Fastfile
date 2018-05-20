@@ -27,11 +27,6 @@ platform :ios do
     scan
   end
 
-  desc "Runs all the tests"
-  lane :uicheck do
-    snapshot
-  end
-
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
@@ -45,6 +40,7 @@ platform :ios do
     build_app(
         scheme: "PeapodSwipe"
     )
+
     upload_to_testflight
     # Commit the version bump
     # commit_version_bump
