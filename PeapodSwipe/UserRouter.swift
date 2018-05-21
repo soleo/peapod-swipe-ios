@@ -2,63 +2,54 @@
 //  UserRouter.swift
 //  PeapodSwipe
 //
-//  Created by Xinjiang Shao on 4/25/18.
+//  Created by Xinjiang Shao on 5/20/18.
 //  Copyright © 2018 Xinjiang Shao. All rights reserved.
 //
 
 import Foundation
+
 import Alamofire
 
 public enum UserRouter: URLRequestConvertible {
-    static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1"
+    static let baseURLPath = "https://admin-qa.peapod-swipe.com/swipe-api/v1/user"
 
-    case register(String, String)
-    case requestForMagicLink(String)
-    case signInByMagicLink(String)
+    case userInfo()
 
     var method: HTTPMethod {
         switch self {
-        case .register, .requestForMagicLink, .signInByMagicLink:
-            return .post
-        }
-    }
+        case .userInfo:
+            return .get
 
-    var path: String {
-        switch self {
-        case .register(_, _):
-            return "/employee/register"
-        case .requestForMagicLink(_):
-            return "/magic-link/request"
-        case .signInByMagicLink(let token):
-            return "/magic-link/auth/\(token)"
         }
     }
 
     public func asURLRequest() throws -> URLRequest {
-        let parameters: [String: Any] = {
-            switch self {
-            case .register(let email, let inviteCode):
-                return [
-                    "email": email,
-                    "inviteCode": inviteCode,
-                    "name": email,
-                    "nickname": email
-                ]
-            case .requestForMagicLink(let email):
-                return [
-                    "email": email
-                ]
-            default:
-                return [:]
-            }
-        }()
-        let url = URL(string: UserRouter.baseURLPath)!
 
-        var request = URLRequest(url: url.appendingPathComponent(path))
+        let url = URL(string: ProductRouter.baseURLPath)!
+
+        let key = String(describing: UserInfo.self)
+        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self)
+
+        var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.timeoutInterval = TimeInterval(10 * 1000)
 
-        return try JSONEncoding.default.encode(request, with: parameters)
+        let args = ProcessInfo.processInfo.arguments
+
+        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE") {
+            var serviceConfig: NSDictionary?
+            if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+                serviceConfig = NSDictionary(contentsOfFile: path)
+            }
+
+            let token = serviceConfig?.object(forKey: "TEST_TOKEN") as! String
+            request.setValue(token, forHTTPHeaderField: "Authorization")
+
+        } else {
+            request.setValue(setting?.token, forHTTPHeaderField: "Authorization")
+        }
+
+        return try JSONEncoding.default.encode(request, with: nil)
     }
 
 }

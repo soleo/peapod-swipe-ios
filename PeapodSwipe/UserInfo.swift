@@ -9,9 +9,10 @@
 import Foundation
 import Default
 
-struct UserSetting: Codable, DefaultStorable {
+struct UserInfo: Codable, DefaultStorable {
     let email: String
-    var token: String
+    let token: String
+    let inviteCode: String
 
     var isLoggedIn: Bool
     var skipIntro: Bool?
@@ -19,7 +20,7 @@ struct UserSetting: Codable, DefaultStorable {
     enum CodingKeys: String, CodingKey {
         case email
         case token
-
+        case inviteCode
         case isLoggedIn
         case skipIntro
     }

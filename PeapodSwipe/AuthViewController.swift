@@ -110,7 +110,7 @@ extension AuthViewController {
                 //print("Your email: \(email)")
                 if self.isValidEmail(emalAddress: email), let inviteCode = alert.textFields?.last?.text?.trim() {
                     Alamofire.request(
-                        UserRouter.register(email, inviteCode)
+                        AuthRouter.register(email, inviteCode)
                         )
                         .responseJSON { response in
                             if let httpStatusCode = response.response?.statusCode {
@@ -118,7 +118,7 @@ extension AuthViewController {
                                 case 409:
                                     // Send The Magic Link to User
                                     Alamofire.request(
-                                        UserRouter.requestForMagicLink(email)
+                                        AuthRouter.requestForMagicLink(email)
                                         )
                                         .response(completionHandler: { (response) in
                                             // show an alert to tell user to check their mailbox
@@ -127,13 +127,13 @@ extension AuthViewController {
                                     break
                                 case 201:
                                     if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
-                                        print(bearerToken)
-                                        let setting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, skipIntro: false)
-                                        let key: String = String(describing: UserSetting.self)
+                                        //print(bearerToken)
+                                        let setting = UserInfo(email: email, token: bearerToken, inviteCode: inviteCode, isLoggedIn: true, skipIntro: false)
+                                        let key: String = String(describing: UserInfo.self)
                                         UserDefaults.standard.df.store(setting, forKey: key)
 
                                         Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
-                                            print("Sign In error: \(String(describing: error))")
+                                            //print("Sign In error: \(String(describing: error))")
                                             if error == nil {
                                                 Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])
                                                 let cardViewController = CardViewController()
@@ -147,7 +147,7 @@ extension AuthViewController {
                                     break
                                 default:
                                     self.showRetryMessage()
-                                    print("peapod \(httpStatusCode)")
+
                                 }
                             }
                     }

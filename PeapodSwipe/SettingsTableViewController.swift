@@ -24,7 +24,7 @@ class Setting: NSObject {
 
     weak var delegate: SettingsDelegate?
 
-    // The url the SettingsContentViewController will show, e.g. Licenses and Privacy Policy.
+    // The url the SFSafariViewController will show, e.g. Licenses and Privacy Policy.
     var url: URL? { return nil }
 
     // The title shown on the pref.

@@ -23,7 +23,7 @@
 		5549F569204B9F9300E76A41 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F568204B9F9300E76A41 /* SearchViewController.swift */; };
 		5549F56D204BAA2300E76A41 /* ProductSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5549F56C204BAA2300E76A41 /* ProductSearchDataSource.swift */; };
 		5562EE4C20B0A93900569B58 /* Default.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5562EE4B20B0A93800569B58 /* Default.framework */; };
-		5562EE4E20B0A9E300569B58 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562EE4D20B0A9E300569B58 /* UserSetting.swift */; };
+		5562EE4E20B0A9E300569B58 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562EE4D20B0A9E300569B58 /* UserInfo.swift */; };
 		5562EE5220B0B6C300569B58 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562EE5120B0B6C300569B58 /* SettingsTableViewController.swift */; };
 		5562EE5420B0CD3C00569B58 /* ProductRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562EE5320B0CD3C00569B58 /* ProductRouter.swift */; };
 		556684D320B10C870045C446 /* PeapodSwipeMarketingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556684D220B10C870045C446 /* PeapodSwipeMarketingUITests.swift */; };
@@ -62,7 +62,8 @@
 		55E7C2E920B1ECEB003D0F90 /* AppSettingsOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7C2E820B1ECEB003D0F90 /* AppSettingsOptions.swift */; };
 		55E7C2EB20B1F52F003D0F90 /* GeometryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7C2EA20B1F52F003D0F90 /* GeometryExtensions.swift */; };
 		55E7C2EF20B1FAC8003D0F90 /* AppSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7C2EE20B1FAC8003D0F90 /* AppSettingsTableViewController.swift */; };
-		55E8655620917234003CA005 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8655520917234003CA005 /* UserRouter.swift */; };
+		55E7C2F120B25538003D0F90 /* UserRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7C2F020B25538003D0F90 /* UserRouter.swift */; };
+		55E8655620917234003CA005 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E8655520917234003CA005 /* AuthRouter.swift */; };
 		A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99BBCCB1EF89B4D00ACBF7B /* Product.swift */; };
 		A9ADFB931EEF5D770044D45B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB921EEF5D770044D45B /* AppDelegate.swift */; };
 		A9ADFB951EEF5D770044D45B /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFB941EEF5D770044D45B /* CardViewController.swift */; };
@@ -116,7 +117,7 @@
 		5549F568204B9F9300E76A41 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5549F56C204BAA2300E76A41 /* ProductSearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchDataSource.swift; sourceTree = "<group>"; };
 		5562EE4B20B0A93800569B58 /* Default.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Default.framework; path = Carthage/Build/iOS/Default.framework; sourceTree = "<group>"; };
-		5562EE4D20B0A9E300569B58 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
+		5562EE4D20B0A9E300569B58 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		5562EE5120B0B6C300569B58 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		5562EE5320B0CD3C00569B58 /* ProductRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductRouter.swift; sourceTree = "<group>"; };
 		556684D020B10C870045C446 /* PeapodSwipeMarketingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeapodSwipeMarketingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +161,8 @@
 		55E7C2E820B1ECEB003D0F90 /* AppSettingsOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsOptions.swift; sourceTree = "<group>"; };
 		55E7C2EA20B1F52F003D0F90 /* GeometryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryExtensions.swift; sourceTree = "<group>"; };
 		55E7C2EE20B1FAC8003D0F90 /* AppSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsTableViewController.swift; sourceTree = "<group>"; };
-		55E8655520917234003CA005 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		55E7C2F020B25538003D0F90 /* UserRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouter.swift; sourceTree = "<group>"; };
+		55E8655520917234003CA005 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		A99BBCCB1EF89B4D00ACBF7B /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A9ADFB8F1EEF5D770044D45B /* Peapod Swipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peapod Swipe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ADFB921EEF5D770044D45B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -270,7 +272,6 @@
 		55629FB3204F998C00055B65 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				5562EE4D20B0A9E300569B58 /* UserSetting.swift */,
 				5562EE5120B0B6C300569B58 /* SettingsTableViewController.swift */,
 				55E7C2E420B1DC6A003D0F90 /* SettingsNavigationController.swift */,
 				55E7C2E620B1E5D0003D0F90 /* SettingsTableSectionHeaderFooterView.swift */,
@@ -307,7 +308,8 @@
 				5562EE5320B0CD3C00569B58 /* ProductRouter.swift */,
 				5530DF4D204B24A40066DF67 /* SearchRouter.swift */,
 				5549F55F204B44A800E76A41 /* RecommendationRouter.swift */,
-				55E8655520917234003CA005 /* UserRouter.swift */,
+				55E8655520917234003CA005 /* AuthRouter.swift */,
+				55E7C2F020B25538003D0F90 /* UserRouter.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -324,6 +326,7 @@
 				55B258092050D88A002AD4EE /* ProductRichFlag.swift */,
 				55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */,
 				5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */,
+				5562EE4D20B0A9E300569B58 /* UserInfo.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -686,7 +689,7 @@
 				55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */,
 				5562EE5220B0B6C300569B58 /* SettingsTableViewController.swift in Sources */,
 				A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */,
-				5562EE4E20B0A9E300569B58 /* UserSetting.swift in Sources */,
+				5562EE4E20B0A9E300569B58 /* UserInfo.swift in Sources */,
 				552898F61FCA177200A3195A /* CardViewLabel.swift in Sources */,
 				A99BBCCC1EF89B4D00ACBF7B /* Product.swift in Sources */,
 				5530DF4E204B24A40066DF67 /* SearchRouter.swift in Sources */,
@@ -698,6 +701,7 @@
 				A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */,
 				55E7C2EB20B1F52F003D0F90 /* GeometryExtensions.swift in Sources */,
 				5549F55E204B440700E76A41 /* RecommendedProductsResponse.swift in Sources */,
+				55E7C2F120B25538003D0F90 /* UserRouter.swift in Sources */,
 				55E7C2E720B1E5D0003D0F90 /* SettingsTableSectionHeaderFooterView.swift in Sources */,
 				5530DF4A204B14890066DF67 /* UIButtonExtension.swift in Sources */,
 				5549F560204B44A800E76A41 /* RecommendationRouter.swift in Sources */,
@@ -715,7 +719,7 @@
 				5549F55C204B430500E76A41 /* ProductVote.swift in Sources */,
 				A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */,
 				55E7C2E520B1DC6A003D0F90 /* SettingsNavigationController.swift in Sources */,
-				55E8655620917234003CA005 /* UserRouter.swift in Sources */,
+				55E8655620917234003CA005 /* AuthRouter.swift in Sources */,
 				558B4D47204CDFC200C2ED47 /* ProductExtendedInfo.swift in Sources */,
 				5535B5C72061E94D00D6A5DB /* ProductNutritionLabel.swift in Sources */,
 			);
@@ -809,7 +813,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -998,7 +1002,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1065,7 +1069,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

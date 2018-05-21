@@ -50,8 +50,8 @@ public enum ProductRouter: URLRequestConvertible {
             }
         }()
         let url = URL(string: ProductRouter.baseURLPath)!
-        let key = String(describing: UserSetting.self)
-        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self)
+        let key = String(describing: UserInfo.self)
+        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self)
 
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue

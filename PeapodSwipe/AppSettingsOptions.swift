@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import Default
 
 // Logout the app
 class LogoutSetting: Setting {
 
     override var textAlignment: NSTextAlignment { return .center }
+
+    override var accessibilityIdentifier: String? { return "Logout" }
 
     init(settings: SettingsTableViewController) {
         let title = NSAttributedString(string: NSLocalizedString("Log Out", comment: "Logout Curren User"), attributes: [
@@ -40,9 +43,34 @@ class LogoutSetting: Setting {
 }
 
 // Show User Info
-class ShowUserInfoSetting: Setting {
+class ShowInviteCodeSetting: Setting {
+
+    override var accessibilityIdentifier: String? { return "InviteCode" }
+    override var status: NSAttributedString? {
+        let key = String(describing: UserInfo.self)
+        if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self) {
+            return NSAttributedString(string: NSLocalizedString(settings.inviteCode.uppercased(), comment: "Invite Code"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor])
+        }
+        return nil
+    }
     init(settings: SettingsTableViewController) {
-        super.init(title: NSAttributedString(string: NSLocalizedString("Account", comment: "Show user information like email address, nickname etc"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor]))
+        super.init(title: NSAttributedString(string: NSLocalizedString("Invite Code", comment: "Show user information like email address, nickname etc"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor]))
+    }
+
+}
+
+class ShowEmailSetting: Setting {
+
+    override var accessibilityIdentifier: String? { return "Email" }
+    override var status: NSAttributedString? {
+        let key = String(describing: UserInfo.self)
+        if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self) {
+            return NSAttributedString(string: NSLocalizedString(settings.email, comment: "Email"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor])
+        }
+        return nil
+    }
+    init(settings: SettingsTableViewController) {
+        super.init(title: NSAttributedString(string: NSLocalizedString("Email", comment: "Show user information like email address, nickname etc"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor]))
     }
 
 }

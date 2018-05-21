@@ -31,8 +31,8 @@ public enum RecommendationRouter: URLRequestConvertible {
         }()
 
         let url = URL(string: RecommendationRouter.baseURLPath)!
-        let key = String(describing: UserSetting.self)
-        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self)
+        let key = String(describing: UserInfo.self)
+        let setting = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self)
 
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue

@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let authToken = url.lastPathComponent
         if url.pathComponents.contains("magic-link") {
             Alamofire.request(
-                UserRouter.signInByMagicLink(authToken)
+                AuthRouter.signInByMagicLink(authToken)
             )
             .validate()
             .responseJSON { response in
@@ -89,12 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
 
-                    let key: String = String(describing: UserSetting.self)
+                    let key: String = String(describing: UserInfo.self)
 
-                    if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self) {
+                    if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self) {
                         let email = settings.email
-                        let newSetting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, skipIntro: true)
-                        let key: String = String(describing: UserSetting.self)
+                        let newSetting = UserInfo(email: email, token: bearerToken, inviteCode: settings.inviteCode, isLoggedIn: true, skipIntro: true)
+
                         UserDefaults.standard.df.store(newSetting, forKey: key)
 
                         if let rootVC = self.window?.rootViewController {
@@ -106,9 +106,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     let mainNavigationController = UINavigationController(rootViewController: mainViewController)
 
                                     rootVC.present(mainNavigationController, animated: true, completion: { () -> Void in
-                                            restorationHandler([mainViewController])
-                                            didHandleActivity = true
-                                            os_log("Magic Link Authentication", log: OSLog.default, type: .info)
+                                        restorationHandler([mainViewController])
+                                        didHandleActivity = true
+                                        os_log("Magic Link Authentication", log: OSLog.default, type: .info)
                                     })
 
                                 } else {
