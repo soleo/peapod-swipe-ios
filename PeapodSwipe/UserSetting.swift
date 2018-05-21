@@ -14,13 +14,13 @@ struct UserSetting: Codable, DefaultStorable {
     var token: String
 
     var isLoggedIn: Bool
-    var hasTouredBefore: Bool?
+    var skipIntro: Bool?
 
     enum CodingKeys: String, CodingKey {
         case email
         case token
 
         case isLoggedIn
-        case hasTouredBefore
+        case skipIntro
     }
 }

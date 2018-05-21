@@ -48,8 +48,9 @@ public enum SearchRouter: URLRequestConvertible {
         var request = URLRequest(url: url.appendingPathComponent(path))
         request.httpMethod = method.rawValue
         request.timeoutInterval = TimeInterval(10 * 1000)
+        let args = ProcessInfo.processInfo.arguments
 
-        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE") {
             var serviceConfig: NSDictionary?
             if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
                 serviceConfig = NSDictionary(contentsOfFile: path)

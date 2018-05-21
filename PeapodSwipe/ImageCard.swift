@@ -29,12 +29,14 @@ class ImageCard: CardView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
     }
 
     convenience init(frame: CGRect, product: Product) {
         self.init(frame: frame)
 
         self.productId = product.id
+
         setUpLayout(imageURL: product.images.xlargeImageURL, name: product.name)
 
     }

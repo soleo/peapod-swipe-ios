@@ -25,7 +25,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         searchBar = UISearchBar()
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.backgroundColor = UIColor.clear
-        searchBar.placeholder = "Search Product ..."
+        searchBar.placeholder = NSLocalizedString("Search Product ...", comment: "Search Product Placeholder")
         searchBar.delegate = self
         searchBar.isTranslucent = true
         searchBar.tintColor = UIColor.Defaults.primaryColor
@@ -43,6 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         view.addSubview(searchBar)
 
         tableView = UITableView()
+        tableView.accessibilityIdentifier = "SearchTableViewController.tableView"
         tableView.estimatedRowHeight = SearchViewUX.RowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         view.addSubview(tableView)
@@ -148,7 +149,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
 
     private var dataSource: ProductSearchDataSource!

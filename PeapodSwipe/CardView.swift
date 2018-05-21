@@ -23,6 +23,7 @@ class CardView: UIView {
 
     var greenLabel: CardViewLabel!
     var redLabel: CardViewLabel!
+    private weak var shadowView: UIView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +48,24 @@ class CardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        configureShadowView()
+    }
+
+    func configureShadowView() {
+        // Shadow View
+        self.shadowView?.removeFromSuperview()
+        let shadowView = UIView(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: bounds.width ,
+                                              height: bounds.height))
+        insertSubview(shadowView, at: 0)
+        self.shadowView = shadowView
+
+        self.applyShadow(width: CGFloat(0.0), height: CGFloat(0.0))
+    }
     func showOptionLabel(_ option: CardOption) {
         if option == .like1 || option == .like2 || option == .like3 {
 
@@ -118,6 +137,18 @@ class CardView: UIView {
                 self.redLabel.isHidden = true
                 self.isHidingOptionLabel = false
             })
+        }
+    }
+    // https://www.phillfarrugia.com/2017/10/22/building-a-tinder-esque-card-interface/
+    private func applyShadow(width: CGFloat, height: CGFloat) {
+        if let shadowView = shadowView {
+            let shadowPath = UIBezierPath(roundedRect: shadowView.bounds, cornerRadius: 14.0)
+            shadowView.layer.masksToBounds = false
+            shadowView.layer.shadowRadius = 8.0
+            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowOffset = CGSize(width: width, height: height)
+            shadowView.layer.shadowOpacity = 0.15
+            shadowView.layer.shadowPath = shadowPath.cgPath
         }
     }
 

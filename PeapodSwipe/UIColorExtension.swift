@@ -39,9 +39,15 @@ extension UIColor {
 
         static let primaryColor = UIColor.Defaults.peaGreen
         static let secondaryColor = UIColor.Defaults.tomatoRed
-        static let backgroundColor = UIColor(rgb: 0x363636)
+
+        static let darkBackgroundColor = UIColor(rgb: 0x363636)
         static let lightBackgroudColor = UIColor.Defaults.Grey10
+
+        static let backgroundColor =  UIColor.Defaults.lightBackgroudColor
         static let primaryTextColor = UIColor.Defaults.Grey80
+
+        static let SeparatorColor = UIColor.Defaults.Grey30
+
     }
 
 }

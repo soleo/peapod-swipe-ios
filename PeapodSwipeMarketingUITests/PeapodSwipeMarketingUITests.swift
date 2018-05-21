@@ -14,6 +14,7 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         super.setUp()
        
         let app = XCUIApplication()
+        app.launchArguments += ["UI_TEST_MODE"]
         setupSnapshot(app)
         app.launch()
         snapshot("0Launch")
@@ -23,11 +24,34 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testAppOverallWorkflow() {
+    func waitforExistence(_ element: XCUIElement) {
+        let exists = NSPredicate(format: "exists == true")
+        
+        expectation(for: exists, evaluatedWith: element, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
+    }
+    
+    func waitforNoExistence(_ element: XCUIElement) {
+        let exists = NSPredicate(format: "exists != true")
+        
+        expectation(for: exists, evaluatedWith: element, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
+    }
+    
+    func
+        testAppOverallWorkflow() {
         
         let app = XCUIApplication()
+        
+        if app.buttons["Menu"].exists {
+            app.buttons["Menu"].tap()
+            app.sheets["Menu"].buttons["Settings"].tap()
+            
+            app.tables["AppSettingsTableViewController.tableView"]/*@START_MENU_TOKEN@*/.staticTexts["Log Out"]/*[[".cells[\"Log Out\"].staticTexts[\"Log Out\"]",".staticTexts[\"Log Out\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+            
+        }
         let signInButton = app.buttons["Sign In"]
-        //XCTAssert(signInButton.exists, "Sign In Button Exists")
+        XCTAssert(signInButton.exists, "Sign In Button Exists")
        
         signInButton.tap()
         snapshot("1SignInScreen")
@@ -36,6 +60,8 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         let collectionViewsQuery = signInAlert.collectionViews
         
         let emailTextField = collectionViewsQuery.textFields["bagel.is.everything@ahold.com"]
+        
+        
         XCTAssert(emailTextField.exists, "Email TextField Exsits")
         emailTextField.tap()
         app.typeText("xinjiang.shao+snapshot@gmail.com")
@@ -46,8 +72,7 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         app.typeText("bagels")
         
         signInAlert.buttons["OK"].tap()
-        
-        XCTAssert(app.buttons["MENU"].exists, "Menu Exsits")
+        waitforExistence(app.buttons["Menu"])
         snapshot("2ProductCardsScreen")
         
         // Swipe
@@ -59,9 +84,31 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         snapshot("4ProductCardLikeScreen")
         XCTAssert(app.buttons["Like"].exists, "Like Button Exsits")
         
-        app.collectionViews.images.firstMatch.tap()
-        XCTAssert(app.images.count > 0, "Item Image Exsits")
+        // open item details
+        let productImage = app.images.firstMatch
+        productImage.tap()
+        XCTAssert(productImage.exists, "Item Image Exsits")
         snapshot("5ProductDetailScreen")
+        productImage.tap() // close it
+       
+        app.buttons["Menu"].tap()
+        snapshot("6MenuScreen")
         
+        let menu = app.sheets["Menu"]
+        menu.buttons["Search Product"].tap()
+ 
+        let searchProductSearchField = app.searchFields["Search Product ..."]
+        searchProductSearchField.tap()
+        searchProductSearchField.typeText("Bagel")
+        searchProductSearchField.typeText("\n")
+        
+        snapshot("7ProductSearchScreen")
+        
+        app.swipeUp()
+        app.swipeDown()
+        
+        app.tables["SearchTableViewController.tableView"].staticTexts["Bagels Everything - 3 ct"].tap()
+        snapshot("8SearchDetailScreen")
     }
+    
 }

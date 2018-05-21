@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Alamofire
 import SnapKit
-import RxSwift
+import Default
 
 class CardViewController: UIViewController {
 
@@ -55,20 +55,12 @@ class CardViewController: UIViewController {
 
     func configureInitialLayout() {
 
-        menuButton.setTitle("MENU", for: UIControlState())
-        menuButton.setTitleColor(.white, for: UIControlState())
-        menuButton.addTarget(self, action: #selector(CardViewController.SELtoggleMenu), for: .touchUpInside)
-        self.view.addSubview(menuButton)
-
-        menuButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().offset(-10)
-            make.height.equalTo(50)
-            make.width.equalTo(100)
-            make.centerX.equalToSuperview()
-        }
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: NSLocalizedString("Menu", comment: "Menu button on left side of the Settings view controller title bar"),
+            style: .plain,
+            target: self, action: #selector(self.SELtoggleMenu))
+        navigationItem.leftBarButtonItem?.accessibilityIdentifier = "CardViewController.navigationItem.leftBarButtonItem"
         self.view.addSubview(loadingStateView)
-
         loadingStateView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
@@ -77,9 +69,9 @@ class CardViewController: UIViewController {
     func loadRecommendationData() {
         let cardFrameSize: CGRect
         if UIDevice.current.orientation.isLandscape {
-            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
+            cardFrameSize = CGRect(x: 0, y: 100, width: self.view.frame.width * 0.3, height: self.view.frame.height - 120)
         } else {
-            cardFrameSize = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
+            cardFrameSize = CGRect(x: 0, y: 100, width: self.view.frame.width - 60, height: self.view.frame.height * 0.7)
         }
 
         Alamofire.request(
@@ -419,33 +411,24 @@ extension CardViewController {
         }
     }
 
-    @objc func SELtoggleMenu() {
+    @objc func SELtoggleMenu(_ sender: UITapGestureRecognizer) {
 
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
 
-        let itemSuggestionAction = UIAlertAction(title: "Suggest Other Items", style: .default, handler: {(alert: UIAlertAction!) in
+        let itemSuggestionAction = UIAlertAction(title: NSLocalizedString("Search Product", comment: "Search Product Action"), style: .default, handler: {(alert: UIAlertAction!) in
             self.presentSearchView()
         })
 
-        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: {(alert: UIAlertAction!) in
+        let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Settings Action"), style: .default, handler: {(alert: UIAlertAction!) in
             self.presentSettingView()
         })
-        let logoutAction = UIAlertAction(title: "Logout", style: .default, handler: {(alert: UIAlertAction!) in
-            self.logoutCurrentUser()
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
 
         alertController.addAction(itemSuggestionAction)
         alertController.addAction(settingsAction)
-        alertController.addAction(logoutAction)
-        alertController.addAction(cancelAction)
 
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            if let popoverController = alertController.popoverPresentationController {
-                popoverController.sourceView = self.menuButton
-                popoverController.sourceRect = self.menuButton.bounds
-            }
-        }
+        alertController.addAction(cancelAction)
 
         self.present(alertController, animated: true)
 
@@ -468,19 +451,6 @@ extension CardViewController {
             }
     }
 
-    func logoutCurrentUser() {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        Analytics.logEvent("log_out", parameters: nil)
-        let authViewController = AuthViewController()
-        return self.present(authViewController, animated: true, completion: nil)
-
-    }
-
     func presentSearchView() {
         Analytics.logEvent("search_item", parameters: nil)
         let searchViewController = SearchViewController()
@@ -490,8 +460,8 @@ extension CardViewController {
 
     func presentSettingView() {
         Analytics.logEvent("settings", parameters: nil)
-        let settingViewController = SettingViewController()
-        return self.present(settingViewController, animated: true, completion: nil)
-
+        let appSettingsTableViewController = AppSettingsTableViewController()
+        let controller = SettingsNavigationController(rootViewController: appSettingsTableViewController)
+        return self.present(controller, animated: true, completion: nil)
     }
 }

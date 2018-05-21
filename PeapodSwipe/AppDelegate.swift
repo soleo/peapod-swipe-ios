@@ -17,12 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var mainNavigationController: UINavigationController?
+    var rootViewController: UIViewController?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         let window = UIWindow(frame: UIScreen.main.bounds)
 
-        let authViewController = AuthViewController()
-        window.rootViewController = authViewController
+        if Auth.auth().currentUser != nil {
+            rootViewController = CardViewController()
+        } else {
+            rootViewController = AuthViewController()
+
+        }
+        self.mainNavigationController = UINavigationController(rootViewController: rootViewController!)
+
+        self.mainNavigationController?.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
+
+        self.window!.rootViewController = rootViewController
+        window.rootViewController = self.mainNavigationController
         window.makeKeyAndVisible()
         self.window = window
 
@@ -78,23 +91,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                     let key: String = String(describing: UserSetting.self)
 
-                    if var settings = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self) {
-                        settings.token = bearerToken
+                    if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserSetting.self) {
                         let email = settings.email
-                        print (settings)
+                        let newSetting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, skipIntro: true)
+                        let key: String = String(describing: UserSetting.self)
+                        UserDefaults.standard.df.store(newSetting, forKey: key)
 
                         if let rootVC = self.window?.rootViewController {
 
                             Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
                                 if error == nil {
                                     Analytics.logEvent("sign_in", parameters: [ "email": email ])
-                                    let vc = CardViewController()
-                                    rootVC.dismiss(animated: true, completion: {
-                                        rootVC.present(vc, animated: true, completion: { () -> Void in
-                                            restorationHandler([vc])
+                                    let mainViewController = CardViewController()
+                                    let mainNavigationController = UINavigationController(rootViewController: mainViewController)
+
+                                    rootVC.present(mainNavigationController, animated: true, completion: { () -> Void in
+                                            restorationHandler([mainViewController])
                                             didHandleActivity = true
                                             os_log("Magic Link Authentication", log: OSLog.default, type: .info)
-                                        })
                                     })
 
                                 } else {

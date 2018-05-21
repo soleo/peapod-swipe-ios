@@ -14,12 +14,11 @@ import Alamofire
 class AuthViewController: UIViewController {
 
     var signInButton: UIButton!
-    var mainViewController: CardViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.Defaults.backgroundColor
+        view.backgroundColor = UIColor.Defaults.darkBackgroundColor
 
         // Login Screen
         let logoImageView = UIImageView(image: #imageLiteral(resourceName: "SquareLogo"))
@@ -30,7 +29,7 @@ class AuthViewController: UIViewController {
 
         let signInButton = UIButton()
         signInButton.backgroundColor = UIColor.Defaults.primaryColor
-        signInButton.setTitle("Sign In", for: UIControlState())
+        signInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), for: UIControlState())
         signInButton.setTitleColor(UIColor.white, for: UIControlState())
         signInButton.clipsToBounds = true
         signInButton.layer.cornerRadius = 5
@@ -62,30 +61,25 @@ class AuthViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
 
-        if Auth.auth().currentUser != nil {
-            // User is signed in.
-            let mainViewController = CardViewController()
-            self.present(mainViewController, animated: true, completion: nil)
-        }
     }
 }
 
 extension AuthViewController {
     func showMagicLinkAlert(email: String) {
         let alert = UIAlertController(title: "Check Your Mail Inbox", message: "A magic link has been sent to "+email, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Sure", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Sure", comment: "Sure"), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
 
     func showRetryMessage() {
         let alert = UIAlertController(title: "Something Went Wrong", message: "Could retry your Email and invite code?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Ok"), style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
 
     @objc func SELSignInWithEmail() {
-        let alert = UIAlertController(title: "Sign In", message: "Your Email and invie code, Please?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("Sign In", comment: "Sign In"), message: "Your Email and invie code, Please?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil))
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "bagel.is.everything@ahold.com"
@@ -99,10 +93,14 @@ extension AuthViewController {
         })
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+            let args = ProcessInfo.processInfo.arguments
+
+            if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE") {
                 Auth.auth().signInAnonymously(completion: { (user, error) in
                     let cardViewController = CardViewController()
-                    return self.present(cardViewController, animated: true, completion: nil)
+
+                    let controller = UINavigationController(rootViewController: cardViewController)
+                    return self.present(controller, animated: true, completion: nil)
                 })
 
                 return
@@ -130,7 +128,7 @@ extension AuthViewController {
                                 case 201:
                                     if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
                                         print(bearerToken)
-                                        let setting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, hasTouredBefore: false)
+                                        let setting = UserSetting(email: email, token: bearerToken, isLoggedIn: true, skipIntro: false)
                                         let key: String = String(describing: UserSetting.self)
                                         UserDefaults.standard.df.store(setting, forKey: key)
 
@@ -139,7 +137,10 @@ extension AuthViewController {
                                             if error == nil {
                                                 Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])
                                                 let cardViewController = CardViewController()
-                                                return self.present(cardViewController, animated: true, completion: nil)
+
+                                                let controller = UINavigationController(rootViewController: cardViewController)
+                                                return self.present(controller, animated: true, completion: nil)
+
                                             }
                                         })
                                     }
