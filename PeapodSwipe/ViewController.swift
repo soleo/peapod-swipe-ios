@@ -16,7 +16,7 @@ class CardViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+        handle = Auth.auth().addStateDidChangeListener { (_, _) in
             // ...
 
         }
@@ -177,7 +177,7 @@ class CardViewController: UIViewController {
         switch sender.state {
         case .began:
             dynamicAnimator.removeAllBehaviors()
-            let offset = UIOffsetMake(panLocationInCard.x - cards[0].bounds.midX, panLocationInCard.y - cards[0].bounds.midY)
+            let offset = UIOffset(horizontal: panLocationInCard.x - cards[0].bounds.midX, vertical: panLocationInCard.y - cards[0].bounds.midY)
             // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)

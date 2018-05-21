@@ -99,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                         if let rootVC = self.window?.rootViewController {
 
-                            Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+                            Auth.auth().signIn(withEmail: email, password: "ppod9ppod9", completion: { (_, error) in
                                 if error == nil {
                                     Analytics.logEvent("sign_in", parameters: [ "email": email ])
                                     let mainViewController = CardViewController()

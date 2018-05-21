@@ -335,7 +335,7 @@ extension CardViewController {
         switch sender.state {
         case .began:
             dynamicAnimator.removeAllBehaviors()
-            let offset = UIOffsetMake(panLocationInCard.x - cards[0].bounds.midX, panLocationInCard.y - cards[0].bounds.midY)
+            let offset = UIOffset(horizontal: panLocationInCard.x - cards[0].bounds.midX, vertical: panLocationInCard.y - cards[0].bounds.midY)
             // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
@@ -415,11 +415,11 @@ extension CardViewController {
 
         let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
 
-        let itemSuggestionAction = UIAlertAction(title: NSLocalizedString("Search Product", comment: "Search Product Action"), style: .default, handler: {(alert: UIAlertAction!) in
+        let itemSuggestionAction = UIAlertAction(title: NSLocalizedString("Search Product", comment: "Search Product Action"), style: .default, handler: {(_: UIAlertAction!) in
             self.presentSearchView()
         })
 
-        let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Settings Action"), style: .default, handler: {(alert: UIAlertAction!) in
+        let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Settings Action"), style: .default, handler: {(_: UIAlertAction!) in
             self.presentSettingView()
         })
 

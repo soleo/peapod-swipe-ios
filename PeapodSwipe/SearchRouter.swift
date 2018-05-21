@@ -25,7 +25,7 @@ public enum SearchRouter: URLRequestConvertible {
 
     var path: String {
         switch self {
-            case .keywords(_):
+            case .keywords:
                 return "/product-search"
         }
     }

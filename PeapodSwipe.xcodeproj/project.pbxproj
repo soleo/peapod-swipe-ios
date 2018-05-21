@@ -28,7 +28,6 @@
 		5562EE5420B0CD3C00569B58 /* ProductRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5562EE5320B0CD3C00569B58 /* ProductRouter.swift */; };
 		556684D320B10C870045C446 /* PeapodSwipeMarketingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556684D220B10C870045C446 /* PeapodSwipeMarketingUITests.swift */; };
 		556684DC20B10CE10045C446 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556684DB20B10CE00045C446 /* SnapshotHelper.swift */; };
-		556684DE20B115150045C446 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556684DD20B115150045C446 /* PeapodService-Info.plist */; };
 		558B4D40204C8E3300C2ED47 /* EmptySearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B4D3F204C8E3300C2ED47 /* EmptySearchResultView.swift */; };
 		558B4D42204C8E4900C2ED47 /* LoadingStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */; };
 		558B4D45204CBC9B00C2ED47 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558B4D44204CBC9B00C2ED47 /* ProductDetailViewController.swift */; };
@@ -52,9 +51,6 @@
 		55B0F5F5204A688200EB2594 /* DataRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B0F5F4204A688200EB2594 /* DataRequestExtension.swift */; };
 		55B2580A2050D88A002AD4EE /* ProductRichFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B258092050D88A002AD4EE /* ProductRichFlag.swift */; };
 		55B2580C2050D98F002AD4EE /* ProductFlagCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */; };
-		55B8607820744B2900FC6C1E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B8607720744B2800FC6C1E /* RxSwift.framework */; };
-		55B8607A20744B3200FC6C1E /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B8607920744B3200FC6C1E /* RxCocoa.framework */; };
-		55B8607C20744B3900FC6C1E /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B8607B20744B3900FC6C1E /* RxBlocking.framework */; };
 		55D49C5320522D2D00F7D383 /* ProductFlagLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D49C5220522D2D00F7D383 /* ProductFlagLabel.swift */; };
 		55D49C5520522DB700F7D383 /* ProductInformationScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D49C5420522DB700F7D383 /* ProductInformationScrollView.swift */; };
 		55E7C2E520B1DC6A003D0F90 /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7C2E420B1DC6A003D0F90 /* SettingsNavigationController.swift */; };
@@ -74,6 +70,7 @@
 		A9ADFBC11EEF69B20044D45B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC01EEF69B20044D45B /* CardView.swift */; };
 		A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */; };
 		A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B92CCE1F393A8D00274428 /* ProductImage.swift */; };
+		A9FE237020B32D7D00B11D36 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +121,6 @@
 		556684D220B10C870045C446 /* PeapodSwipeMarketingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeapodSwipeMarketingUITests.swift; sourceTree = "<group>"; };
 		556684D420B10C870045C446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		556684DB20B10CE00045C446 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		556684DD20B115150045C446 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
 		558B4D3F204C8E3300C2ED47 /* EmptySearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultView.swift; sourceTree = "<group>"; };
 		558B4D41204C8E4900C2ED47 /* LoadingStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateView.swift; sourceTree = "<group>"; };
 		558B4D44204CBC9B00C2ED47 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
@@ -151,9 +147,6 @@
 		55B258082050D537002AD4EE /* Peapod Swipe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Peapod Swipe.entitlements"; sourceTree = "<group>"; };
 		55B258092050D88A002AD4EE /* ProductRichFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRichFlag.swift; sourceTree = "<group>"; };
 		55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFlagCollection.swift; sourceTree = "<group>"; };
-		55B8607720744B2800FC6C1E /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		55B8607920744B3200FC6C1E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		55B8607B20744B3900FC6C1E /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		55D49C5220522D2D00F7D383 /* ProductFlagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFlagLabel.swift; sourceTree = "<group>"; };
 		55D49C5420522DB700F7D383 /* ProductInformationScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInformationScrollView.swift; sourceTree = "<group>"; };
 		55E7C2E420B1DC6A003D0F90 /* SettingsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
@@ -179,6 +172,7 @@
 		A9ADFBC01EEF69B20044D45B /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		A9B92CCE1F393A8D00274428 /* ProductImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
+		A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,21 +187,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55B8607C20744B3900FC6C1E /* RxBlocking.framework in Frameworks */,
 				55A328371FCB4D61003A12B0 /* FirebaseDatabase.framework in Frameworks */,
 				552898FA1FCA291000A3195A /* SnapKit.framework in Frameworks */,
 				55A3282F1FCB4D46003A12B0 /* nanopb.framework in Frameworks */,
 				5562EE4C20B0A93900569B58 /* Default.framework in Frameworks */,
 				55A328331FCB4D53003A12B0 /* GTMSessionFetcher.framework in Frameworks */,
 				55A3282D1FCB4D46003A12B0 /* FirebaseInstanceID.framework in Frameworks */,
-				55B8607820744B2900FC6C1E /* RxSwift.framework in Frameworks */,
 				55B0F5EA204902CF00EB2594 /* AlamofireImage.framework in Frameworks */,
 				55A3282B1FCB4D46003A12B0 /* GoogleToolboxForMac.framework in Frameworks */,
 				55A328321FCB4D53003A12B0 /* FirebaseAuth.framework in Frameworks */,
 				55A3282C1FCB4D46003A12B0 /* FirebaseCore.framework in Frameworks */,
 				55A3282E1FCB4D46003A12B0 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				55A328291FCB4D46003A12B0 /* FirebaseNanoPB.framework in Frameworks */,
-				55B8607A20744B3200FC6C1E /* RxCocoa.framework in Frameworks */,
 				55A328361FCB4D61003A12B0 /* leveldb-library.framework in Frameworks */,
 				55B0F5EC204A24F300EB2594 /* Alamofire.framework in Frameworks */,
 				55A3282A1FCB4D46003A12B0 /* FirebaseAnalytics.framework in Frameworks */,
@@ -372,7 +363,7 @@
 				A9ADFB9E1EEF5D770044D45B /* Info.plist */,
 				552898FB1FCA332900A3195A /* GoogleService-Info.plist */,
 				A9ADFB961EEF5D770044D45B /* Main.storyboard */,
-				556684DD20B115150045C446 /* PeapodService-Info.plist */,
+				A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */,
 				A9ADFB991EEF5D770044D45B /* Assets.xcassets */,
 				A9ADFB9B1EEF5D770044D45B /* LaunchScreen.storyboard */,
 				55A328381FCB74A8003A12B0 /* Settings.bundle */,
@@ -422,9 +413,6 @@
 			isa = PBXGroup;
 			children = (
 				5562EE4B20B0A93800569B58 /* Default.framework */,
-				55B8607B20744B3900FC6C1E /* RxBlocking.framework */,
-				55B8607920744B3200FC6C1E /* RxCocoa.framework */,
-				55B8607720744B2800FC6C1E /* RxSwift.framework */,
 				55B0F5EB204A24F300EB2594 /* Alamofire.framework */,
 				55B0F5E8204902CF00EB2594 /* AlamofireImage.framework */,
 				55A328351FCB4D61003A12B0 /* FirebaseDatabase.framework */,
@@ -598,10 +586,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9FE237020B32D7D00B11D36 /* PeapodService-Info.plist in Resources */,
 				A9ADFB9D1EEF5D770044D45B /* LaunchScreen.storyboard in Resources */,
 				552898FC1FCA332900A3195A /* GoogleService-Info.plist in Resources */,
 				55A328391FCB74A8003A12B0 /* Settings.bundle in Resources */,
-				556684DE20B115150045C446 /* PeapodService-Info.plist in Resources */,
 				A9ADFB9A1EEF5D770044D45B /* Assets.xcassets in Resources */,
 				A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */,
 			);
@@ -647,9 +635,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Default.framework",
 			);
 			name = "Run Carthage Copy Script";
@@ -657,9 +642,6 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireImage.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Default.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -917,7 +899,7 @@
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PeapodSwipeMarketingUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xijiangshao.PeapodSwipeMarketingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -938,7 +920,7 @@
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PeapodSwipeMarketingUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xijiangshao.PeapodSwipeMarketingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -959,7 +941,7 @@
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PeapodSwipeMarketingUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xijiangshao.PeapodSwipeMarketingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

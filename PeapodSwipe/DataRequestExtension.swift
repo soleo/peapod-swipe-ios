@@ -26,7 +26,7 @@ extension DataRequest {
         queue: DispatchQueue? = nil ,
         completionHandler: @escaping (DataResponse<T>) -> Void ) -> Self {
 
-        let responseSerializer = DataResponseSerializer<T> { request, response, data, error in
+        let responseSerializer = DataResponseSerializer<T> { _, response, data, error in
             guard error == nil else {return .failure(BackendError.network(error: error!))}
 
             let result = DataRequest.serializeResponseData(response: response, data: data, error: error)
@@ -52,7 +52,7 @@ extension DataRequest {
         queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<[T]>) -> Void
         ) -> Self {
 
-        let responseSerializer = DataResponseSerializer<[T]> { request, response, data, error in
+        let responseSerializer = DataResponseSerializer<[T]> { _, response, data, error in
             guard error == nil else {return .failure(BackendError.network(error: error!))}
 
             let result = DataRequest.serializeResponseData(response: response, data: data, error: error)

@@ -124,7 +124,7 @@ class VersionSetting: Setting {
     override var title: NSAttributedString? {
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-        return NSAttributedString(string: String(format: NSLocalizedString("Version %@ (%@)", comment: "Version number of Peapod Swipe shown in settings"), appVersion, buildNumber), attributes: [NSAttributedStringKey.foregroundColor:UIColor.Defaults.primaryTextColor ])
+        return NSAttributedString(string: String(format: NSLocalizedString("Version %@ (%@)", comment: "Version number of Peapod Swipe shown in settings"), appVersion, buildNumber), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor ])
     }
 
     override func onConfigureCell(_ cell: UITableViewCell) {

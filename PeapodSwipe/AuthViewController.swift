@@ -92,11 +92,11 @@ extension AuthViewController {
             textField.autocorrectionType = .no
         })
 
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             let args = ProcessInfo.processInfo.arguments
 
             if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE") {
-                Auth.auth().signInAnonymously(completion: { (user, error) in
+                Auth.auth().signInAnonymously(completion: { (_, _) in
                     let cardViewController = CardViewController()
 
                     let controller = UINavigationController(rootViewController: cardViewController)
@@ -120,7 +120,7 @@ extension AuthViewController {
                                     Alamofire.request(
                                         AuthRouter.requestForMagicLink(email)
                                         )
-                                        .response(completionHandler: { (response) in
+                                        .response(completionHandler: { (_) in
                                             // show an alert to tell user to check their mailbox
                                             self.showMagicLinkAlert(email: email)
                                         })
@@ -132,7 +132,7 @@ extension AuthViewController {
                                         let key: String = String(describing: UserInfo.self)
                                         UserDefaults.standard.df.store(setting, forKey: key)
 
-                                        Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (user, error) in
+                                        Auth.auth().createUser(withEmail: email, password: "ppod9ppod9", completion: { (_, error) in
                                             //print("Sign In error: \(String(describing: error))")
                                             if error == nil {
                                                 Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])

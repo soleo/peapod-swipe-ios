@@ -25,9 +25,9 @@ public enum AuthRouter: URLRequestConvertible {
 
     var path: String {
         switch self {
-        case .register(_, _):
+        case .register:
             return "/employee/register"
-        case .requestForMagicLink(_):
+        case .requestForMagicLink:
             return "/magic-link/request"
         case .signInByMagicLink(let token):
             return "/magic-link/auth/\(token)"
