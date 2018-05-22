@@ -12,6 +12,8 @@ binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseMessagingBinary.j
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebasePerformanceBinary.json" "5.0.1"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseRemoteConfigBinary.json" "5.0.1"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseStorageBinary.json" "5.0.1"
+binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/Instabug.json" "7.13"
+binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/InstabugCore/InstabugCore.json" "7.13"
 github "Alamofire/Alamofire" "4.7.2"
 github "Alamofire/AlamofireImage" "3.3.1"
 github "Nirma/Default" "2.1.0"

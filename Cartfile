@@ -19,3 +19,6 @@ binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseMessagingBinary.j
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebasePerformanceBinary.json"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseRemoteConfigBinary.json"
 binary "https://dl.google.com/dl/firebase/ios/carthage/FirebaseStorageBinary.json"
+
+binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/Instabug.json"
+binary "https://raw.githubusercontent.com/Instabug/Instabug-iOS/master/InstabugCore/InstabugCore.json"

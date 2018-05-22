@@ -2,3 +2,4 @@ excluded:
   - Carthage
   - ThirdParty
   - fastlane
+  - vendor
