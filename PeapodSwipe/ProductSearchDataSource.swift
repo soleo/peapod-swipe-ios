@@ -35,6 +35,8 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
         cell.textLabel!.text = product.name
         cell.textLabel!.isAccessibilityElement = true
         cell.textLabel!.accessibilityLabel = product.name
+        cell.textLabel!.font = UIFont.systemFont(ofSize: 16.0, weight: UIFont.Weight.regular)
+        cell.textLabel!.numberOfLines = 3
         if let prodSize = product.prodSize {
             cell.detailTextLabel!.text = "Size: \(prodSize)"
         }
@@ -46,7 +48,7 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
 
         let filter = AspectScaledToFillSizeWithRoundedCornersFilter(
             size: (cell.imageView?.frame.size)!,
-            radius: 5
+            radius: 2
         )
 
         cell.imageView?.af_setImage(
@@ -56,14 +58,19 @@ class ProductSearchDataSource: NSObject, UITableViewDataSource {
             imageTransition: .crossDissolve(0.2)
         )
 
-        cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.clipsToBounds = false
-        cell.imageView?.backgroundColor = .white
-        cell.imageView?.layer.cornerRadius = 5
-        cell.imageView?.layer.masksToBounds = true
-        cell.imageView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        let itemSize = CGSize.init(width: 50, height: 50)
+        UIGraphicsBeginImageContextWithOptions(itemSize, false, UIScreen.main.scale)
+        let imageRect = CGRect.init(origin: CGPoint.zero, size: itemSize)
+        cell.imageView?.image!.draw(in: imageRect)
+        cell.imageView?.image! = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
         cell.imageView?.accessibilityIgnoresInvertColors = true
 
+        cell.accessibilityTraits = UIAccessibilityTraitButton
+        cell.indentationWidth = 0
+        cell.layoutMargins = .zero
+        // So that the separator line goes all the way to the left edge.
+        cell.separatorInset = .zero
         return cell
     }
 
