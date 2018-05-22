@@ -25,20 +25,20 @@ public enum SearchRouter: URLRequestConvertible {
 
     var path: String {
         switch self {
-            case .keywords:
-                return "/product-search"
+        case .keywords:
+            return "/product-search"
         }
     }
 
     public func asURLRequest() throws -> URLRequest {
         let parameters: [String: Any] = {
             switch self {
-                case .keywords(let keywords):
-                    return [
-                        "keywords": keywords,
-                        "index": "0",
-                        "size": "120"
-                    ]
+            case .keywords(let keywords):
+                return [
+                    "keywords": keywords,
+                    "index": "0",
+                    "size": "120"
+                ]
             }
         }()
 

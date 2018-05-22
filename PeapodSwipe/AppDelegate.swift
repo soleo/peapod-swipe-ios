@@ -11,6 +11,7 @@ import Firebase
 import os.log
 import Alamofire
 import Default
+import Instabug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
         ) -> Bool {
         FirebaseApp.configure()
+
+        var serviceConfig: NSDictionary?
+        if let path = Bundle.main.path(forResource: "PeapodService-Info", ofType: "plist") {
+            serviceConfig = NSDictionary(contentsOfFile: path)
+        }
+
+        if let token = serviceConfig?.object(forKey: "INSTABUG_TOKEN") {
+            Instabug.start(withToken: token as! String, invocationEvent: .shake)
+        }
+
         let window = UIWindow(frame: UIScreen.main.bounds)
 
         if Auth.auth().currentUser != nil {
@@ -44,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-    
+
     func application(
         _ application: UIApplication,
         willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil
     ) -> Bool {
         return true
     }
-    
+
     func applicationWillResignActive(_ application: UIApplication) {
 
     }
@@ -119,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     Analytics.logEvent("sign_in", parameters: [ "email": email ])
                                     let mainViewController = CardViewController()
                                     let mainNavigationController = UINavigationController(rootViewController: mainViewController)
-
+                                    Instabug.identifyUser(withEmail: email, name: email)
                                     rootVC.present(mainNavigationController, animated: true, completion: { () -> Void in
                                         restorationHandler([mainViewController])
                                         didHandleActivity = true

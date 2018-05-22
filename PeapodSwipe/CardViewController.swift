@@ -158,24 +158,32 @@ class CardViewController: UIViewController {
             let card = cards[cardIndex]
             let newDownscale = cardAttributes[cardIndex - 1].downscale
             let newAlpha = cardAttributes[cardIndex - 1].alpha
-            UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-                card.transform = CGAffineTransform(scaleX: newDownscale, y: newDownscale)
-                card.alpha = newAlpha
-                if cardIndex == 1 {
-                    card.center = self.view.center
-                } else {
-                    card.center.x = self.view.center.x
-                    card.frame.origin.y = self.cards[1].frame.origin.y - (CGFloat(cardIndex - 1) * self.cardInteritemSpacing)
-                }
-            }, completion: { (_) in
-                if cardIndex == 1 {
+            UIView.animate(
+                withDuration: animationDuration,
+                delay: 0,
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.0,
+                options: [],
+                animations: {
+                    card.transform = CGAffineTransform(scaleX: newDownscale, y: newDownscale)
+                    card.alpha = newAlpha
+                    if cardIndex == 1 {
+                        card.center = self.view.center
+                    } else {
+                        card.center.x = self.view.center.x
+                        card.frame.origin.y = self.cards[1].frame.origin.y - (CGFloat(cardIndex - 1) * self.cardInteritemSpacing)
+                    }
+                },
+                completion: { (_) in
+                    if cardIndex == 1 {
 
-                    card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
-                    card.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
-                    card.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleDislikeTap)))
-                    card.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleProductImageTap)))
-               }
-            })
+                        card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
+                        card.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
+                        card.dislikeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleDislikeTap)))
+                        card.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleProductImageTap)))
+                   }
+                }
+            )
 
         }
 
@@ -201,19 +209,28 @@ class CardViewController: UIViewController {
         self.view.addSubview(newCard)
 
         // animate to end state of new card
-        UIView.animate(withDuration: animationDuration, delay: (3 * (animationDuration / 2)), usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-            newCard.transform = CGAffineTransform(scaleX: downscale, y: downscale)
-            newCard.alpha = alpha
-            newCard.center.x = self.view.center.x
-            newCard.frame.origin.y = self.cards[1].frame.origin.y - (3 * self.cardInteritemSpacing) + 1.5
-        }, completion: nil)
+        UIView.animate(
+            withDuration: animationDuration,
+            delay: (3 * (animationDuration / 2)),
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.0,
+            options: [],
+            animations: {
+                newCard.transform = CGAffineTransform(scaleX: downscale, y: downscale)
+                newCard.alpha = alpha
+                newCard.center.x = self.view.center.x
+                newCard.frame.origin.y = self.cards[1].frame.origin.y - (3 * self.cardInteritemSpacing) + 1.5
+            },
+            completion: nil)
 
         // first card needs to be in the front for proper interactivity
         cards[1].removeAccessibilityHidden()
         self.view.bringSubview(toFront: cards[1])
     }
 
-    /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
+    // Whenever the front card is off the screen,
+    // this method is called in order to remove the card from our data structure
+    // and from the view.
     func removeOldFrontCard() {
         cards[0].removeFromSuperview()
         cards.remove(at: 0)
@@ -244,11 +261,17 @@ class CardViewController: UIViewController {
 //            })
 //        } else {
             // fallback for earlier versions
-            UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseIn], animations: {
-                self.cards[0].alpha = 0.0
-            }, completion: { (_) in
+            UIView.animate(
+                withDuration: 0.3,
+                delay: 0,
+                options: [.curveEaseIn],
+                animations: {
+                    self.cards[0].alpha = 0.0
+                },
+                completion: { (_) in
                 self.removeOldFrontCard()
-            })
+                }
+            )
         //}
     }
 
@@ -265,7 +288,7 @@ extension CardViewController {
             break
         case .changed:
              dynamicAnimator.removeAllBehaviors()
-        
+
         case .ended:
             dynamicAnimator.removeAllBehaviors()
 

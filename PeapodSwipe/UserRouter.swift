@@ -42,8 +42,9 @@ public enum UserRouter: URLRequestConvertible {
                 serviceConfig = NSDictionary(contentsOfFile: path)
             }
 
-            let token = serviceConfig?.object(forKey: "TEST_TOKEN")
-            request.setValue((token as! String), forHTTPHeaderField: "Authorization")
+            if let token = serviceConfig?.object(forKey: "TEST_TOKEN") {
+                request.setValue(token as? String, forHTTPHeaderField: "Authorization")
+            }
 
         } else {
             request.setValue(setting?.token, forHTTPHeaderField: "Authorization")

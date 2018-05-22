@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Default
+import Instabug
 
 // Logout the app
 class LogoutSetting: Setting {
@@ -18,9 +19,12 @@ class LogoutSetting: Setting {
     override var accessibilityIdentifier: String? { return "Logout" }
 
     init(settings: SettingsTableViewController) {
-        let title = NSAttributedString(string: NSLocalizedString("Log Out", comment: "Logout Curren User"), attributes: [
-            NSAttributedStringKey.foregroundColor: UIColor.Defaults.secondaryColor
-        ])
+        let title = NSAttributedString(
+            string: NSLocalizedString("Log Out", comment: "Logout Curren User"),
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.Defaults.secondaryColor
+            ]
+        )
         super.init(title: title)
     }
 
@@ -150,13 +154,8 @@ class SendFeedbackSetting: Setting {
         )
     }
 
-    override var url: URL? {
-        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-        return URL(string: "https://github.com/soleo/peapod-swipe-ios/issues/new?title=v\(appVersion)_feedback")
-    }
-
     override func onClick(_ navigationController: UINavigationController?) {
-        setUpAndPushSettingsContentViewController(navigationController)
+        Instabug.invoke()
     }
 }
 

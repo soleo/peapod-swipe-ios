@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import Alamofire
+import Instabug
 
 class AuthViewController: UIViewController {
 
@@ -170,6 +171,8 @@ extension AuthViewController {
                                             //print("Sign In error: \(String(describing: error))")
                                             if error == nil {
                                                 Analytics.logEvent("sign_up", parameters: [ "email": email, "invite_code": inviteCode ])
+                                                Instabug.identifyUser(withEmail: email, name: email)
+                                                Instabug.setUserAttribute(inviteCode, withKey: "Invite Code")
                                                 let cardViewController = CardViewController()
 
                                                 let controller = UINavigationController(rootViewController: cardViewController)

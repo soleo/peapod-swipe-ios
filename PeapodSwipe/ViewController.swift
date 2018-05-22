@@ -155,18 +155,27 @@ class CardViewController: UIViewController {
         self.view.addSubview(newCard)
 
         // animate to end state of new card
-        UIView.animate(withDuration: animationDuration, delay: (3 * (animationDuration / 2)), usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
-            newCard.transform = CGAffineTransform(scaleX: downscale, y: downscale)
-            newCard.alpha = alpha
-            newCard.center.x = self.view.center.x
-            newCard.frame.origin.y = self.cards[1].frame.origin.y - (3 * self.cardInteritemSpacing) + 1.5
-        }, completion: nil)
+        UIView.animate(
+            withDuration: animationDuration,
+            delay: (3 * (animationDuration / 2)),
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.0,
+            options: [],
+            animations: {
+                newCard.transform = CGAffineTransform(scaleX: downscale, y: downscale)
+                newCard.alpha = alpha
+                newCard.center.x = self.view.center.x
+                newCard.frame.origin.y = self.cards[1].frame.origin.y - (3 * self.cardInteritemSpacing) + 1.5
+            },
+            completion: nil
+        )
 
         // first card needs to be in the front for proper interactivity
         self.view.bringSubview(toFront: cards[1])
     }
 
-    /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
+    // Whenever the front card is off the screen, this method is called in
+    // order to remove the card from our data structure and from the view.
     func removeOldFrontCard() {
         cards[0].removeFromSuperview()
         cards.remove(at: 0)
@@ -188,7 +197,10 @@ class CardViewController: UIViewController {
         switch sender.state {
         case .began:
             dynamicAnimator.removeAllBehaviors()
-            let offset = UIOffset(horizontal: panLocationInCard.x - cards[0].bounds.midX, vertical: panLocationInCard.y - cards[0].bounds.midY)
+            let offset = UIOffset(
+                horizontal: panLocationInCard.x - cards[0].bounds.midX,
+                vertical: panLocationInCard.y - cards[0].bounds.midY
+            )
             // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
@@ -221,7 +233,8 @@ class CardViewController: UIViewController {
 
             dynamicAnimator.removeAllBehaviors()
 
-            if !(cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) || cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter)) {
+            if !(cards[0].center.x > (self.view.center.x + requiredOffsetFromCenter) ||
+                cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter)) {
                 // snap to center
                 let snapBehavior = UISnapBehavior(item: cards[0], snapTo: self.view.center)
                 dynamicAnimator.addBehavior(snapBehavior)

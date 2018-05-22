@@ -136,23 +136,6 @@ class SettingSection: Setting {
     }
 }
 
-private class PaddedSwitch: UIView {
-    fileprivate static let Padding: CGFloat = 8
-
-    init(switchView: UISwitch) {
-        super.init(frame: .zero)
-
-        addSubview(switchView)
-
-        frame.size = CGSize(width: switchView.frame.width + PaddedSwitch.Padding, height: switchView.frame.height)
-        switchView.frame.origin = CGPoint(x: PaddedSwitch.Padding, y: 0)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 class SettingsTableViewController: UITableViewController {
 
     fileprivate let cellIdentifier = "CellIdentifier"
@@ -223,7 +206,7 @@ class SettingsTableViewController: UITableViewController {
         let section = settings[indexPath.section]
         if let setting = section[indexPath.row] {
             var cell: UITableViewCell!
-            if let _ = setting.status {
+            if setting.status != nil {
                 // Work around http://stackoverflow.com/a/9999821 and http://stackoverflow.com/a/25901083 by using a new cell.
                 // I could not make any setNeedsLayout solution work in the case where we disconnect and then connect a new account.
                 // Be aware that dequeing and then ignoring a cell appears to cause issues; only deque a cell if you're going to return it.
@@ -280,7 +263,7 @@ class SettingsTableViewController: UITableViewController {
     // for that: `UITableViewAutomaticDimension`.
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let sectionSetting = settings[section]
-        if let _ = sectionSetting.footerTitle?.string {
+        if sectionSetting.footerTitle?.string != nil {
             return UITableViewAutomaticDimension
         }
         return 0
