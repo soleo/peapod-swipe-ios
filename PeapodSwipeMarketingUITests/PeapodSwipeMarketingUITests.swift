@@ -46,8 +46,8 @@ class PeapodSwipeMarketingUITests: XCTestCase {
         if app.buttons["Menu"].exists {
             app.buttons["Menu"].tap()
             app.sheets["Menu"].buttons["Settings"].tap()
-
-            app.tables["AppSettingsTableViewController.tableView"]/*@START_MENU_TOKEN@*/.staticTexts["Log Out"]/*[[".cells[\"Log Out\"].staticTexts[\"Log Out\"]",".staticTexts[\"Log Out\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+            let tableView = app.tables["AppSettingsTableViewController.tableView"]
+            tableView.staticTexts["Log Out"].tap()
 
         }
         let signInButton = app.buttons["Sign In"]

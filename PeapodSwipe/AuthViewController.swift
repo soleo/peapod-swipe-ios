@@ -114,7 +114,7 @@ extension AuthViewController {
                         )
                         .responseJSON { response in
                             if let httpStatusCode = response.response?.statusCode {
-                                switch(httpStatusCode) {
+                                switch httpStatusCode {
                                 case 409:
                                     // Send The Magic Link to User
                                     Alamofire.request(

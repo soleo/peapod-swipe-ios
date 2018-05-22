@@ -49,12 +49,28 @@ class ShowInviteCodeSetting: Setting {
     override var status: NSAttributedString? {
         let key = String(describing: UserInfo.self)
         if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self) {
-            return NSAttributedString(string: NSLocalizedString(settings.inviteCode.uppercased(), comment: "Invite Code"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor])
+            return NSAttributedString(
+                string: NSLocalizedString(
+                    settings.inviteCode.uppercased(), comment: "Invite Code"
+                ),
+                attributes: [
+                    NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+                ]
+            )
         }
         return nil
     }
     init(settings: SettingsTableViewController) {
-        super.init(title: NSAttributedString(string: NSLocalizedString("Invite Code", comment: "Show user information like email address, nickname etc"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor]))
+        super.init(
+            title: NSAttributedString(
+                string: NSLocalizedString(
+                    "Invite Code",
+                    comment: "Show user information like email address, nickname etc"
+            ),
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+            ])
+        )
     }
 
 }
@@ -65,12 +81,27 @@ class ShowEmailSetting: Setting {
     override var status: NSAttributedString? {
         let key = String(describing: UserInfo.self)
         if let settings = UserDefaults.standard.df.fetch(forKey: key, type: UserInfo.self) {
-            return NSAttributedString(string: NSLocalizedString(settings.email, comment: "Email"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor])
+            return NSAttributedString(
+                string: NSLocalizedString(settings.email, comment: "Email"),
+                attributes: [
+                    NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+                ]
+            )
         }
         return nil
     }
     init(settings: SettingsTableViewController) {
-        super.init(title: NSAttributedString(string: NSLocalizedString("Email", comment: "Show user information like email address, nickname etc"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor]))
+        super.init(
+            title: NSAttributedString(
+                string: NSLocalizedString(
+                    "Email",
+                    comment: "Show user information like email address, nickname etc"
+                ),
+                attributes: [
+                    NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+                ]
+            )
+        )
     }
 
 }
@@ -81,7 +112,18 @@ class ShowIntroductionSetting: Setting {
 
     init(settings: SettingsTableViewController) {
 
-        super.init(title: NSAttributedString(string: NSLocalizedString("Show Tour", comment: "Show the on-boarding screen again from the settings"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor]))
+        super.init(
+            title: NSAttributedString(
+                string: NSLocalizedString(
+                    "Show Tour",
+                    comment: "Show the on-boarding screen again from the settings"
+                ),
+                attributes: [
+                    NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+                ]
+            )
+
+        )
     }
 
     override func onClick(_ navigationController: UINavigationController?) {
@@ -97,7 +139,15 @@ class ShowIntroductionSetting: Setting {
 
 class SendFeedbackSetting: Setting {
     override var title: NSAttributedString? {
-        return NSAttributedString(string: NSLocalizedString("Send Feedback", comment: "Menu item in settings used to open input.mozilla.org where people can submit feedback"), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor])
+        return NSAttributedString(
+            string: NSLocalizedString(
+                "Send Feedback",
+                comment: "Menu item in settings used to open input.mozilla.org where people can submit feedback"
+            ),
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+            ]
+        )
     }
 
     override var url: URL? {
@@ -124,7 +174,19 @@ class VersionSetting: Setting {
     override var title: NSAttributedString? {
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-        return NSAttributedString(string: String(format: NSLocalizedString("Version %@ (%@)", comment: "Version number of Peapod Swipe shown in settings"), appVersion, buildNumber), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor ])
+        return NSAttributedString(
+            string: String(
+                format: NSLocalizedString(
+                    "Version %@ (%@)",
+                    comment: "Version number of Peapod Swipe shown in settings"
+                ),
+                appVersion,
+                buildNumber
+            ),
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+            ]
+        )
     }
 
     override func onConfigureCell(_ cell: UITableViewCell) {
@@ -137,7 +199,15 @@ class VersionSetting: Setting {
 // Opens the the term of service page in a new tab
 class PrivacyPolicySetting: Setting {
     override var title: NSAttributedString? {
-        return NSAttributedString(string: NSLocalizedString("Peapod's Privacy Policy", comment: "Settings item that opens a tab containing the term of service."), attributes: [NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor])
+        return NSAttributedString(
+            string: NSLocalizedString(
+                "Peapod's Privacy Policy",
+                comment: "Settings item that opens a tab containing the term of service."
+            ),
+            attributes: [
+                NSAttributedStringKey.foregroundColor: UIColor.Defaults.primaryTextColor
+            ]
+        )
     }
 
     override var url: URL? {

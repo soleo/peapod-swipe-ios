@@ -31,12 +31,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UISearchBarDe
         searchBar.tintColor = UIColor.Defaults.primaryColor
 
         // https://stackoverflow.com/questions/21191801/how-to-add-a-1-pixel-gray-border-around-a-uisearchbar-textfield/21192270
-        for s in self.searchBar.subviews[0].subviews {
-            if s is UITextField {
-                s.layer.borderWidth = 1.0
-                s.layer.cornerRadius = 10
-                s.layer.borderColor = UIColor.Defaults.backgroundColor.cgColor
-                s.layer.backgroundColor = UIColor.Defaults.Grey30.cgColor
+        for searchTextfield in self.searchBar.subviews[0].subviews {
+            if searchTextfield is UITextField {
+                searchTextfield.layer.borderWidth = 1.0
+                searchTextfield.layer.cornerRadius = 10
+                searchTextfield.layer.borderColor = UIColor.Defaults.backgroundColor.cgColor
+                searchTextfield.layer.backgroundColor = UIColor.Defaults.Grey30.cgColor
             }
         }
 

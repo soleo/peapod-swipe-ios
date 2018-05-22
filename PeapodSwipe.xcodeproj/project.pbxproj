@@ -698,7 +698,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -e\n\nif ! which swiftlint > /dev/null; then\necho \"error: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more.\"\necho \"Open iTerm2: $ brew install swiftlint\"\nexit 1\nfi\n\nswiftlint autocorrect";
+			shellScript = "set -e\n\nif ! which swiftlint > /dev/null; then\necho \"error: SwiftLint is not installed. Vistit http://github.com/realm/SwiftLint to learn more.\"\necho \"Open iTerm2: $ brew install swiftlint\"\nexit 1\nfi\n\nswiftlint";
 		};
 		A9B92CD51F39427700274428 /* Run Carthage Copy Script */ = {
 			isa = PBXShellScriptBuildPhase;

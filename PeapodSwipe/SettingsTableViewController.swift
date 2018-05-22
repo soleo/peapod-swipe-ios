@@ -118,13 +118,13 @@ class SettingSection: Setting {
         return count
     }
 
-    subscript(val: Int) -> Setting? {
-        var i = 0
+    subscript(value: Int) -> Setting? {
+        var index = 0
         for setting in children where !setting.hidden {
-            if i == val {
+            if index == value {
                 return setting
             }
-            i += 1
+            index += 1
         }
         return nil
     }
@@ -149,8 +149,8 @@ private class PaddedSwitch: UIView {
 
 class SettingsTableViewController: UITableViewController {
 
-    fileprivate let Identifier = "CellIdentifier"
-    fileprivate let SectionHeaderIdentifier = "SectionHeaderIdentifier"
+    fileprivate let cellIdentifier = "CellIdentifier"
+    fileprivate let sectionHeaderIdentifier = "SectionHeaderIdentifier"
 
     var settings = [SettingSection]()
 
@@ -177,8 +177,8 @@ class SettingsTableViewController: UITableViewController {
         tableView.accessibilityIdentifier = "SettingsTableViewController.tableView"
 
         tableView.backgroundColor = UIColor.Defaults.lightBackgroudColor
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifier)
-        tableView.register(SettingsTableSectionHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(SettingsTableSectionHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: sectionHeaderIdentifier)
         tableView.separatorColor = UIColor.Defaults.SeparatorColor
 
         tableView.tableFooterView = UIView(frame: CGRect(width: view.frame.width, height: 30))
@@ -223,12 +223,12 @@ class SettingsTableViewController: UITableViewController {
                 // Be aware that dequeing and then ignoring a cell appears to cause issues; only deque a cell if you're going to return it.
                 cell = UITableViewCell(style: setting.style, reuseIdentifier: nil)
             } else {
-                cell = tableView.dequeueReusableCell(withIdentifier: Identifier, for: indexPath)
+                cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             }
             setting.onConfigureCell(cell)
             return cell
         }
-        return tableView.dequeueReusableCell(withIdentifier: Identifier, for: indexPath)
+        return tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -241,7 +241,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderIdentifier) as! SettingsTableSectionHeaderFooterView
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: sectionHeaderIdentifier) as! SettingsTableSectionHeaderFooterView
         let sectionSetting = settings[section]
         if let sectionTitle = sectionSetting.title?.string {
             headerView.titleLabel.text = sectionTitle.uppercased()
@@ -261,7 +261,7 @@ class SettingsTableViewController: UITableViewController {
         guard let sectionFooter = sectionSetting.footerTitle?.string else {
             return nil
         }
-        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderIdentifier) as! SettingsTableSectionHeaderFooterView
+        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: sectionHeaderIdentifier) as! SettingsTableSectionHeaderFooterView
         footerView.titleLabel.text = sectionFooter
         footerView.titleAlignment = .top
         footerView.showBottomBorder = false

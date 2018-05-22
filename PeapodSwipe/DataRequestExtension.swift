@@ -62,7 +62,11 @@ extension DataRequest {
 
             let decoder = JSONDecoder()
             guard let responseArray = try? decoder.decode([T].self, from: jsonData)else {
-                return .failure(BackendError.objectSerialization(reason: "JSON array could not be serialized \(String(data: jsonData, encoding: .utf8)!)"))
+                return .failure(
+                    BackendError.objectSerialization(
+                        reason: "JSON array could not be serialized \(String(data: jsonData, encoding: .utf8)!)"
+                    )
+                )
             }
 
             return .success(responseArray)

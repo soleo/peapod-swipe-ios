@@ -55,7 +55,12 @@ class CardViewController: UIViewController {
         let menuButton = UIButton()
         menuButton.setTitle("MENU", for: UIControlState.normal)
         menuButton.setTitleColor(.white, for: UIControlState.normal)
-        menuButton.frame = CGRect(x: (self.view.frame.width / 2) - 60, y: self.view.frame.height - 70, width: 120, height: 50)
+        menuButton.frame = CGRect(
+            x: (self.view.frame.width / 2) - 60,
+            y: self.view.frame.height - 70,
+            width: 120,
+            height: 50
+        )
         self.view.addSubview(menuButton)
     }
 
@@ -69,17 +74,17 @@ class CardViewController: UIViewController {
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleCardPan)))
 
         // the next 3 cards in the deck
-        for i in 1...3 {
-            if i > (cards.count - 1) { continue }
+        for cardIndex in 1...3 {
+            if cardIndex > (cards.count - 1) { continue }
 
             let card = cards[i]
 
-            card.layer.zPosition = CGFloat(cards.count - i)
+            card.layer.zPosition = CGFloat(cards.count - cardIndex)
 
             // here we're just getting some hand-picked vales from cardAttributes (an array of tuples)
             // which will tell us the attributes of each card in the 4 cards visible to the user
             let downscale = cardAttributes[i].downscale
-            let alpha = cardAttributes[i].alpha
+            let alpha = cardAttributes[cardIndex].alpha
             card.transform = CGAffineTransform(scaleX: downscale, y: downscale)
             card.alpha = alpha
 
@@ -87,7 +92,7 @@ class CardViewController: UIViewController {
             card.center.x = self.view.center.x
             card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(i) * cardInteritemSpacing)
             // workaround: scale causes heights to skew so compensate for it with some tweaking
-            if i == 3 {
+            if cardIndex == 3 {
                 card.frame.origin.y += 1.5
             }
 
@@ -102,22 +107,28 @@ class CardViewController: UIViewController {
     func showNextCard() {
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
-        for i in 1...3 {
-            if i > (cards.count - 1) { continue }
-            let card = cards[i]
-            let newDownscale = cardAttributes[i - 1].downscale
+        for cardIndex in 1...3 {
+            if cardIndex > (cards.count - 1) { continue }
+            let card = cards[cardIndex]
+            let newDownscale = cardAttributes[cardIndex - 1].downscale
             let newAlpha = cardAttributes[i - 1].alpha
-            UIView.animate(withDuration: animationDuration, delay: (TimeInterval(i - 1) * (animationDuration / 2)), usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
+            UIView.animate(
+                withDuration: animationDuration,
+                delay: (TimeInterval(cardIndex - 1) * (animationDuration / 2)),
+                usingSpringWithDamping: 0.8,
+                initialSpringVelocity: 0.0,
+                options: [],
+                animations: {
                 card.transform = CGAffineTransform(scaleX: newDownscale, y: newDownscale)
                 card.alpha = newAlpha
-                if i == 1 {
+                if cardIndex == 1 {
                     card.center = self.view.center
                 } else {
                     card.center.x = self.view.center.x
-                    card.frame.origin.y = self.cards[1].frame.origin.y - (CGFloat(i - 1) * self.cardInteritemSpacing)
+                    card.frame.origin.y = self.cards[1].frame.origin.y - (CGFloat(cardIndex - 1) * self.cardInteritemSpacing)
                 }
             }, completion: { (_) in
-                if i == 1 {
+                if cardIndex == 1 {
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(self.handleCardPan)))
                 }
             })
@@ -227,9 +238,9 @@ class CardViewController: UIViewController {
                 let currentAngle: Double = atan2(Double(cards[0].transform.b), Double(cards[0].transform.a))
 
                 if currentAngle > 0 {
-                    angular = angular * 1
+                    angular *= 1
                 } else {
-                    angular = angular * -1
+                    angular *= -1
                 }
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
                 itemBehavior.friction = 0.2
@@ -245,7 +256,10 @@ class CardViewController: UIViewController {
         }
     }
 
-    /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.
+    // This function continuously checks to see if the card's center is on the
+    // screen anymore. If it finds that the card's center is not on screen, then
+    // it triggers removeOldFrontCard() which removes the front card from the
+    // data structure and from the view.
     func hideFrontCard() {
         if #available(iOS 10.0, *) {
             var cardRemoveTimer: Timer? = nil

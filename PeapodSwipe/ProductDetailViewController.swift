@@ -176,7 +176,12 @@ class ProductDetailViewController: UIViewController {
 
         addProductQuickFacts()
 
-        productInformationScrollView.addNutritionLabel(calorieTotal: self.product.nutrition?.totalCalories, saturatedFatTotal: self.product.nutrition?.saturatedFat, sodiumTotal: self.product.nutrition?.sodium, sugarTotal: self.product.nutrition?.sugar)
+        productInformationScrollView.addNutritionLabel(
+            calorieTotal: self.product.nutrition?.totalCalories,
+            saturatedFatTotal: self.product.nutrition?.saturatedFat,
+            sodiumTotal: self.product.nutrition?.sodium,
+            sugarTotal: self.product.nutrition?.sugar
+        )
 
     }
 

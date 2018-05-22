@@ -118,25 +118,25 @@ class CardViewController: UIViewController {
         firstCard.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleProductImageTap)))
 
         // the next 3 cards in the deck
-        for i in 1...3 {
-            if i > (cards.count - 1) { continue }
+        for cardIndex in 1...3 {
+            if cardIndex > (cards.count - 1) { continue }
 
-            let card = cards[i]
+            let card = cards[cardIndex]
 
-            card.layer.zPosition = CGFloat(cards.count - i)
+            card.layer.zPosition = CGFloat(cards.count - cardIndex)
 
             // here we're just getting some hand-picked vales from cardAttributes (an array of tuples)
             // which will tell us the attributes of each card in the 4 cards visible to the user
-            let downscale = cardAttributes[i].downscale
-            let alpha = cardAttributes[i].alpha
+            let downscale = cardAttributes[cardIndex].downscale
+            let alpha = cardAttributes[cardIndex].alpha
             card.transform = CGAffineTransform(scaleX: downscale, y: downscale)
             card.alpha = alpha
 
             // position each card so there's a set space (cardInteritemSpacing) between each card, to give it a fanned out look
             card.center.x = self.view.center.x
-            card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(i) * cardInteritemSpacing)
+            card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(cardIndex) * cardInteritemSpacing)
             // workaround: scale causes heights to skew so compensate for it with some tweaking
-            if i == 3 {
+            if cardIndex == 3 {
                 card.frame.origin.y += 1.5
             }
 
@@ -153,22 +153,22 @@ class CardViewController: UIViewController {
     func showNextCard() {
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
-        for i in 1...3 {
-            if i > (cards.count - 1) { continue }
-            let card = cards[i]
-            let newDownscale = cardAttributes[i - 1].downscale
-            let newAlpha = cardAttributes[i - 1].alpha
+        for cardIndex in 1...3 {
+            if cardIndex > (cards.count - 1) { continue }
+            let card = cards[cardIndex]
+            let newDownscale = cardAttributes[cardIndex - 1].downscale
+            let newAlpha = cardAttributes[cardIndex - 1].alpha
             UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [], animations: {
                 card.transform = CGAffineTransform(scaleX: newDownscale, y: newDownscale)
                 card.alpha = newAlpha
-                if i == 1 {
+                if cardIndex == 1 {
                     card.center = self.view.center
                 } else {
                     card.center.x = self.view.center.x
-                    card.frame.origin.y = self.cards[1].frame.origin.y - (CGFloat(i - 1) * self.cardInteritemSpacing)
+                    card.frame.origin.y = self.cards[1].frame.origin.y - (CGFloat(cardIndex - 1) * self.cardInteritemSpacing)
                 }
             }, completion: { (_) in
-                if i == 1 {
+                if cardIndex == 1 {
 
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleCardPan)))
                     card.likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CardViewController.SELhandleLikeTap)))
@@ -219,11 +219,14 @@ class CardViewController: UIViewController {
         cards.remove(at: 0)
     }
 
-    /// UIKit dynamics variables that we need references to.
+    // UIKit dynamics variables that we need references to.
     var dynamicAnimator: UIDynamicAnimator!
     var cardAttachmentBehavior: UIAttachmentBehavior!
 
-    /// This function continuously checks to see if the card's center is on the screen anymore. If it finds that the card's center is not on screen, then it triggers removeOldFrontCard() which removes the front card from the data structure and from the view.
+    // This function continuously checks to see if the card's center is on the
+    // screen anymore. If it finds that the card's center is not on screen,
+    // then it triggers removeOldFrontCard() which removes the front card from
+    // the data structure and from the view.
     func hideFrontCard() {
 //        if #available(iOS 10.0, *) {
 //            var cardRemoveTimer: Timer? = nil
@@ -271,7 +274,7 @@ extension CardViewController {
                 // spin after throwing
                 var angular = CGFloat.pi / 2 // angular velocity of spin
 
-                angular = angular * -1
+                angular *= -1
                 Analytics.logEvent("like_a_product", parameters: nil)
                 castProductVote(productId: cards[0].productId, userVote: true)
 
@@ -384,9 +387,9 @@ extension CardViewController {
 
                 let currentAngle: Double = atan2(Double(cards[0].transform.b), Double(cards[0].transform.a))
                 if currentAngle > 0 {
-                    angular = angular * 1
+                    angular *= 1
                 } else {
-                     angular = angular * -1
+                    angular *= -1
                 }
 
                 let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
