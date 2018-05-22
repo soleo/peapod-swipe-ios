@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mainNavigationController: UINavigationController?
     var rootViewController: UIViewController?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+        ) -> Bool {
         FirebaseApp.configure()
         let window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -41,10 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-    func application(_ application: UIApplication,
-                     willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    
+    func application(
+        _ application: UIApplication,
+        willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil
+    ) -> Bool {
         return true
     }
+    
     func applicationWillResignActive(_ application: UIApplication) {
 
     }
@@ -65,7 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(
+        _ application: UIApplication,
+        continue userActivity: NSUserActivity,
+        restorationHandler: @escaping ([Any]?) -> Void
+        ) -> Bool {
 
         var didHandleActivity = false
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,

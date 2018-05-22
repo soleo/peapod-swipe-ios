@@ -66,20 +66,50 @@ class AuthViewController: UIViewController {
 
 extension AuthViewController {
     func showMagicLinkAlert(email: String) {
-        let alert = UIAlertController(title: "Check Your Mail Inbox", message: "A magic link has been sent to "+email, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Sure", comment: "Sure"), style: .cancel, handler: nil))
+        let alert = UIAlertController(
+            title: "Check Your Mail Inbox",
+            message: "A magic link has been sent to " + email,
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("Sure", comment: "Sure"),
+                style: .cancel,
+                handler: nil
+            )
+        )
         self.present(alert, animated: true)
     }
 
     func showRetryMessage() {
-        let alert = UIAlertController(title: "Something Went Wrong", message: "Could retry your Email and invite code?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Ok"), style: .cancel, handler: nil))
+        let alert = UIAlertController(
+            title: "Something Went Wrong",
+            message: "Could retry your Email and invite code?",
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("OK", comment: "Ok"),
+                style: .cancel,
+                handler: nil
+            )
+        )
         self.present(alert, animated: true)
     }
 
     @objc func SELSignInWithEmail() {
-        let alert = UIAlertController(title: NSLocalizedString("Sign In", comment: "Sign In"), message: "Your Email and invie code, Please?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil))
+        let alert = UIAlertController(
+            title: NSLocalizedString("Sign In", comment: "Sign In"),
+            message: "Your Email and invie code, Please?",
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("Cancel", comment: "Cancel"),
+                style: .cancel,
+                handler: nil
+            )
+        )
 
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "bagel.is.everything@ahold.com"
@@ -92,7 +122,11 @@ extension AuthViewController {
             textField.autocorrectionType = .no
         })
 
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: { _ in
             let args = ProcessInfo.processInfo.arguments
 
             if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE") {
@@ -110,7 +144,7 @@ extension AuthViewController {
                 //print("Your email: \(email)")
                 if self.isValidEmail(emalAddress: email), let inviteCode = alert.textFields?.last?.text?.trim() {
                     Alamofire.request(
-                        AuthRouter.register(email, inviteCode)
+                            AuthRouter.register(email, inviteCode)
                         )
                         .responseJSON { response in
                             if let httpStatusCode = response.response?.statusCode {

@@ -92,7 +92,13 @@ class Setting: NSObject {
         }
     }
 
-    init(title: NSAttributedString? = nil, footerTitle: NSAttributedString? = nil, cellHeight: CGFloat? = nil, delegate: SettingsDelegate? = nil, enabled: Bool? = nil) {
+    init(
+         title: NSAttributedString? = nil,
+         footerTitle: NSAttributedString? = nil,
+         cellHeight: CGFloat? = nil,
+         delegate: SettingsDelegate? = nil,
+         enabled: Bool? = nil
+        ) {
         self._title = title
         self._footerTitle = footerTitle
         self._cellHeight = cellHeight

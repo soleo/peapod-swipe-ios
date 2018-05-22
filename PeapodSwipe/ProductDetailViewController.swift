@@ -67,7 +67,12 @@ class ProductDetailViewController: UIViewController {
         likeButton.backgroundColor = UIColor.Defaults.waterBlue
         likeButton.layer.cornerRadius = 5
         likeButton.layer.masksToBounds = true
-        likeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.likeProductFromItemDetail)))
+        likeButton.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(ProductDetailViewController.likeProductFromItemDetail)
+            )
+        )
         if shouldShowNotifyButton {
             likeButton.isHidden = false
         } else {
@@ -75,7 +80,12 @@ class ProductDetailViewController: UIViewController {
         }
 
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController)))
+        imageView.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(ProductDetailViewController.dismissViewController)
+            )
+        )
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         imageView.addGestureRecognizer(swipeDown)

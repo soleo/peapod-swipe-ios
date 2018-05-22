@@ -26,15 +26,21 @@ class AppSettingsTableViewController: SettingsTableViewController {
     override func generateSettings() -> [SettingSection] {
         var settings = [SettingSection]()
 
-        let generalSection = SettingSection(title: NSAttributedString(string: NSLocalizedString("General", comment: "General section title")), children: [
+        let generalSection = SettingSection(
+            title: NSAttributedString(string: NSLocalizedString("General", comment: "General section title")),
+            children: [
              ShowEmailSetting(settings: self),
              ShowInviteCodeSetting(settings: self)
         ])
-        let supportSection = SettingSection(title: NSAttributedString(string: NSLocalizedString("Support", comment: "Support section title")), children: [
+        let supportSection = SettingSection(
+            title: NSAttributedString(string: NSLocalizedString("Support", comment: "Support section title")),
+            children: [
             ShowIntroductionSetting(settings: self),
             SendFeedbackSetting()
         ])
-        let aboutSection = SettingSection(title: NSAttributedString(string: NSLocalizedString("About", comment: "About settings section title")), children: [
+        let aboutSection = SettingSection(
+            title: NSAttributedString(string: NSLocalizedString("About", comment: "About settings section title")),
+            children: [
             VersionSetting(settings: self),
             PrivacyPolicySetting()
         ])

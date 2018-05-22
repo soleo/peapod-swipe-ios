@@ -39,7 +39,10 @@ class CardView: UIView {
         greenLabel.isHidden = true
         self.addSubview(greenLabel)
 
-        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: UIColor.Defaults.secondaryColor)
+        redLabel = CardViewLabel(
+            origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding),
+            color: UIColor.Defaults.secondaryColor
+        )
         redLabel.isHidden = true
         self.addSubview(redLabel)
     }

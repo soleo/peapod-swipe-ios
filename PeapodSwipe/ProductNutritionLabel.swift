@@ -40,7 +40,12 @@ class ProductNutritionLabel: UILabel {
     }
 
     override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: ProductFlagLabel.topInset, left: ProductFlagLabel.leftInset, bottom: ProductFlagLabel.bottomInset, right: ProductFlagLabel.rightInset)
+        let insets = UIEdgeInsets(
+            top: ProductFlagLabel.topInset,
+            left: ProductFlagLabel.leftInset,
+            bottom: ProductFlagLabel.bottomInset,
+            right: ProductFlagLabel.rightInset
+        )
         super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
     }
 

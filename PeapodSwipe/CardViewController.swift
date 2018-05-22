@@ -257,35 +257,38 @@ class CardViewController: UIViewController {
 extension CardViewController {
     @objc func SELhandleLikeTap (_ sender: UITapGestureRecognizer) {
         switch sender.state {
-            case .began: break
-            case .cancelled: break
-            case .failed: break
-            case .changed:
-                 dynamicAnimator.removeAllBehaviors()
+        case .began:
+            break
+        case .cancelled:
+            break
+        case .failed:
+            break
+        case .changed:
+             dynamicAnimator.removeAllBehaviors()
+        
+        case .ended:
+            dynamicAnimator.removeAllBehaviors()
 
-            case .ended:
-                dynamicAnimator.removeAllBehaviors()
+            let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
+            pushBehavior.pushDirection = CGVector(dx: 5, dy: 0)
+            pushBehavior.magnitude = 175
+            dynamicAnimator.addBehavior(pushBehavior)
 
-                let pushBehavior = UIPushBehavior(items: [cards[0]], mode: .instantaneous)
-                pushBehavior.pushDirection = CGVector(dx: 5, dy: 0)
-                pushBehavior.magnitude = 175
-                dynamicAnimator.addBehavior(pushBehavior)
+            // spin after throwing
+            var angular = CGFloat.pi / 2 // angular velocity of spin
 
-                // spin after throwing
-                var angular = CGFloat.pi / 2 // angular velocity of spin
+            angular *= -1
+            Analytics.logEvent("like_a_product", parameters: nil)
+            castProductVote(productId: cards[0].productId, userVote: true)
 
-                angular *= -1
-                Analytics.logEvent("like_a_product", parameters: nil)
-                castProductVote(productId: cards[0].productId, userVote: true)
+            let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
+            itemBehavior.friction = 0.2
+            itemBehavior.allowsRotation = true
+            itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
+            dynamicAnimator.addBehavior(itemBehavior)
 
-                let itemBehavior = UIDynamicItemBehavior(items: [cards[0]])
-                itemBehavior.friction = 0.2
-                itemBehavior.allowsRotation = true
-                itemBehavior.addAngularVelocity(CGFloat(angular), for: cards[0])
-                dynamicAnimator.addBehavior(itemBehavior)
-
-                hideFrontCard()
-                showNextCard()
+            hideFrontCard()
+            showNextCard()
         case .possible:
             break
         }
@@ -338,7 +341,10 @@ extension CardViewController {
         switch sender.state {
         case .began:
             dynamicAnimator.removeAllBehaviors()
-            let offset = UIOffset(horizontal: panLocationInCard.x - cards[0].bounds.midX, vertical: panLocationInCard.y - cards[0].bounds.midY)
+            let offset = UIOffset(
+                horizontal: panLocationInCard.x - cards[0].bounds.midX,
+                vertical: panLocationInCard.y - cards[0].bounds.midY
+            )
             // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
@@ -416,17 +422,31 @@ extension CardViewController {
 
     @objc func SELtoggleMenu(_ sender: UITapGestureRecognizer) {
 
-        let alertController = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(
+            title: "Menu", message: nil, preferredStyle: .actionSheet
+        )
 
-        let itemSuggestionAction = UIAlertAction(title: NSLocalizedString("Search Product", comment: "Search Product Action"), style: .default, handler: {(_: UIAlertAction!) in
-            self.presentSearchView()
-        })
+        let itemSuggestionAction = UIAlertAction(
+            title: NSLocalizedString("Search Product", comment: "Search Product Action"),
+            style: .default,
+            handler: {(_: UIAlertAction!) in
+                self.presentSearchView()
+            }
+        )
 
-        let settingsAction = UIAlertAction(title: NSLocalizedString("Settings", comment: "Settings Action"), style: .default, handler: {(_: UIAlertAction!) in
-            self.presentSettingView()
-        })
+        let settingsAction = UIAlertAction(
+            title: NSLocalizedString("Settings", comment: "Settings Action"),
+            style: .default,
+            handler: {(_: UIAlertAction!) in
+                self.presentSettingView()
+            }
+        )
 
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("Cancel", comment: "Cancel"),
+            style: .cancel,
+            handler: nil
+        )
 
         alertController.addAction(itemSuggestionAction)
         alertController.addAction(settingsAction)
@@ -439,26 +459,24 @@ extension CardViewController {
 
     @objc func SELhandleProductImageTap (_ sender: UITapGestureRecognizer) {
         switch sender.state {
-            case .began: break
-            case .cancelled: break
-            case .failed: break
-            case .changed: break
-            case .possible: break
-            case .ended:
+        case .began: break
+        case .cancelled: break
+        case .failed: break
+        case .changed: break
+        case .possible: break
+        case .ended:
 
-                let productDetailViewController = ProductDetailViewController()
-                productDetailViewController.shouldShowNotifyButton = false
-                productDetailViewController.productId = cards[0].productId
-                self.present(productDetailViewController, animated: true, completion: nil)
-
-            }
+            let productDetailViewController = ProductDetailViewController()
+            productDetailViewController.shouldShowNotifyButton = false
+            productDetailViewController.productId = cards[0].productId
+            self.present(productDetailViewController, animated: true, completion: nil)
+        }
     }
 
     func presentSearchView() {
         Analytics.logEvent("search_item", parameters: nil)
         let searchViewController = SearchViewController()
         return self.present(searchViewController, animated: true, completion: nil)
-
     }
 
     func presentSettingView() {

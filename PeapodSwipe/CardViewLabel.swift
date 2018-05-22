@@ -25,7 +25,14 @@ class CardViewLabel: UILabel {
 
     convenience init(origin: CGPoint, color: UIColor) {
 
-        self.init(frame: CGRect(x: origin.x, y: origin.y, width: CardViewLabel.size.width, height: CardViewLabel.size.height))
+        self.init(
+            frame: CGRect(
+                x: origin.x,
+                y: origin.y,
+                width: CardViewLabel.size.width,
+                height: CardViewLabel.size.height
+            )
+        )
         self.backgroundColor = color
     }
 
