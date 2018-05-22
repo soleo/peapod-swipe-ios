@@ -1,4 +1,4 @@
-included:
-  - PeapodSwipe
 excluded:
   - Carthage
+  - ThirdParty
+  - fastlane
