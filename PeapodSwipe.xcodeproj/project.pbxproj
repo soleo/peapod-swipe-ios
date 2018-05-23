@@ -873,7 +873,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -915,11 +915,7 @@
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdParty/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Analytics",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Auth",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Database",
 				);
 				INFOPLIST_FILE = PeapodSwipe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -931,7 +927,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/Firebase";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Beta;
 		};
@@ -1062,7 +1058,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1129,7 +1125,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 55;
+				CURRENT_PROJECT_VERSION = 59;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1165,11 +1161,7 @@
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdParty/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Analytics",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Auth",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Database",
 				);
 				INFOPLIST_FILE = PeapodSwipe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1181,7 +1173,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/Firebase";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -1193,11 +1185,7 @@
 				DEVELOPMENT_TEAM = 63YV2X6Y4E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ThirdParty/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Analytics",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Auth",
-					"$(PROJECT_DIR)/ThirdParty/Firebase/Database",
 				);
 				INFOPLIST_FILE = PeapodSwipe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1209,7 +1197,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/ThirdParty/Firebase";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
