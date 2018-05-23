@@ -74,7 +74,7 @@ extension AuthViewController {
         )
         alert.addAction(
             UIAlertAction(
-                title: NSLocalizedString("Sure", comment: "Sure"),
+                title: NSLocalizedString("OK", comment: "OK"),
                 style: .cancel,
                 handler: nil
             )
@@ -85,7 +85,7 @@ extension AuthViewController {
     func showRetryMessage() {
         let alert = UIAlertController(
             title: "Something Went Wrong",
-            message: "Could retry your Email and invite code?",
+            message: "Please re-enter your email and invite code.",
             preferredStyle: .alert
         )
         alert.addAction(
@@ -101,7 +101,7 @@ extension AuthViewController {
     @objc func SELSignInWithEmail() {
         let alert = UIAlertController(
             title: NSLocalizedString("Sign In", comment: "Sign In"),
-            message: "Your Email and invie code, Please?",
+            message: "Enter Your Email and Invite Code",
             preferredStyle: .alert
         )
         alert.addAction(
