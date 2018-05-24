@@ -204,7 +204,6 @@ extension AuthViewController {
                                 }
                             }
                     }
-
                 }else {
                     self.showInvalidEmailMessage()
                 }

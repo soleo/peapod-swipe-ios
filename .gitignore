@@ -68,3 +68,5 @@ fastlane/test_output
 PeapodService-Info.plist
 GoogleService-Info.plist
 *.mobileprovision
+
+\.DS_Store
