@@ -97,6 +97,22 @@ extension AuthViewController {
         )
         self.present(alert, animated: true)
     }
+    
+    func showInvalidEmailMessage() {
+        let alert = UIAlertController(
+            title: "Something Went Wrong",
+            message: "The email address you entered is not valid. Please try again.",
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("OK", comment: "Ok"),
+                style: .cancel,
+                handler: nil
+            )
+        )
+        self.present(alert, animated: true)
+    }
 
     @objc func SELSignInWithEmail() {
         let alert = UIAlertController(
@@ -188,7 +204,8 @@ extension AuthViewController {
                                 }
                             }
                     }
-
+                }else {
+                    self.showInvalidEmailMessage()
                 }
             }
         }))
