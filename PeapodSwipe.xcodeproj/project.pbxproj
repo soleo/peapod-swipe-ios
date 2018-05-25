@@ -89,6 +89,7 @@
 		A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */; };
 		A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B92CCE1F393A8D00274428 /* ProductImage.swift */; };
 		A9FE237020B32D7D00B11D36 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */; };
+		D02A4EB620B75B4A00207DC3 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D02A4EB520B75B4A00207DC3 /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		A9B92CCE1F393A8D00274428 /* ProductImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
+		D02A4EB520B75B4A00207DC3 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,6 +460,7 @@
 			isa = PBXGroup;
 			children = (
 				552898F71FCA244500A3195A /* AuthViewController.swift */,
+				D02A4EB520B75B4A00207DC3 /* Login.storyboard */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 			files = (
 				A9FE237020B32D7D00B11D36 /* PeapodService-Info.plist in Resources */,
 				A9ADFB9D1EEF5D770044D45B /* LaunchScreen.storyboard in Resources */,
+				D02A4EB620B75B4A00207DC3 /* Login.storyboard in Resources */,
 				552898FC1FCA332900A3195A /* GoogleService-Info.plist in Resources */,
 				A9ADFB9A1EEF5D770044D45B /* Assets.xcassets in Resources */,
 				A9ADFB981EEF5D770044D45B /* Main.storyboard in Resources */,
