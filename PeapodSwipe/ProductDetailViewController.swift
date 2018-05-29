@@ -196,32 +196,37 @@ class ProductDetailViewController: UIViewController {
     }
 
     func addProductQuickFacts() {
+        var labels = [String]()
         if (self.product.productFlags?.dairy) != nil && (self.product.productFlags?.dairy)! {
-            productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+            labels.append("Dairy-free")
         }
 
         if (self.product.productFlags?.gluten) != nil && (self.product.productFlags?.gluten)! {
-            productInformationScrollView.addProductFlag(labelText: "Gluten-free")
+            labels.append("Gluten-free")
         }
 
         if (self.product.productFlags?.peanut) != nil && (self.product.productFlags?.peanut)! {
-            productInformationScrollView.addProductFlag(labelText: "Peanut-free")
+            labels.append("Peanut-free")
         }
 
         if (self.product.productFlags?.egg) != nil && (self.product.productFlags?.egg)! {
-            productInformationScrollView.addProductFlag(labelText: "Egg-free")
+            labels.append("Egg-free")
         }
 
         if (self.product.productFlags?.privateLabel?.flag) != nil && (self.product.productFlags?.privateLabel?.flag)! {
-            productInformationScrollView.addProductFlag(labelText: "Store Brand")
+            labels.append("Store Brand")
         }
 
         if (self.product.productFlags?.organic?.flag) != nil && (self.product.productFlags?.organic?.flag)! {
-            productInformationScrollView.addProductFlag(labelText: "Organic")
+            labels.append("Organic")
         }
 
         if (self.product.productFlags?.kosher) != nil && (self.product.productFlags?.kosher)! {
-            productInformationScrollView.addProductFlag(labelText: "Kosher")
+            labels.append("Kosher")
         }
+        labels.append("Kosher")
+        labels.append("Dairy-free")
+        labels.append("Nut-free")
+        productInformationScrollView.addProductFlags(labels: labels)
     }
 }
