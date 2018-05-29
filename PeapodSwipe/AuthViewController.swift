@@ -12,28 +12,60 @@ import FirebaseAuth
 import Alamofire
 import Instabug
 
-class AuthViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var inviteCodeField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+class AuthViewController: UIViewController {
+    var emailField = UITextField()
+    var inviteCodeField = UITextField()
+    var signInButton = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailField.delegate = self
-        inviteCodeField.delegate = self
         view.backgroundColor = UIColor.Defaults.darkBackgroundColor
-        UINavigationBar.appearance().barStyle = .blackOpaque
+        // Login Screen
+        let logoImageView = UIImageView(image: #imageLiteral(resourceName: "SquareLogo"))
+        view.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(view)
+        }
+        
+        emailField =  UITextField(frame: CGRect(x: 20, y: 290, width: 330, height: 40))
+        emailField.placeholder = "Enter your email"
+        emailField.font = UIFont.systemFont(ofSize: 15)
+        emailField.borderStyle = UITextBorderStyle.roundedRect
+        emailField.autocorrectionType = UITextAutocorrectionType.no
+        emailField.keyboardType = UIKeyboardType.emailAddress
+        emailField.returnKeyType = UIReturnKeyType.next
+        emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        emailField.delegate = self as? UITextFieldDelegate
+        emailField.alpha = 0.75
+        view.addSubview(emailField)
+        inviteCodeField =  UITextField(frame: CGRect(x: 20, y: 350, width: 330, height: 40))
+        inviteCodeField.placeholder = "Enter your invite code"
+        inviteCodeField.font = UIFont.systemFont(ofSize: 15)
+        inviteCodeField.borderStyle = UITextBorderStyle.roundedRect
+        inviteCodeField.autocorrectionType = UITextAutocorrectionType.no
+        inviteCodeField.keyboardType = UIKeyboardType.emailAddress
+        inviteCodeField.returnKeyType = UIReturnKeyType.next
+        inviteCodeField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        inviteCodeField.delegate = self as? UITextFieldDelegate
+        inviteCodeField.alpha = 0.75
+        view.addSubview(inviteCodeField)
+        let signInButton = UIButton()
+        signInButton.backgroundColor = UIColor.Defaults.primaryColor
+        signInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), for: UIControlState())
+        signInButton.setTitleColor(UIColor.white, for: UIControlState())
+        signInButton.clipsToBounds = true
+        signInButton.layer.cornerRadius = 5
+        signInButton.layer.masksToBounds = true
+        signInButton.addTarget(self, action: #selector(self.signInAction), for: UIControlEvents.touchUpInside)
+        view.addSubview(signInButton)
+        signInButton.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(50)
+            make.width.equalTo(self.view).offset(-20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.centerX.equalTo(self.view)
+        }
     }
-// MARK: UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //Hide the keyboard
-        textField.resignFirstResponder()
-        return true
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        //var email = textField.text
-    }
-// MARK: Action
-    @IBAction func signInAction(_ sender: UIButton) {
+
+    @objc func signInAction(_ sender: UIButton) {
         let email: String = emailField.text!.trim()
         let inviteCode: String = inviteCodeField.text!.trim()
         if !( self.isValidEmail(emalAddress: email) ) {
@@ -61,7 +93,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
 
 extension AuthViewController {
     func signInWithEmail(email: String, inviteCode: String) {
-        if self.isDebugMode() {
+        if self.isTestMode() {
             Auth.auth().signInAnonymously(completion: { (_, _) in
                 let cardViewController = CardViewController()
                 let controller = UINavigationController(rootViewController: cardViewController)
@@ -115,13 +147,13 @@ extension AuthViewController {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: emalAddress)
     }
-    private func isDebugMode() -> Bool {
+    private func isTestMode() -> Bool {
         let args = ProcessInfo.processInfo.arguments
         return (UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE"))
     }
     private func clearTextFields() {
         emailField.text = ""
-        inviteCodeField.text=""
+        inviteCodeField.text = ""
     }
     private func showOKAlert(title: String, message: String) {
         let alert = UIAlertController(
@@ -138,4 +170,5 @@ extension AuthViewController {
         )
         self.present(alert, animated: true)
     }
+
 }

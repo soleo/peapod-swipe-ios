@@ -41,10 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if Auth.auth().currentUser != nil {
             rootViewController = CardViewController()
         } else {
-            //rootViewController = AuthViewController()
-            rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "AuthViewController") as UIViewController
-
-
+            rootViewController = AuthViewController()
         }
         self.mainNavigationController = UINavigationController(rootViewController: rootViewController!)
 
