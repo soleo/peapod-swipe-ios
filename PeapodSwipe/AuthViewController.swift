@@ -25,29 +25,33 @@ class AuthViewController: UIViewController {
         logoImageView.snp.makeConstraints { (make) -> Void in
             make.center.equalTo(view)
         }
-        
-        emailField =  UITextField(frame: CGRect(x: 20, y: 290, width: 330, height: 40))
+        //Email field
+        emailField =  UITextField(frame: CGRect(x: 20, y: 285, width: 335, height: 40))
         emailField.placeholder = "Enter your email"
         emailField.font = UIFont.systemFont(ofSize: 15)
-        emailField.borderStyle = UITextBorderStyle.roundedRect
+        emailField.borderStyle = .roundedRect
         emailField.autocorrectionType = UITextAutocorrectionType.no
+        emailField.autocapitalizationType = UITextAutocapitalizationType.none
         emailField.keyboardType = UIKeyboardType.emailAddress
         emailField.returnKeyType = UIReturnKeyType.next
         emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
         emailField.delegate = self as? UITextFieldDelegate
-        emailField.alpha = 0.75
-        view.addSubview(emailField)
-        inviteCodeField =  UITextField(frame: CGRect(x: 20, y: 350, width: 330, height: 40))
+        emailField.backgroundColor = UIColor.Defaults.lightBackgroudColor
+        emailField.alpha = 0.60
+        //invite code field
+        inviteCodeField =  UITextField(frame: CGRect(x: 20, y: 345, width: 335, height: 40))
         inviteCodeField.placeholder = "Enter your invite code"
         inviteCodeField.font = UIFont.systemFont(ofSize: 15)
-        inviteCodeField.borderStyle = UITextBorderStyle.roundedRect
+        inviteCodeField.borderStyle = .roundedRect
         inviteCodeField.autocorrectionType = UITextAutocorrectionType.no
+        inviteCodeField.autocapitalizationType = UITextAutocapitalizationType.none
         inviteCodeField.keyboardType = UIKeyboardType.emailAddress
         inviteCodeField.returnKeyType = UIReturnKeyType.next
         inviteCodeField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
         inviteCodeField.delegate = self as? UITextFieldDelegate
-        inviteCodeField.alpha = 0.75
-        view.addSubview(inviteCodeField)
+        inviteCodeField.backgroundColor = UIColor.Defaults.lightBackgroudColor
+        inviteCodeField.alpha = 0.60
+        //sign in button 
         let signInButton = UIButton()
         signInButton.backgroundColor = UIColor.Defaults.primaryColor
         signInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), for: UIControlState())
@@ -56,6 +60,8 @@ class AuthViewController: UIViewController {
         signInButton.layer.cornerRadius = 5
         signInButton.layer.masksToBounds = true
         signInButton.addTarget(self, action: #selector(self.signInAction), for: UIControlEvents.touchUpInside)
+        view.addSubview(emailField)
+        view.addSubview(inviteCodeField)
         view.addSubview(signInButton)
         signInButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(50)
@@ -69,8 +75,6 @@ class AuthViewController: UIViewController {
         let email: String = emailField.text!.trim()
         let inviteCode: String = inviteCodeField.text!.trim()
         if !( self.isValidEmail(emalAddress: email) ) {
-            emailField.layer.borderColor = UIColor.red.cgColor
-            emailField.layer.borderWidth = 2.0
             showOKAlert(title: "Something Went Wrong",
                         message: "The email address you entered is not valid. Please try again.")
         } else {
@@ -109,10 +113,10 @@ extension AuthViewController {
                         // Send The Magic Link to User
                         Alamofire.request(AuthRouter.requestForMagicLink(email))
                             .response(completionHandler: { (_) in
-                                self.clearTextFields()
                                 // show an alert to tell user to check their mailbox
                                 self.showOKAlert(title: "Check Your Mail Inbox",
                                                  message: "A magic link has been sent to " + email)
+                                self.clearTextFields()
                             })
                     case 201:
                         if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
@@ -135,6 +139,7 @@ extension AuthViewController {
                     default:
                         self.showOKAlert(title: "Something Went Wrong",
                             message: "Please re-enter your email and invite code.")
+                        self.clearTextFields()
                     }
                 }
         } //end Alamofire.request
@@ -170,5 +175,4 @@ extension AuthViewController {
         )
         self.present(alert, animated: true)
     }
-
 }
