@@ -32,6 +32,11 @@ class ProductFlagLabel: UILabel {
         self.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.Defaults.Grey30
     }
+    convenience init(backgroundColor: UIColor, textColor: UIColor) {
+        self.init()
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

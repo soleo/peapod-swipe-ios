@@ -28,6 +28,7 @@ class ProductInformationScrollView: UIScrollView {
         productFlagGroupStackView.alignment = .leading
         productFlagGroupStackView.distribution = .fillProportionally
         productFlagGroupStackView.spacing = 8.0
+        productFlagGroupStackView.layoutMargins.bottom = 8.0
 
         productFlagGroupStackView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview().inset(10)
@@ -65,7 +66,7 @@ class ProductInformationScrollView: UIScrollView {
             }
         }
         productFlagGroupStackView.snp.makeConstraints { (make) in
-            make.height.equalTo((productRowHeight * rowCount))
+            make.height.equalTo((productRowHeight * rowCount) + 8 )
         }
     }
     func buildProductFlagRow(labels: [String]) -> UIStackView {
@@ -86,7 +87,8 @@ class ProductInformationScrollView: UIScrollView {
     }
 
     func addProductFlag(labelText: String) -> ProductFlagLabel {
-        let productFlag = ProductFlagLabel()
+        let productFlag = ProductFlagLabel(backgroundColor: UIColor.Defaults.peaGreen, textColor: UIColor.white)
+        productFlag.alpha = 0.60
         productFlag.text = labelText
         self.productFlags.append(productFlag)
         return productFlag
