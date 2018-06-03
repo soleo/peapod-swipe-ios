@@ -57,7 +57,7 @@ class ProductDetailViewController: UIViewController {
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
 
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.layer.masksToBounds = true
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 0
