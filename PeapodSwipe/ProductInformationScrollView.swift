@@ -11,7 +11,6 @@ import UIKit
 
 class ProductInformationScrollView: UIScrollView {
     var productFlags = [ProductFlagLabel]()
-    //let productFlagStackView = UIStackView()
     let productFlagGroupStackView = UIStackView()
     let productNutritionStackView = UIStackView()
     var nuntritionFactCounter = 0
@@ -66,6 +65,7 @@ class ProductInformationScrollView: UIScrollView {
             }
         }
         productFlagGroupStackView.snp.makeConstraints { (make) in
+            //The 8 is to force the bottom margin.
             make.height.equalTo((productRowHeight * rowCount) + 8 )
         }
     }
@@ -78,7 +78,7 @@ class ProductInformationScrollView: UIScrollView {
         productFlagStackView.spacing = 8.0
         productFlagStackView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
-            make.height.equalTo(productRowHeight)
+            make.height.equalTo(productRowHeight).priority(900)
         }
         for label in labels {
             productFlagStackView.addArrangedSubview(addProductFlag(labelText: label))
@@ -150,5 +150,9 @@ class ProductInformationScrollView: UIScrollView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getTotalHeight() -> CGFloat {
+        return productFlagGroupStackView.frame.height + productNutritionStackView.frame.height
     }
 }

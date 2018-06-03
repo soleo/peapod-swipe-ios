@@ -89,6 +89,8 @@ class ProductDetailViewController: UIViewController {
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         imageView.addGestureRecognizer(swipeDown)
+        
+        productInformationScrollView.showsVerticalScrollIndicator = false
 
         view.addSubview(loadingStateView)
         view.addSubview(imageView)
@@ -224,9 +226,14 @@ class ProductDetailViewController: UIViewController {
         if (self.product.productFlags?.kosher) != nil && (self.product.productFlags?.kosher)! {
             labels.append("Kosher")
         }
-        labels.append("Kosher")
-        labels.append("Dairy-free")
-        labels.append("Nut-free")
         productInformationScrollView.addProductFlags(labels: labels)
+    }
+    
+    //This is the method that allows the content to scroll
+    //I added 30 to the height to allow the user to "bounce" the scroll at
+    //the of the content
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        productInformationScrollView.contentSize = CGSize(width: view.frame.size.width, height: productInformationScrollView.getTotalHeight() + 30)
     }
 }
