@@ -188,7 +188,7 @@ class ProductDetailViewController: UIViewController {
 
         addProductQuickFacts()
 
-        productInformationScrollView.addNutritionLabel(
+        productInformationScrollView.addNutritionLabels(
             calorieTotal: self.product.nutrition?.totalCalories,
             saturatedFatTotal: self.product.nutrition?.saturatedFat,
             sodiumTotal: self.product.nutrition?.sodium,
@@ -199,36 +199,36 @@ class ProductDetailViewController: UIViewController {
 
     func addProductQuickFacts() {
         var labels = [String]()
-        if (self.product.productFlags?.dairy) != nil && (self.product.productFlags?.dairy)! {
+        let flags = self.product.productFlags
+        if (flags?.dairy) != nil && (flags?.dairy)! {
             labels.append("Dairy-free")
         }
 
-        if (self.product.productFlags?.gluten) != nil && (self.product.productFlags?.gluten)! {
+        if (flags?.gluten) != nil && (flags?.gluten)! {
             labels.append("Gluten-free")
         }
 
-        if (self.product.productFlags?.peanut) != nil && (self.product.productFlags?.peanut)! {
+        if (flags?.peanut) != nil && (flags?.peanut)! {
             labels.append("Peanut-free")
         }
 
-        if (self.product.productFlags?.egg) != nil && (self.product.productFlags?.egg)! {
+        if (flags?.egg) != nil && (flags?.egg)! {
             labels.append("Egg-free")
         }
 
-        if (self.product.productFlags?.privateLabel?.flag) != nil && (self.product.productFlags?.privateLabel?.flag)! {
+        if (flags?.privateLabel?.flag) != nil && (flags?.privateLabel?.flag)! {
             labels.append("Store Brand")
         }
 
-        if (self.product.productFlags?.organic?.flag) != nil && (self.product.productFlags?.organic?.flag)! {
+        if (flags?.organic?.flag) != nil && (flags?.organic?.flag)! {
             labels.append("Organic")
         }
 
-        if (self.product.productFlags?.kosher) != nil && (self.product.productFlags?.kosher)! {
+        if (flags?.kosher) != nil && (flags?.kosher)! {
             labels.append("Kosher")
         }
         productInformationScrollView.addProductFlags(labels: labels)
     }
-    
     //This is the method that allows the content to scroll
     //I added 30 to the height to allow the user to "bounce" the scroll at
     //the of the content

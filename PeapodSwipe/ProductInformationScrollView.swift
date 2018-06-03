@@ -94,58 +94,24 @@ class ProductInformationScrollView: UIScrollView {
         return productFlag
     }
 
-    func addNutritionLabel(calorieTotal: Float?, saturatedFatTotal: Float?, sodiumTotal: Float?, sugarTotal: Float?) {
-        let calorieLabel = ProductNutritionLabel()
-        if calorieTotal != nil {
-            calorieLabel.text = "Calorie\r\n\(calorieTotal ?? 0)"
+    func createNutritionalLabel(label: String, value: Float?, unit: UOM) -> ProductNutritionLabel {
+        let nutritionalLabel = ProductNutritionLabel()
+        if value != nil {
+            nutritionalLabel.text = label + "\r\n\(value ?? 0 )" + unit.rawValue
         } else {
-            calorieLabel.text = "Calorie\r\n--"
+            nutritionalLabel.text = label + "\r\n--"
         }
-
-        let saturatedFatLabel = ProductNutritionLabel()
-        if saturatedFatTotal != nil {
-            saturatedFatLabel.text = "Sat Fat\r\n\(saturatedFatTotal ?? 0)g"
-        } else {
-            saturatedFatLabel.text = "Sat Fat\r\n--"
-        }
-
-        let sodiumLabel = ProductNutritionLabel()
-        if sodiumTotal != nil {
-            sodiumLabel.text = "Sodium\r\n\(sodiumTotal ?? 0)mg"
-
-        } else {
-            sodiumLabel.text = "Sodium\r\n--"
-        }
-
-        let sugarLabel = ProductNutritionLabel()
-        if sugarTotal != nil {
-            sugarLabel.text = "Sugar\r\n\(sugarTotal ?? 0)g"
-
-        } else {
-            sugarLabel.text = "Sugar\r\n--"
-        }
-
-        productNutritionStackView.addArrangedSubview(calorieLabel)
-        productNutritionStackView.addArrangedSubview(saturatedFatLabel)
-        productNutritionStackView.addArrangedSubview(sodiumLabel)
-        productNutritionStackView.addArrangedSubview(sugarLabel)
-
-        calorieLabel.snp.makeConstraints { (make) in
+        nutritionalLabel.snp.makeConstraints { (make) in
             make.height.equalTo(70)
         }
-
-        saturatedFatLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(calorieLabel)
-        }
-
-        sodiumLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(calorieLabel)
-        }
-
-        sugarLabel.snp.makeConstraints { (make) in
-            make.height.equalTo(calorieLabel)
-        }
-
+        return nutritionalLabel
+    }
+    
+    func addNutritionLabels(calorieTotal: Float?, saturatedFatTotal: Float?, sodiumTotal: Float?, sugarTotal: Float?) {
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Calorie", value: calorieTotal, unit: UOM.none))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sat Fat", value: saturatedFatTotal, unit: UOM.gram))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sodium", value: sodiumTotal, unit: UOM.milligram))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sugar", value: sugarTotal, unit: UOM.gram))
     }
 
     required init?(coder aDecoder: NSCoder) {
