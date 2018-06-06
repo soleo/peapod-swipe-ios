@@ -12,10 +12,17 @@ import FirebaseAuth
 import Alamofire
 import Instabug
 
-class AuthViewController: UIViewController {
+class AuthViewController: UIViewController, UITextFieldDelegate {
     var emailField = UITextField()
     var inviteCodeField = UITextField()
     var signInButton = UIButton()
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == inviteCodeField {
+            textField.text = ""
+        }
+        return true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.Defaults.darkBackgroundColor
@@ -26,7 +33,7 @@ class AuthViewController: UIViewController {
             make.center.equalTo(view)
         }
         //Email field
-        emailField =  UITextField(frame: CGRect(x: 20, y: 285, width: 335, height: 40))
+        emailField = UITextField()
         emailField.placeholder = "Enter your email"
         emailField.font = UIFont.systemFont(ofSize: 15)
         emailField.borderStyle = .roundedRect
@@ -35,11 +42,11 @@ class AuthViewController: UIViewController {
         emailField.keyboardType = UIKeyboardType.emailAddress
         emailField.returnKeyType = UIReturnKeyType.next
         emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-        emailField.delegate = self as? UITextFieldDelegate
+        emailField.delegate = self
         emailField.backgroundColor = UIColor.Defaults.lightBackgroudColor
         emailField.alpha = 0.60
         //invite code field
-        inviteCodeField =  UITextField(frame: CGRect(x: 20, y: 345, width: 335, height: 40))
+        inviteCodeField = UITextField()
         inviteCodeField.placeholder = "Enter your invite code"
         inviteCodeField.font = UIFont.systemFont(ofSize: 15)
         inviteCodeField.borderStyle = .roundedRect
@@ -48,7 +55,7 @@ class AuthViewController: UIViewController {
         inviteCodeField.keyboardType = UIKeyboardType.emailAddress
         inviteCodeField.returnKeyType = UIReturnKeyType.next
         inviteCodeField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
-        inviteCodeField.delegate = self as? UITextFieldDelegate
+        inviteCodeField.delegate = self
         inviteCodeField.backgroundColor = UIColor.Defaults.lightBackgroudColor
         inviteCodeField.alpha = 0.60
         //sign in button 
@@ -63,6 +70,18 @@ class AuthViewController: UIViewController {
         view.addSubview(emailField)
         view.addSubview(inviteCodeField)
         view.addSubview(signInButton)
+        emailField.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(40)
+            make.width.equalTo(self.view).offset(-20)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view).offset(-30)
+        }
+        inviteCodeField.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(40)
+            make.width.equalTo(self.view).offset(-20)
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(emailField.snp.bottom).offset(20)
+        }
         signInButton.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(50)
             make.width.equalTo(self.view).offset(-20)
@@ -116,7 +135,6 @@ extension AuthViewController {
                                 // show an alert to tell user to check their mailbox
                                 self.showOKAlert(title: "Check Your Mail Inbox",
                                                  message: "A magic link has been sent to " + email)
-                                self.clearTextFields()
                             })
                     case 201:
                         if let bearerToken = response.response?.allHeaderFields["Authorization"] as? String {
@@ -139,7 +157,6 @@ extension AuthViewController {
                     default:
                         self.showOKAlert(title: "Something Went Wrong",
                             message: "Please re-enter your email and invite code.")
-                        self.clearTextFields()
                     }
                 }
         } //end Alamofire.request
@@ -155,10 +172,6 @@ extension AuthViewController {
     private func isTestMode() -> Bool {
         let args = ProcessInfo.processInfo.arguments
         return (UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE"))
-    }
-    private func clearTextFields() {
-        emailField.text = ""
-        inviteCodeField.text = ""
     }
     private func showOKAlert(title: String, message: String) {
         let alert = UIAlertController(
