@@ -89,6 +89,7 @@
 		A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */; };
 		A9B92CCF1F393A8D00274428 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B92CCE1F393A8D00274428 /* ProductImage.swift */; };
 		A9FE237020B32D7D00B11D36 /* PeapodService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */; };
+		D02A4EBA20C49B3500207DC3 /* UnitsOfMeasureEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02A4EB920C49B3500207DC3 /* UnitsOfMeasureEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		A9ADFBC21EEF69CB0044D45B /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		A9B92CCE1F393A8D00274428 /* ProductImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		A9FE236F20B32D7D00B11D36 /* PeapodService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PeapodService-Info.plist"; sourceTree = "<group>"; };
+		D02A4EB920C49B3500207DC3 /* UnitsOfMeasureEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsOfMeasureEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 				55B2580B2050D98F002AD4EE /* ProductFlagCollection.swift */,
 				5535B5C42061DDC500D6A5DB /* ProductNutrition.swift */,
 				5562EE4D20B0A9E300569B58 /* UserInfo.swift */,
+				D02A4EB920C49B3500207DC3 /* UnitsOfMeasureEnum.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				558B4D42204C8E4900C2ED47 /* LoadingStateView.swift in Sources */,
 				552898F81FCA244500A3195A /* AuthViewController.swift in Sources */,
 				55B0F5F3204A658B00EB2594 /* StringExtension.swift in Sources */,
+				D02A4EBA20C49B3500207DC3 /* UnitsOfMeasureEnum.swift in Sources */,
 				5549F55C204B430500E76A41 /* ProductVote.swift in Sources */,
 				A9ADFBC31EEF69CB0044D45B /* ImageCard.swift in Sources */,
 				55E7C2E520B1DC6A003D0F90 /* SettingsNavigationController.swift in Sources */,
