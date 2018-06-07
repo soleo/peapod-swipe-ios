@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             rootViewController = CardViewController()
         } else {
             rootViewController = AuthViewController()
-
         }
         self.mainNavigationController = UINavigationController(rootViewController: rootViewController!)
 
