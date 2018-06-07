@@ -13,32 +13,87 @@ import Alamofire
 import Instabug
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var inviteCodeField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        emailField.delegate = self
-        inviteCodeField.delegate = self
-        view.backgroundColor = UIColor.Defaults.darkBackgroundColor
-        UINavigationBar.appearance().barStyle = .blackOpaque
-    }
-// MARK: UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //Hide the keyboard
-        textField.resignFirstResponder()
+    var emailField = UITextField()
+    var inviteCodeField = UITextField()
+    var signInButton = UIButton()
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == inviteCodeField {
+            textField.text = ""
+        }
         return true
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        //var email = textField.text
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.Defaults.darkBackgroundColor
+        // Login Screen
+        let logoImageView = UIImageView(image: #imageLiteral(resourceName: "SquareLogo"))
+        view.addSubview(logoImageView)
+        logoImageView.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(view)
+        }
+        //Email field
+        emailField = UITextField()
+        emailField.placeholder = "Enter your email"
+        emailField.font = UIFont.systemFont(ofSize: 15)
+        emailField.borderStyle = .roundedRect
+        emailField.autocorrectionType = UITextAutocorrectionType.no
+        emailField.autocapitalizationType = UITextAutocapitalizationType.none
+        emailField.keyboardType = UIKeyboardType.emailAddress
+        emailField.returnKeyType = UIReturnKeyType.next
+        emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        emailField.delegate = self
+        emailField.backgroundColor = UIColor.Defaults.lightBackgroudColor
+        emailField.alpha = 0.60
+        //invite code field
+        inviteCodeField = UITextField()
+        inviteCodeField.placeholder = "Enter your invite code"
+        inviteCodeField.font = UIFont.systemFont(ofSize: 15)
+        inviteCodeField.borderStyle = .roundedRect
+        inviteCodeField.autocorrectionType = UITextAutocorrectionType.no
+        inviteCodeField.autocapitalizationType = UITextAutocapitalizationType.none
+        inviteCodeField.keyboardType = UIKeyboardType.emailAddress
+        inviteCodeField.returnKeyType = UIReturnKeyType.next
+        inviteCodeField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        inviteCodeField.delegate = self
+        inviteCodeField.backgroundColor = UIColor.Defaults.lightBackgroudColor
+        inviteCodeField.alpha = 0.60
+        //sign in button 
+        let signInButton = UIButton()
+        signInButton.backgroundColor = UIColor.Defaults.primaryColor
+        signInButton.setTitle(NSLocalizedString("Sign In", comment: "Sign In"), for: UIControlState())
+        signInButton.setTitleColor(UIColor.white, for: UIControlState())
+        signInButton.clipsToBounds = true
+        signInButton.layer.cornerRadius = 5
+        signInButton.layer.masksToBounds = true
+        signInButton.addTarget(self, action: #selector(self.signInAction), for: UIControlEvents.touchUpInside)
+        view.addSubview(emailField)
+        view.addSubview(inviteCodeField)
+        view.addSubview(signInButton)
+        emailField.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(40)
+            make.width.equalTo(self.view).offset(-20)
+            make.centerX.equalTo(self.view)
+            make.centerY.equalTo(self.view).offset(-30)
+        }
+        inviteCodeField.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(40)
+            make.width.equalTo(self.view).offset(-20)
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(emailField.snp.bottom).offset(20)
+        }
+        signInButton.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(50)
+            make.width.equalTo(self.view).offset(-20)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.centerX.equalTo(self.view)
+        }
     }
-// MARK: Action
-    @IBAction func signInAction(_ sender: UIButton) {
+
+    @objc func signInAction(_ sender: UIButton) {
         let email: String = emailField.text!.trim()
         let inviteCode: String = inviteCodeField.text!.trim()
         if !( self.isValidEmail(emalAddress: email) ) {
-            emailField.layer.borderColor = UIColor.red.cgColor
-            emailField.layer.borderWidth = 2.0
             showOKAlert(title: "Something Went Wrong",
                         message: "The email address you entered is not valid. Please try again.")
         } else {
@@ -61,7 +116,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
 
 extension AuthViewController {
     func signInWithEmail(email: String, inviteCode: String) {
-        if self.isDebugMode() {
+        if self.isTestMode() {
             Auth.auth().signInAnonymously(completion: { (_, _) in
                 let cardViewController = CardViewController()
                 let controller = UINavigationController(rootViewController: cardViewController)
@@ -77,7 +132,6 @@ extension AuthViewController {
                         // Send The Magic Link to User
                         Alamofire.request(AuthRouter.requestForMagicLink(email))
                             .response(completionHandler: { (_) in
-                                self.clearTextFields()
                                 // show an alert to tell user to check their mailbox
                                 self.showOKAlert(title: "Check Your Mail Inbox",
                                                  message: "A magic link has been sent to " + email)
@@ -115,13 +169,9 @@ extension AuthViewController {
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: emalAddress)
     }
-    private func isDebugMode() -> Bool {
+    private func isTestMode() -> Bool {
         let args = ProcessInfo.processInfo.arguments
         return (UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || args.contains("UI_TEST_MODE"))
-    }
-    private func clearTextFields() {
-        emailField.text = ""
-        inviteCodeField.text=""
     }
     private func showOKAlert(title: String, message: String) {
         let alert = UIAlertController(
