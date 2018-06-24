@@ -91,6 +91,7 @@ class ProductDetailViewController: UIViewController {
         imageView.addGestureRecognizer(swipeDown)
         
         productInformationScrollView.showsVerticalScrollIndicator = false
+        setContentSize()
 
         view.addSubview(loadingStateView)
         view.addSubview(imageView)
@@ -229,11 +230,19 @@ class ProductDetailViewController: UIViewController {
         }
         productInformationScrollView.addProductFlags(labels: labels)
     }
-    //This is the method that allows the content to scroll
-    //I added 30 to the height to allow the user to "bounce" the scroll at
-    //the of the content
+    //This is the method that allows the content to scroll the first time
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        setContentSize()
+    }
+    //This is the method that allows the content to scroll after the
+    //content was previously displayed
+    override func viewDidAppear(_ animated: Bool) {
+        setContentSize()
+    }
+    //I added 30 to the height to allow the user to "bounce"
+    //the scroll at the end of the content
+    private func setContentSize() {
         productInformationScrollView.contentSize = CGSize(width: view.frame.size.width, height: productInformationScrollView.getTotalHeight() + 30)
     }
 }
