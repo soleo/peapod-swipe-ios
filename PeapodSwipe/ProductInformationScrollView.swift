@@ -9,17 +9,22 @@
 import Foundation
 import UIKit
 
-class ProductInformationScrollView: UIScrollView {
+class ProductInformationScrollView: UIScrollView, UIScrollViewDelegate {
     var productFlags = [ProductFlagLabel]()
     let productFlagGroupStackView = UIStackView()
     let productNutritionStackView = UIStackView()
     var nuntritionFactCounter = 0
     let maxProductFlagColumns = 2
     let productRowHeight = 40
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("scrolling")
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        self.delegate = self
         self.addSubview(productFlagGroupStackView)
 
         productFlagGroupStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +63,7 @@ class ProductInformationScrollView: UIScrollView {
             thisRow.append(label)
             labelNum += 1
             //if row is full or its the last flag, build the row
-            if (thisRow.count >= maxProductFlagColumns) || (labelNum == labels.count){
+            if (thisRow.count >= maxProductFlagColumns) || (labelNum == labels.count) {
                 productFlagGroupStackView.addArrangedSubview(buildProductFlagRow(labels: thisRow))
                 thisRow = [] //clear array
                 rowCount += 1
