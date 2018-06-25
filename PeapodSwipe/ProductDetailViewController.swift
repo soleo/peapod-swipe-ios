@@ -57,7 +57,7 @@ class ProductDetailViewController: UIViewController {
         imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.accessibilityIgnoresInvertColors = true
 
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 28)
         titleLabel.layer.masksToBounds = true
         titleLabel.lineBreakMode = .byWordWrapping
         titleLabel.numberOfLines = 0
@@ -89,6 +89,9 @@ class ProductDetailViewController: UIViewController {
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ProductDetailViewController.dismissViewController))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         imageView.addGestureRecognizer(swipeDown)
+        
+        productInformationScrollView.showsVerticalScrollIndicator = false
+        setContentSize()
 
         view.addSubview(loadingStateView)
         view.addSubview(imageView)
@@ -186,7 +189,7 @@ class ProductDetailViewController: UIViewController {
 
         addProductQuickFacts()
 
-        productInformationScrollView.addNutritionLabel(
+        productInformationScrollView.addNutritionLabels(
             calorieTotal: self.product.nutrition?.totalCalories,
             saturatedFatTotal: self.product.nutrition?.saturatedFat,
             sodiumTotal: self.product.nutrition?.sodium,
@@ -196,32 +199,50 @@ class ProductDetailViewController: UIViewController {
     }
 
     func addProductQuickFacts() {
-        if (self.product.productFlags?.dairy) != nil && (self.product.productFlags?.dairy)! {
-            productInformationScrollView.addProductFlag(labelText: "Dairy-free")
+        var labels = [String]()
+        let flags = self.product.productFlags
+        if (flags?.dairy) != nil && (flags?.dairy)! {
+            labels.append("Dairy-free")
         }
 
-        if (self.product.productFlags?.gluten) != nil && (self.product.productFlags?.gluten)! {
-            productInformationScrollView.addProductFlag(labelText: "Gluten-free")
+        if (flags?.gluten) != nil && (flags?.gluten)! {
+            labels.append("Gluten-free")
         }
 
-        if (self.product.productFlags?.peanut) != nil && (self.product.productFlags?.peanut)! {
-            productInformationScrollView.addProductFlag(labelText: "Peanut-free")
+        if (flags?.peanut) != nil && (flags?.peanut)! {
+            labels.append("Peanut-free")
         }
 
-        if (self.product.productFlags?.egg) != nil && (self.product.productFlags?.egg)! {
-            productInformationScrollView.addProductFlag(labelText: "Egg-free")
+        if (flags?.egg) != nil && (flags?.egg)! {
+            labels.append("Egg-free")
         }
 
-        if (self.product.productFlags?.privateLabel?.flag) != nil && (self.product.productFlags?.privateLabel?.flag)! {
-            productInformationScrollView.addProductFlag(labelText: "Store Brand")
+        if (flags?.privateLabel?.flag) != nil && (flags?.privateLabel?.flag)! {
+            labels.append("Store Brand")
         }
 
-        if (self.product.productFlags?.organic?.flag) != nil && (self.product.productFlags?.organic?.flag)! {
-            productInformationScrollView.addProductFlag(labelText: "Organic")
+        if (flags?.organic?.flag) != nil && (flags?.organic?.flag)! {
+            labels.append("Organic")
         }
 
-        if (self.product.productFlags?.kosher) != nil && (self.product.productFlags?.kosher)! {
-            productInformationScrollView.addProductFlag(labelText: "Kosher")
+        if (flags?.kosher) != nil && (flags?.kosher)! {
+            labels.append("Kosher")
         }
+        productInformationScrollView.addProductFlags(labels: labels)
+    }
+    //This is the method that allows the content to scroll the first time
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setContentSize()
+    }
+    //This is the method that allows the content to scroll after the
+    //content was previously displayed
+    override func viewDidAppear(_ animated: Bool) {
+        setContentSize()
+    }
+    //I added 30 to the height to allow the user to "bounce"
+    //the scroll at the end of the content
+    private func setContentSize() {
+        productInformationScrollView.contentSize = CGSize(width: view.frame.size.width, height: productInformationScrollView.getTotalHeight() + 30)
     }
 }
