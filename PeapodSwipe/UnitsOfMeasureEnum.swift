@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum UOM: String { // enum with type
+enum UnitsOfMeasure: String { // enum with type
     case gram = "g"
     case milligram = "mg"
     case pound = "lb"
