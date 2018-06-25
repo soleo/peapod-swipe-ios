@@ -99,7 +99,7 @@ class ProductInformationScrollView: UIScrollView, UIScrollViewDelegate {
         return productFlag
     }
 
-    func createNutritionalLabel(label: String, value: Float?, unit: UOM) -> ProductNutritionLabel {
+    func createNutritionalLabel(label: String, value: Float?, unit: UnitsOfMeasure) -> ProductNutritionLabel {
         let nutritionalLabel = ProductNutritionLabel()
         if value != nil {
             nutritionalLabel.text = label + "\r\n\(value ?? 0 )" + unit.rawValue
@@ -113,10 +113,10 @@ class ProductInformationScrollView: UIScrollView, UIScrollViewDelegate {
     }
     
     func addNutritionLabels(calorieTotal: Float?, saturatedFatTotal: Float?, sodiumTotal: Float?, sugarTotal: Float?) {
-        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Calorie", value: calorieTotal, unit: UOM.none))
-        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sat Fat", value: saturatedFatTotal, unit: UOM.gram))
-        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sodium", value: sodiumTotal, unit: UOM.milligram))
-        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sugar", value: sugarTotal, unit: UOM.gram))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Calorie", value: calorieTotal, unit: UnitsOfMeasure.none))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sat Fat", value: saturatedFatTotal, unit: UnitsOfMeasure.gram))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sodium", value: sodiumTotal, unit: UnitsOfMeasure.milligram))
+        productNutritionStackView.addArrangedSubview(createNutritionalLabel(label: "Sugar", value: sugarTotal, unit: UnitsOfMeasure.gram))
     }
 
     required init?(coder aDecoder: NSCoder) {
